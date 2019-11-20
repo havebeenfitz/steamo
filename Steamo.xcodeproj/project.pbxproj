@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E434979523859F9A0047B750 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979423859F9A0047B750 /* AppDelegate.swift */; };
+		E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979623859F9A0047B750 /* SceneDelegate.swift */; };
+		E434979923859F9A0047B750 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979823859F9A0047B750 /* ViewController.swift */; };
+		E434979C23859F9A0047B750 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E434979A23859F9A0047B750 /* Main.storyboard */; };
+		E434979E23859F9C0047B750 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E434979D23859F9C0047B750 /* Assets.xcassets */; };
+		E43497A123859F9C0047B750 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E434979F23859F9C0047B750 /* LaunchScreen.storyboard */; };
+		E43497AC23859F9C0047B750 /* SteamoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43497AB23859F9C0047B750 /* SteamoTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E43497A823859F9C0047B750 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E434978923859F9A0047B750 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E434979023859F9A0047B750;
+			remoteInfo = Steamo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E434979123859F9A0047B750 /* Steamo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steamo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E434979423859F9A0047B750 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E434979623859F9A0047B750 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E434979823859F9A0047B750 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E434979B23859F9A0047B750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E434979D23859F9C0047B750 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E43497A023859F9C0047B750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E43497A223859F9C0047B750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E43497A723859F9C0047B750 /* SteamoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SteamoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E43497AB23859F9C0047B750 /* SteamoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoTests.swift; sourceTree = "<group>"; };
+		E43497AD23859F9C0047B750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E434978E23859F9A0047B750 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43497A423859F9C0047B750 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E434978823859F9A0047B750 = {
+			isa = PBXGroup;
+			children = (
+				E434979323859F9A0047B750 /* Steamo */,
+				E43497AA23859F9C0047B750 /* SteamoTests */,
+				E434979223859F9A0047B750 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E434979223859F9A0047B750 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E434979123859F9A0047B750 /* Steamo.app */,
+				E43497A723859F9C0047B750 /* SteamoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E434979323859F9A0047B750 /* Steamo */ = {
+			isa = PBXGroup;
+			children = (
+				E434979423859F9A0047B750 /* AppDelegate.swift */,
+				E434979623859F9A0047B750 /* SceneDelegate.swift */,
+				E434979823859F9A0047B750 /* ViewController.swift */,
+				E434979A23859F9A0047B750 /* Main.storyboard */,
+				E434979D23859F9C0047B750 /* Assets.xcassets */,
+				E434979F23859F9C0047B750 /* LaunchScreen.storyboard */,
+				E43497A223859F9C0047B750 /* Info.plist */,
+			);
+			path = Steamo;
+			sourceTree = "<group>";
+		};
+		E43497AA23859F9C0047B750 /* SteamoTests */ = {
+			isa = PBXGroup;
+			children = (
+				E43497AB23859F9C0047B750 /* SteamoTests.swift */,
+				E43497AD23859F9C0047B750 /* Info.plist */,
+			);
+			path = SteamoTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E434979023859F9A0047B750 /* Steamo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E43497B023859F9C0047B750 /* Build configuration list for PBXNativeTarget "Steamo" */;
+			buildPhases = (
+				E434978D23859F9A0047B750 /* Sources */,
+				E434978E23859F9A0047B750 /* Frameworks */,
+				E434978F23859F9A0047B750 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Steamo;
+			productName = Steamo;
+			productReference = E434979123859F9A0047B750 /* Steamo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E43497A623859F9C0047B750 /* SteamoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E43497B323859F9C0047B750 /* Build configuration list for PBXNativeTarget "SteamoTests" */;
+			buildPhases = (
+				E43497A323859F9C0047B750 /* Sources */,
+				E43497A423859F9C0047B750 /* Frameworks */,
+				E43497A523859F9C0047B750 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E43497A923859F9C0047B750 /* PBXTargetDependency */,
+			);
+			name = SteamoTests;
+			productName = SteamoTests;
+			productReference = E43497A723859F9C0047B750 /* SteamoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E434978923859F9A0047B750 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Max Kraev";
+				TargetAttributes = {
+					E434979023859F9A0047B750 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					E43497A623859F9C0047B750 = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = E434979023859F9A0047B750;
+					};
+				};
+			};
+			buildConfigurationList = E434978C23859F9A0047B750 /* Build configuration list for PBXProject "Steamo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E434978823859F9A0047B750;
+			productRefGroup = E434979223859F9A0047B750 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E434979023859F9A0047B750 /* Steamo */,
+				E43497A623859F9C0047B750 /* SteamoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E434978F23859F9A0047B750 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43497A123859F9C0047B750 /* LaunchScreen.storyboard in Resources */,
+				E434979E23859F9C0047B750 /* Assets.xcassets in Resources */,
+				E434979C23859F9A0047B750 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43497A523859F9C0047B750 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E434978D23859F9A0047B750 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E434979923859F9A0047B750 /* ViewController.swift in Sources */,
+				E434979523859F9A0047B750 /* AppDelegate.swift in Sources */,
+				E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43497A323859F9C0047B750 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43497AC23859F9C0047B750 /* SteamoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E43497A923859F9C0047B750 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E434979023859F9A0047B750 /* Steamo */;
+			targetProxy = E43497A823859F9C0047B750 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E434979A23859F9A0047B750 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E434979B23859F9A0047B750 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E434979F23859F9C0047B750 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E43497A023859F9C0047B750 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E43497AE23859F9C0047B750 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E43497AF23859F9C0047B750 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E43497B123859F9C0047B750 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UA7EV3Y4QH;
+				INFOPLIST_FILE = Steamo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.Steamo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E43497B223859F9C0047B750 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UA7EV3Y4QH;
+				INFOPLIST_FILE = Steamo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.Steamo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E43497B423859F9C0047B750 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UA7EV3Y4QH;
+				INFOPLIST_FILE = SteamoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.SteamoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Steamo.app/Steamo";
+			};
+			name = Debug;
+		};
+		E43497B523859F9C0047B750 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UA7EV3Y4QH;
+				INFOPLIST_FILE = SteamoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.SteamoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Steamo.app/Steamo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E434978C23859F9A0047B750 /* Build configuration list for PBXProject "Steamo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E43497AE23859F9C0047B750 /* Debug */,
+				E43497AF23859F9C0047B750 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E43497B023859F9C0047B750 /* Build configuration list for PBXNativeTarget "Steamo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E43497B123859F9C0047B750 /* Debug */,
+				E43497B223859F9C0047B750 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E43497B323859F9C0047B750 /* Build configuration list for PBXNativeTarget "SteamoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E43497B423859F9C0047B750 /* Debug */,
+				E43497B523859F9C0047B750 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E434978923859F9A0047B750 /* Project object */;
+}
