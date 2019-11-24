@@ -17,7 +17,7 @@
 		E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */; };
 		E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */; };
 		E4F61646238A828A006D832B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61645238A828A006D832B /* LoginViewController.swift */; };
-		E4F61648238A84CE006D832B /* APIEnpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61647238A84CE006D832B /* APIEnpoints.swift */; };
+		E4F61648238A84CE006D832B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61647238A84CE006D832B /* API.swift */; };
 		E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6164B238A89E7006D832B /* ProfileViewController.swift */; };
 		E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6164E238A8ABF006D832B /* UIViewController+Navigation.swift */; };
 		EF632747C66FDBDCA8A13AEA /* Pods_SteamoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */; };
@@ -53,7 +53,7 @@
 		E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestBuilder.swift; sourceTree = "<group>"; };
 		E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		E4F61645238A828A006D832B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		E4F61647238A84CE006D832B /* APIEnpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnpoints.swift; sourceTree = "<group>"; };
+		E4F61647238A84CE006D832B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		E4F6164B238A89E7006D832B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E4F6164E238A8ABF006D832B /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,7 +101,6 @@
 		E434978823859F9A0047B750 = {
 			isa = PBXGroup;
 			children = (
-				E4687509238B23E900D7083E /* Keys */,
 				E434979323859F9A0047B750 /* Steamo */,
 				E43497AA23859F9C0047B750 /* SteamoTests */,
 				E434979223859F9A0047B750 /* Products */,
@@ -122,11 +121,12 @@
 		E434979323859F9A0047B750 /* Steamo */ = {
 			isa = PBXGroup;
 			children = (
+				E45BDFE7238A80FE005AA028 /* App */,
+				E4687509238B23E900D7083E /* Keys */,
 				E4687506238AF1DD00D7083E /* Services */,
 				E4F6164D238A8AA7006D832B /* Extensions */,
 				E4F61649238A89CB006D832B /* TabBar */,
-				E4F61644238A826E006D832B /* LoginFlow */,
-				E45BDFE7238A80FE005AA028 /* App */,
+				E4F61644238A826E006D832B /* Login */,
 				E434979D23859F9C0047B750 /* Assets.xcassets */,
 				E434979F23859F9C0047B750 /* LaunchScreen.storyboard */,
 				E43497A223859F9C0047B750 /* Info.plist */,
@@ -163,18 +163,18 @@
 		E4687509238B23E900D7083E /* Keys */ = {
 			isa = PBXGroup;
 			children = (
-				E4F61647238A84CE006D832B /* APIEnpoints.swift */,
+				E4F61647238A84CE006D832B /* API.swift */,
 				E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
 		};
-		E4F61644238A826E006D832B /* LoginFlow */ = {
+		E4F61644238A826E006D832B /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				E4F61645238A828A006D832B /* LoginViewController.swift */,
 			);
-			path = LoginFlow;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		E4F61649238A89CB006D832B /* TabBar */ = {
@@ -375,7 +375,7 @@
 				E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */,
 				E434979523859F9A0047B750 /* AppDelegate.swift in Sources */,
 				E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */,
-				E4F61648238A84CE006D832B /* APIEnpoints.swift in Sources */,
+				E4F61648238A84CE006D832B /* API.swift in Sources */,
 				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
 				E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */,
 			);
