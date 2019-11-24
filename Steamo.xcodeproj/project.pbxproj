@@ -3,17 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */; };
 		E434979523859F9A0047B750 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979423859F9A0047B750 /* AppDelegate.swift */; };
 		E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979623859F9A0047B750 /* SceneDelegate.swift */; };
-		E434979923859F9A0047B750 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979823859F9A0047B750 /* ViewController.swift */; };
-		E434979C23859F9A0047B750 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E434979A23859F9A0047B750 /* Main.storyboard */; };
+		E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979823859F9A0047B750 /* MainTabBarController.swift */; };
 		E434979E23859F9C0047B750 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E434979D23859F9C0047B750 /* Assets.xcassets */; };
 		E43497A123859F9C0047B750 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E434979F23859F9C0047B750 /* LaunchScreen.storyboard */; };
 		E43497AC23859F9C0047B750 /* SteamoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43497AB23859F9C0047B750 /* SteamoTests.swift */; };
+		E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */; };
+		E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */; };
+		E4F61646238A828A006D832B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61645238A828A006D832B /* LoginViewController.swift */; };
+		E4F61648238A84CE006D832B /* APIEnpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61647238A84CE006D832B /* APIEnpoints.swift */; };
+		E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6164B238A89E7006D832B /* ProfileViewController.swift */; };
+		E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6164E238A8ABF006D832B /* UIViewController+Navigation.swift */; };
+		EF632747C66FDBDCA8A13AEA /* Pods_SteamoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +34,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		113433CCF58085967C216540 /* Pods-SteamoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.debug.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1300BB512DA93974D783425C /* Pods-Steamo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steamo.release.xcconfig"; path = "Target Support Files/Pods-Steamo/Pods-Steamo.release.xcconfig"; sourceTree = "<group>"; };
+		6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steamo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steamo.debug.xcconfig"; path = "Target Support Files/Pods-Steamo/Pods-Steamo.debug.xcconfig"; sourceTree = "<group>"; };
+		D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SteamoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.release.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.release.xcconfig"; sourceTree = "<group>"; };
 		E434979123859F9A0047B750 /* Steamo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steamo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E434979423859F9A0047B750 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E434979623859F9A0047B750 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E434979823859F9A0047B750 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E434979B23859F9A0047B750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E434979823859F9A0047B750 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E434979D23859F9C0047B750 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E43497A023859F9C0047B750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E43497A223859F9C0047B750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E43497A723859F9C0047B750 /* SteamoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SteamoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43497AB23859F9C0047B750 /* SteamoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoTests.swift; sourceTree = "<group>"; };
 		E43497AD23859F9C0047B750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestBuilder.swift; sourceTree = "<group>"; };
+		E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoUserDefaultsKeys.swift; sourceTree = "<group>"; };
+		E4F61645238A828A006D832B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E4F61647238A84CE006D832B /* APIEnpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnpoints.swift; sourceTree = "<group>"; };
+		E4F6164B238A89E7006D832B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E4F6164E238A8ABF006D832B /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,18 +71,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF632747C66FDBDCA8A13AEA /* Pods_SteamoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DE62FE3BAE71895DB031DC8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */,
+				D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B0DAE9430D6782F5BBB7EE6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */,
+				1300BB512DA93974D783425C /* Pods-Steamo.release.xcconfig */,
+				113433CCF58085967C216540 /* Pods-SteamoTests.debug.xcconfig */,
+				D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E434978823859F9A0047B750 = {
 			isa = PBXGroup;
 			children = (
+				E4687509238B23E900D7083E /* Keys */,
 				E434979323859F9A0047B750 /* Steamo */,
 				E43497AA23859F9C0047B750 /* SteamoTests */,
 				E434979223859F9A0047B750 /* Products */,
+				B0DAE9430D6782F5BBB7EE6A /* Pods */,
+				4DE62FE3BAE71895DB031DC8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,10 +122,11 @@
 		E434979323859F9A0047B750 /* Steamo */ = {
 			isa = PBXGroup;
 			children = (
-				E434979423859F9A0047B750 /* AppDelegate.swift */,
-				E434979623859F9A0047B750 /* SceneDelegate.swift */,
-				E434979823859F9A0047B750 /* ViewController.swift */,
-				E434979A23859F9A0047B750 /* Main.storyboard */,
+				E4687506238AF1DD00D7083E /* Services */,
+				E4F6164D238A8AA7006D832B /* Extensions */,
+				E4F61649238A89CB006D832B /* TabBar */,
+				E4F61644238A826E006D832B /* LoginFlow */,
+				E45BDFE7238A80FE005AA028 /* App */,
 				E434979D23859F9C0047B750 /* Assets.xcassets */,
 				E434979F23859F9C0047B750 /* LaunchScreen.storyboard */,
 				E43497A223859F9C0047B750 /* Info.plist */,
@@ -99,6 +143,65 @@
 			path = SteamoTests;
 			sourceTree = "<group>";
 		};
+		E45BDFE7238A80FE005AA028 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E434979423859F9A0047B750 /* AppDelegate.swift */,
+				E434979623859F9A0047B750 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E4687506238AF1DD00D7083E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E4687509238B23E900D7083E /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				E4F61647238A84CE006D832B /* APIEnpoints.swift */,
+				E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */,
+			);
+			path = Keys;
+			sourceTree = "<group>";
+		};
+		E4F61644238A826E006D832B /* LoginFlow */ = {
+			isa = PBXGroup;
+			children = (
+				E4F61645238A828A006D832B /* LoginViewController.swift */,
+			);
+			path = LoginFlow;
+			sourceTree = "<group>";
+		};
+		E4F61649238A89CB006D832B /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E4F6164A238A89D6006D832B /* Profile */,
+				E434979823859F9A0047B750 /* MainTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		E4F6164A238A89D6006D832B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E4F6164B238A89E7006D832B /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E4F6164D238A8AA7006D832B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E4F6164E238A8ABF006D832B /* UIViewController+Navigation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E43497B023859F9C0047B750 /* Build configuration list for PBXNativeTarget "Steamo" */;
 			buildPhases = (
+				5F98F67533B9739E8CF753F8 /* [CP] Check Pods Manifest.lock */,
 				E434978D23859F9A0047B750 /* Sources */,
 				E434978E23859F9A0047B750 /* Frameworks */,
 				E434978F23859F9A0047B750 /* Resources */,
+				BA3AE9F2EEED17C5D5FD524D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,6 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E43497B323859F9C0047B750 /* Build configuration list for PBXNativeTarget "SteamoTests" */;
 			buildPhases = (
+				E39C5B25C0B5A2A040B27832 /* [CP] Check Pods Manifest.lock */,
 				E43497A323859F9C0047B750 /* Sources */,
 				E43497A423859F9C0047B750 /* Frameworks */,
 				E43497A523859F9C0047B750 /* Resources */,
@@ -182,7 +288,6 @@
 			files = (
 				E43497A123859F9C0047B750 /* LaunchScreen.storyboard in Resources */,
 				E434979E23859F9C0047B750 /* Assets.xcassets in Resources */,
-				E434979C23859F9A0047B750 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,13 +300,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5F98F67533B9739E8CF753F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Steamo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA3AE9F2EEED17C5D5FD524D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Steamo/Pods-Steamo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Steamo/Pods-Steamo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Steamo/Pods-Steamo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E39C5B25C0B5A2A040B27832 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SteamoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E434978D23859F9A0047B750 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E434979923859F9A0047B750 /* ViewController.swift in Sources */,
+				E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */,
+				E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */,
+				E4F61646238A828A006D832B /* LoginViewController.swift in Sources */,
+				E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */,
 				E434979523859F9A0047B750 /* AppDelegate.swift in Sources */,
+				E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */,
+				E4F61648238A84CE006D832B /* APIEnpoints.swift in Sources */,
+				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
 				E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,14 +400,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E434979A23859F9A0047B750 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E434979B23859F9A0047B750 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E434979F23859F9C0047B750 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -360,42 +527,47 @@
 		};
 		E43497B123859F9C0047B750 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UA7EV3Y4QH;
 				INFOPLIST_FILE = Steamo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.Steamo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.steamo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		E43497B223859F9C0047B750 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1300BB512DA93974D783425C /* Pods-Steamo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UA7EV3Y4QH;
 				INFOPLIST_FILE = Steamo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.Steamo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.steamo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		E43497B423859F9C0047B750 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 113433CCF58085967C216540 /* Pods-SteamoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -418,6 +590,7 @@
 		};
 		E43497B523859F9C0047B750 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
