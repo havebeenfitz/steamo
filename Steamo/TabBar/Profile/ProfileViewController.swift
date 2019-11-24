@@ -11,46 +11,110 @@ import SnapKit
 
 class ProfileViewController: UIViewController {
     
-    /// Стим айди игрока
-    var steamId: String? {
-        get {
-            UserDefaults.standard.string(forKey: SteamoUserDefaultsKeys.steamId)
-        }
+    /// Вьюмодель экрана
+    private let viewModel: ProfileViewModel
+    
+    private lazy var loginStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [logoImageView, loginButton])
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.distribution = .fillProportionally
         
-        set {
-            UserDefaults.standard.set(newValue, forKey: SteamoUserDefaultsKeys.steamId)
+        return stackView
+    }()
+    
+    /// Логотип стима
+    private lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "steamlogo")
+        if #available(iOS 11.0, *) {
+            imageView.tintColor = UIColor(named: "Text")
+        } else {
+            imageView.tintColor = .text
         }
-    }
+        return imageView
+    }()
     
     /// Кнопка авторизации
-    private lazy var loginButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .lightGray
-        button.setTitle("Log in", for: .normal)
+    private lazy var loginButton: SteamoButton = {
+        let button = SteamoButton()
+        if #available(iOS 11.0, *) {
+            button.backgroundColor = UIColor(named: "Accent")
+            button.titleLabel?.textColor = UIColor(named: "Background")
+        } else {
+            button.backgroundColor = .accent
+            button.titleLabel?.textColor = .background
+        }
+        button.setTitle("Sing in", for: .normal)
         button.addTarget(nil, action: #selector(loginButtonDidTap), for: .touchUpInside)
+        button.isHidden = viewModel.steamId != nil
         return button
     }()
+    
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        toggleLogoutButton()
     }
     
     @objc private func loginButtonDidTap() {
         let loginVC = LoginViewController(nibName: nil, bundle: nil)
-        loginVC.completion = { steamId in
-            print(steamId)
+        let loginNavigationVC = loginVC.wrapInNavigation()
+        loginVC.completion = { [weak self] steamId in
+            self?.viewModel.steamId = steamId
+            self?.loginStackView.isHidden = true
+            self?.toggleLogoutButton()
         }
-        present(loginVC, animated: true)
+        present(loginNavigationVC, animated: true)
     }
     
     private func setup() {
-        view.backgroundColor = .white
-        
-        view.addSubview(loginButton)
-        loginButton.snp.makeConstraints { make in
+        title = "Profile"
+        if #available(iOS 11.0, *) {
+            view.backgroundColor = UIColor(named: "Background")
+        } else {
+            view.backgroundColor = .background
+        }
+
+        view.addSubview(loginStackView)
+        loginStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
+        
+        logoImageView.snp.makeConstraints { make in
+            make.height.width.equalTo(200)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.height.equalTo(60)
+        }
+    }
+    
+    private func toggleLogoutButton() {
+        if viewModel.steamId != nil {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"),
+                                                                       style: .plain,
+                                                                       target: self,
+                                                                       action: #selector(logout))
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
+       
+    }
+    
+    @objc private func logout() {
+        viewModel.logout()
+        loginStackView.isHidden = false
+        toggleLogoutButton()
     }
     
 }

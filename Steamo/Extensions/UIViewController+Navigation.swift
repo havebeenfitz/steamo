@@ -14,15 +14,15 @@ struct TabBarStyle {
 }
 
 extension UIViewController {
-    func wrapInNavigation(tabBarStyle: TabBarStyle? = nil) -> UINavigationController {
-        let isNavigationController = isKind(of: UINavigationController.self)
+    func wrapInNavigation(tabBarStyle: TabBarStyle? = nil) -> SteamoNavigationController {
+        let isNavigationController = isKind(of: SteamoNavigationController.self) || isKind(of: UINavigationController.self)
         
         assert(!isNavigationController, "wrapInNavigation вызван у UINavigationController")
         if isNavigationController {
-            return self as! UINavigationController
+            return self as! SteamoNavigationController
         }
         
-        let navigationController = UINavigationController(rootViewController: self)
+        let navigationController = SteamoNavigationController(rootViewController: self)
         
         if #available(iOS 11.0, *) {
             navigationController.navigationBar.prefersLargeTitles = false

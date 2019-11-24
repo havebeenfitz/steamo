@@ -11,7 +11,7 @@ import Foundation
 class AuthRequestBuilder {
     /// Запрос на авторизацию
     static func authRequest() -> URLRequest {
-        let parameters = "openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.op_endpoint=\(API.authURL)&openid.return_to=https://flip-learn.flycricket.io/&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.realm=https://flip-learn.flycricket.io/"
+        let parameters = "openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.op_endpoint=\(API.authURL)&openid.return_to=\(API.redirectURL)/&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.realm=\(API.redirectURL)"
         
         var request = URLRequest(url: API.authURL)
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")

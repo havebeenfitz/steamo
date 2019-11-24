@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */; };
+		E414E230238B3D9300A7AB93 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */; };
+		E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */; };
+		E414E235238B3F6000A7AB93 /* UIColor+Appcolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */; };
+		E414E237238B400000A7AB93 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E414E236238B400000A7AB93 /* Colors.xcassets */; };
+		E414E23A238B436500A7AB93 /* SteamoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E239238B436500A7AB93 /* SteamoNavigationController.swift */; };
+		E414E23C238B4BA500A7AB93 /* SteamoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E23B238B4BA500A7AB93 /* SteamoButton.swift */; };
 		E434979523859F9A0047B750 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979423859F9A0047B750 /* AppDelegate.swift */; };
 		E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979623859F9A0047B750 /* SceneDelegate.swift */; };
 		E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979823859F9A0047B750 /* MainTabBarController.swift */; };
@@ -40,6 +46,12 @@
 		CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steamo.debug.xcconfig"; path = "Target Support Files/Pods-Steamo/Pods-Steamo.debug.xcconfig"; sourceTree = "<group>"; };
 		D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SteamoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.release.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.release.xcconfig"; sourceTree = "<group>"; };
+		E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
+		E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Appcolor.swift"; sourceTree = "<group>"; };
+		E414E236238B400000A7AB93 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		E414E239238B436500A7AB93 /* SteamoNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoNavigationController.swift; sourceTree = "<group>"; };
+		E414E23B238B4BA500A7AB93 /* SteamoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoButton.swift; sourceTree = "<group>"; };
 		E434979123859F9A0047B750 /* Steamo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steamo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E434979423859F9A0047B750 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E434979623859F9A0047B750 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +110,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E414E231238B3E6800A7AB93 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */,
+				E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E414E238238B434F00A7AB93 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E414E239238B436500A7AB93 /* SteamoNavigationController.swift */,
+				E414E23B238B4BA500A7AB93 /* SteamoButton.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		E434978823859F9A0047B750 = {
 			isa = PBXGroup;
 			children = (
@@ -121,13 +151,15 @@
 		E434979323859F9A0047B750 /* Steamo */ = {
 			isa = PBXGroup;
 			children = (
+				E414E238238B434F00A7AB93 /* UI */,
 				E45BDFE7238A80FE005AA028 /* App */,
 				E4687509238B23E900D7083E /* Keys */,
 				E4687506238AF1DD00D7083E /* Services */,
-				E4F6164D238A8AA7006D832B /* Extensions */,
 				E4F61649238A89CB006D832B /* TabBar */,
 				E4F61644238A826E006D832B /* Login */,
+				E4F6164D238A8AA7006D832B /* Extensions */,
 				E434979D23859F9C0047B750 /* Assets.xcassets */,
+				E414E236238B400000A7AB93 /* Colors.xcassets */,
 				E434979F23859F9C0047B750 /* LaunchScreen.storyboard */,
 				E43497A223859F9C0047B750 /* Info.plist */,
 			);
@@ -155,7 +187,7 @@
 		E4687506238AF1DD00D7083E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */,
+				E414E231238B3E6800A7AB93 /* Network */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -190,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				E4F6164B238A89E7006D832B /* ProfileViewController.swift */,
+				E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -198,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				E4F6164E238A8ABF006D832B /* UIViewController+Navigation.swift */,
+				E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -286,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E414E237238B400000A7AB93 /* Colors.xcassets in Resources */,
 				E43497A123859F9C0047B750 /* LaunchScreen.storyboard in Resources */,
 				E434979E23859F9C0047B750 /* Assets.xcassets in Resources */,
 			);
@@ -369,14 +404,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E414E23A238B436500A7AB93 /* SteamoNavigationController.swift in Sources */,
 				E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */,
 				E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */,
 				E4F61646238A828A006D832B /* LoginViewController.swift in Sources */,
 				E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */,
+				E414E230238B3D9300A7AB93 /* ProfileViewModel.swift in Sources */,
+				E414E235238B3F6000A7AB93 /* UIColor+Appcolor.swift in Sources */,
 				E434979523859F9A0047B750 /* AppDelegate.swift in Sources */,
 				E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */,
 				E4F61648238A84CE006D832B /* API.swift in Sources */,
+				E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */,
 				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
+				E414E23C238B4BA500A7AB93 /* SteamoButton.swift in Sources */,
 				E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

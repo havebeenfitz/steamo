@@ -25,11 +25,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.show()
-        view.addSubview(webView)
-        webView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        setup()
         webView.load(AuthRequestBuilder.authRequest())
     }
     
@@ -47,13 +43,27 @@ class LoginViewController: UIViewController {
         
     }
     
+    private func setup() {
+        if #available(iOS 11.0, *) {
+            view.backgroundColor = UIColor(named: "Background")
+        } else {
+            view.backgroundColor = .background
+        }
+        view.addSubview(webView)
+        webView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
+    }
+    
+    @objc private func close() {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension LoginViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        SVProgressHUD.dismiss()
-    }
-    
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         if navigationResponse.response.url?.absoluteString.contains(API.redirectURL.absoluteString) ?? false {
             validateSteamAPICall(with: navigationResponse.response)
