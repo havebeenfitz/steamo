@@ -14,6 +14,8 @@ class ProfileViewController: UIViewController {
     /// Вьюмодель экрана
     private let viewModel: ProfileViewModel
     
+    private var refreshControl = UIRefreshControl()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.tableFooterView = UIView()
@@ -23,14 +25,20 @@ class ProfileViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         if #available(iOS 11.0, *) {
             tableView.backgroundColor = UIColor(named: "Background")
+            refreshControl.tintColor = UIColor(named: "Accent")
         } else {
             tableView.backgroundColor = .background
+            refreshControl.tintColor = .accent
         }
         
         tableView.register(class: AvatarTableViewCell.self)
         
         tableView.delegate = viewModel
         tableView.dataSource = viewModel
+        
+        tableView.refreshControl = refreshControl
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         return tableView
     }()
@@ -131,6 +139,12 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @objc private func refresh() {
+        loadProfile { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
+    }
+    
     private func toggleLogoutButton() {
         if viewModel.isUserAuthorized {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"),
@@ -156,11 +170,12 @@ class ProfileViewController: UIViewController {
         toggleLogoutButton()
     }
     
-    private func loadProfile() {
+    private func loadProfile(completion: (() -> Void)? = nil) {
         if viewModel.isUserAuthorized {
             viewModel.profileSummary { [weak self] _ in
                 self?.showLoginButton(isUserAuthorized: true)
                 self?.showTableView(isUserAuthorized: true)
+                completion?()
             }
         }
     }

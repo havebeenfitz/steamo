@@ -41,6 +41,7 @@ class ProfileViewModel: NSObject {
     /// Получить сводную информацию по профилю
     /// - Parameter completion: колбэк по завершению запроса
     func profileSummary(completion: @escaping (Result<Void, SteamoError>) -> Void) {
+        cellViewModels = []
         networkAdapter.profileSummary { [weak self] result in
             switch result {
             case let .success(profile):
@@ -54,7 +55,7 @@ class ProfileViewModel: NSObject {
         }
     }
     
-    func updateProfile() {
+    private func updateProfile() {
         if let profile = profile, let player = profile.response.players.first {
             let avatarViewModel = AvatarCellViewModel(avatarURLString: player.avatarFull,
                                                       name: player.personaName,
@@ -63,6 +64,7 @@ class ProfileViewModel: NSObject {
         }
     }
     
+    /// "Разлогиниться"
     func logout() {
         steamId = nil
         cellViewModels = []
