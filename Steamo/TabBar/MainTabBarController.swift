@@ -32,9 +32,9 @@ class MainTabBarController: UITabBarController {
         let profileVC = ProfileViewController(viewModel: profileViewModel).wrapInNavigation(tabBarStyle: TabBarStyle(title: "Profile",
                                                                                                                      icon: UIImage(named: "profile")))
         let stubVC1 = UIViewController().wrapInNavigation(tabBarStyle: TabBarStyle(title: "Stats",
-                                                                                   icon: nil))
+                                                                                   icon: UIImage(named: "stats")))
         let stubVC2 = UIViewController().wrapInNavigation(tabBarStyle: TabBarStyle(title: "Sessions",
-                                                                                   icon: nil))
+                                                                                   icon: UIImage(named: "session")))
         viewControllers = [profileVC, stubVC1, stubVC2]
     }
 
