@@ -133,11 +133,16 @@ class ProfileViewController: UIViewController {
     
     private func toggleLogoutButton() {
         if viewModel.isUserAuthorized {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"),
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"),
                                                                        style: .plain,
                                                                        target: self,
                                                                        action: #selector(logout))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "friends"),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: nil)
         } else {
+            navigationItem.leftBarButtonItem = nil
             navigationItem.rightBarButtonItem = nil
         }
         showLoginButton(isUserAuthorized: viewModel.isUserAuthorized)

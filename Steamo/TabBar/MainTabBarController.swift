@@ -31,7 +31,7 @@ class MainTabBarController: UITabBarController {
         let profileViewModel = ProfileViewModel(networkAdapter: NetworkAdapter())
         let profileVC = ProfileViewController(viewModel: profileViewModel).wrapInNavigation(tabBarStyle: TabBarStyle(title: "Profile",
                                                                                                                      icon: UIImage(named: "profile")))
-        let stubVC1 = UIViewController().wrapInNavigation(tabBarStyle: TabBarStyle(title: "Friends",
+        let stubVC1 = UIViewController().wrapInNavigation(tabBarStyle: TabBarStyle(title: "Stats",
                                                                                    icon: nil))
         let stubVC2 = UIViewController().wrapInNavigation(tabBarStyle: TabBarStyle(title: "Sessions",
                                                                                    icon: nil))

@@ -19,8 +19,10 @@ class SteamoNavigationController: UINavigationController {
         navigationBar.isTranslucent = false
         if #available(iOS 11.0, *) {
             navigationBar.barTintColor = UIColor(named: "Background")
+            navigationBar.tintColor = UIColor(named: "Accent")
         } else {
             navigationBar.barTintColor = .background
+            navigationBar.tintColor = .accent
         }
     }
     
