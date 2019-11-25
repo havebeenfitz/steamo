@@ -14,6 +14,24 @@ class ProfileViewController: UIViewController {
     /// Вьюмодель экрана
     private let viewModel: ProfileViewModel
     
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 150
+        tableView.rowHeight = UITableView.automaticDimension
+        if #available(iOS 11.0, *) {
+            tableView.backgroundColor = UIColor(named: "Background")
+        } else {
+            tableView.backgroundColor = .background
+        }
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        return tableView
+    }()
+    
+    /// Стэквью для показа кнопки логина и логотипа
     private lazy var loginStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [logoImageView, loginButton])
         stackView.axis = .vertical
@@ -47,7 +65,6 @@ class ProfileViewController: UIViewController {
         }
         button.setTitle("Sing in", for: .normal)
         button.addTarget(nil, action: #selector(loginButtonDidTap), for: .touchUpInside)
-        button.isHidden = viewModel.steamId != nil
         return button
     }()
     
@@ -64,6 +81,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setup()
         toggleLogoutButton()
+        loadProfile()
     }
     
     @objc private func loginButtonDidTap() {
@@ -73,6 +91,10 @@ class ProfileViewController: UIViewController {
             self?.viewModel.steamId = steamId
             self?.loginStackView.isHidden = true
             self?.toggleLogoutButton()
+            
+            self?.viewModel.profileSummary { result in
+                print(result)
+            }
         }
         present(loginNavigationVC, animated: true)
     }
@@ -100,7 +122,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func toggleLogoutButton() {
-        if viewModel.steamId != nil {
+        if viewModel.isUserAuthorized {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"),
                                                                        style: .plain,
                                                                        target: self,
@@ -108,7 +130,7 @@ class ProfileViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = nil
         }
-       
+        loginStackView.isHidden = viewModel.isUserAuthorized
     }
     
     @objc private func logout() {
@@ -116,5 +138,29 @@ class ProfileViewController: UIViewController {
         loginStackView.isHidden = false
         toggleLogoutButton()
     }
+    
+    private func loadProfile() {
+        if viewModel.isUserAuthorized {
+            viewModel.profileSummary { [weak self] result in
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.numberOfRowsIn(section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
     
 }

@@ -14,5 +14,8 @@ struct API {
     static let authURL: URL = URL(string: "https://steamcommunity.com/openid/login/")!
     /// Куда редиректим после успешной авторизации
     static let redirectURL: URL = URL(string: "https://flip-learn.flycricket.io")!
-    
+    /// Эндпоинт для всех методов API
+    static let baseURL: URL = URL(string: "https://api.steampowered.com/")!
+    /// API ключ для стима
+    static let apiKey: String = "791CF56D766357A65BE321D5C8281F82"
 }
