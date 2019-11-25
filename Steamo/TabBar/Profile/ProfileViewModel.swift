@@ -92,7 +92,7 @@ extension ProfileViewModel: UITableViewDataSource {
         switch cellViewModel.type {
         case .avatar:
             if let cell: AvatarTableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.viewModel = cellViewModel
+                cell.configure(with: cellViewModel)
                 return cell
             }
         case .gamesBought:

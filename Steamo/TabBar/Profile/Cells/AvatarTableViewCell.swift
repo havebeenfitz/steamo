@@ -12,12 +12,6 @@ import SnapKit
 
 class AvatarTableViewCell: UITableViewCell {
     
-    var viewModel: ProfileCellViewModel? {
-        willSet {
-            configure(with: newValue)
-        }
-    }
-    
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -68,8 +62,8 @@ class AvatarTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure(with newValue: ProfileCellViewModel?) {
-        guard let viewModel = newValue as? AvatarCellViewModel, let url = URL(string: viewModel.avatarURLString) else {
+    func configure(with viewModel: ProfileCellViewModel?) {
+        guard let viewModel = viewModel as? AvatarCellViewModel, let url = URL(string: viewModel.avatarURLString) else {
             return
         }
         avatarImageView.kf.setImage(with: url)
