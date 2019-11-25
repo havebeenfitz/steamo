@@ -6,6 +6,8 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
+import Foundation
+
 struct Games: Codable {
     let response: GamesResponse
 }
@@ -21,7 +23,7 @@ struct GamesResponse: Codable {
 }
 
 struct Game: Codable {
-    let appid: Int
+    let appId: Int
     let name: String
     let playtimeForever: Int
     let imgIconUrl: String
@@ -33,7 +35,7 @@ struct Game: Codable {
     let playtime2Weeks: Int?
 
     enum CodingKeys: String, CodingKey {
-        case appid = "appid"
+        case appId = "appid"
         case name = "name"
         case playtimeForever = "playtime_forever"
         case imgIconUrl = "img_icon_url"
@@ -43,5 +45,15 @@ struct Game: Codable {
         case playtimeMacForever = "playtime_mac_forever"
         case playtimeLinuxForever = "playtime_linux_forever"
         case playtime2Weeks = "playtime_2weeks"
+    }
+}
+
+extension Game {
+    var calculatedImageLogoUrl: URL? {
+        return URL(string: "http://media.steampowered.com/steamcommunity/public/images/apps/\(appId)/\(imgLogoUrl).jpg")
+    }
+    
+    var calculatedImageIconUrl: URL? {
+        return URL(string: "http://media.steampowered.com/steamcommunity/public/images/apps/\(appId)/\(imgLogoUrl).jpg")
     }
 }

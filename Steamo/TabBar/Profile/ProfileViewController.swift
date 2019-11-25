@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController {
         }
         
         tableView.register(class: AvatarTableViewCell.self)
+        tableView.register(class: OwnedGamesTableViewCell.self)
         
         tableView.delegate = viewModel
         tableView.dataSource = viewModel
@@ -93,13 +94,9 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setup()
         toggleLogoutButton()
-        viewModel.profileSummary { [weak self] _ in
+        viewModel.loadProfile { [weak self] _ in
             self?.showLoginButton(isUserAuthorized: true)
             self?.showTableView(isUserAuthorized: true)
-        }
-        
-        viewModel.ownedGames { result in
-            
         }
     }
     
@@ -111,7 +108,7 @@ class ProfileViewController: UIViewController {
             self?.loginStackView.isHidden = true
             self?.toggleLogoutButton()
             
-            self?.viewModel.profileSummary { [weak self] _ in
+            self?.viewModel.loadProfile { [weak self] _ in
                 self?.showLoginButton(isUserAuthorized: true)
                 self?.showTableView(isUserAuthorized: true)
             }
@@ -147,7 +144,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func refresh() {
-        viewModel.profileSummary { [weak self] _ in
+        viewModel.loadProfile { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
         

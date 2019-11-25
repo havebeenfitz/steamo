@@ -40,35 +40,40 @@ class ProfileViewModel: NSObject {
     
     /// Получить сводную информацию по профилю
     /// - Parameter completion: колбэк по завершению запроса
-    func profileSummary(completion: ((Result<Void, SteamoError>) -> Void)? = nil) {
+    func loadProfile(completion: ((Result<Void, SteamoError>) -> Void)? = nil) {
         guard isUserAuthorized else { return }
         
+        let dispatchGroup = DispatchGroup()
+        
         cellViewModels = []
+        
+        dispatchGroup.enter()
         networkAdapter.profileSummary { [weak self] result in
             switch result {
             case let .success(profile):
                 self?.profile = profile
                 self?.updateProfile()
-                completion?(.success(()))
-            case let .failure(error):
-                completion?(.failure(error))
+                dispatchGroup.leave()
+            case .failure:
+                completion?(.failure(SteamoError.noConnection))
+                dispatchGroup.leave()
             }
             
         }
-    }
-    
-    func ownedGames(completion: ((Result<Void, SteamoError>) -> Void)? = nil) {
-        guard isUserAuthorized else { return }
         
-        networkAdapter.ownedGames { [weak self] result in
-            switch result {
-            case let .success(games):
-                print(games)
-                completion?(.success(()))
-            case let .failure(error):
-                completion?(.failure(error))
+        let workItem = DispatchWorkItem {
+            self.networkAdapter.ownedGames { [weak self] result in
+                switch result {
+                case let .success(value):
+                    self?.cellViewModels.append(OwnedGamesCellViewModel(games: value.response.games))
+                    completion?(.success(()))
+                case .failure:
+                    completion?(.failure(SteamoError.noConnection))
+                }
             }
         }
+        
+        dispatchGroup.notify(queue: .main, work: workItem)
     }
     
     private func updateProfile() {
@@ -113,8 +118,11 @@ extension ProfileViewModel: UITableViewDataSource {
                 cell.configure(with: cellViewModel)
                 return cell
             }
-        case .gamesBought:
-            return UITableViewCell()
+        case .ownedGames:
+            if let cell: OwnedGamesTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.configure(with: cellViewModel)
+                return cell
+            }
         }
         assertionFailure("New cell")
         return UITableViewCell()

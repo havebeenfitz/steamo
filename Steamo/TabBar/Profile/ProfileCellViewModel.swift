@@ -8,7 +8,7 @@
 
 enum ProfileCellViewModelType {
     case avatar
-    case gamesBought
+    case ownedGames
 }
 
 protocol ProfileCellViewModel {
