@@ -40,18 +40,34 @@ class ProfileViewModel: NSObject {
     
     /// Получить сводную информацию по профилю
     /// - Parameter completion: колбэк по завершению запроса
-    func profileSummary(completion: @escaping (Result<Void, SteamoError>) -> Void) {
+    func profileSummary(completion: ((Result<Void, SteamoError>) -> Void)? = nil) {
+        guard isUserAuthorized else { return }
+        
         cellViewModels = []
         networkAdapter.profileSummary { [weak self] result in
             switch result {
             case let .success(profile):
                 self?.profile = profile
                 self?.updateProfile()
-                completion(.success(()))
+                completion?(.success(()))
             case let .failure(error):
-                completion(.failure(error))
+                completion?(.failure(error))
             }
             
+        }
+    }
+    
+    func ownedGames(completion: ((Result<Void, SteamoError>) -> Void)? = nil) {
+        guard isUserAuthorized else { return }
+        
+        networkAdapter.ownedGames { [weak self] result in
+            switch result {
+            case let .success(games):
+                print(games)
+                completion?(.success(()))
+            case let .failure(error):
+                completion?(.failure(error))
+            }
         }
     }
     

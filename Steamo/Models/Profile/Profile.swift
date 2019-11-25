@@ -9,10 +9,10 @@
 import Foundation
 
 struct Profile: Codable {
-    let response: Response
+    let response: ProfileResponse
 }
 
-struct Response: Codable {
+struct ProfileResponse: Codable {
     let players: [Player]
 }
 

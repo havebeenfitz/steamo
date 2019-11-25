@@ -1,0 +1,47 @@
+//
+//  Games.swift
+//  Steamo
+//
+//  Created by Max Kraev on 25.11.2019.
+//  Copyright © 2019 Max Kraev. All rights reserved.
+//
+
+struct Games: Codable {
+    let response: GamesResponse
+}
+
+struct GamesResponse: Codable {
+    let gameCount: Int
+    let games: [Game]
+
+    enum CodingKeys: String, CodingKey {
+        case gameCount = "game_count"
+        case games = "games"
+    }
+}
+
+struct Game: Codable {
+    let appid: Int
+    let name: String
+    let playtimeForever: Int
+    let imgIconUrl: String
+    let imgLogoUrl: String
+    let hasCommunityVisibleStats: Bool
+    let playtimeWindowsForever: Int
+    let playtimeMacForever: Int
+    let playtimeLinuxForever: Int
+    let playtime2Weeks: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case appid = "appid"
+        case name = "name"
+        case playtimeForever = "playtime_forever"
+        case imgIconUrl = "img_icon_url"
+        case imgLogoUrl = "img_logo_url"
+        case hasCommunityVisibleStats = "has_community_visible_stats"
+        case playtimeWindowsForever = "playtime_windows_forever"
+        case playtimeMacForever = "playtime_mac_forever"
+        case playtimeLinuxForever = "playtime_linux_forever"
+        case playtime2Weeks = "playtime_2weeks"
+    }
+}

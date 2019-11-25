@@ -21,6 +21,7 @@
 		E414E24B238B624600A7AB93 /* AvatarCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */; };
 		E414E24D238B628600A7AB93 /* ProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24C238B628600A7AB93 /* ProfileCellViewModel.swift */; };
 		E414E24F238B635800A7AB93 /* GamesBoughtCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24E238B635800A7AB93 /* GamesBoughtCellViewModel.swift */; };
+		E414E252238B9E9600A7AB93 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E251238B9E9600A7AB93 /* Games.swift */; };
 		E434979523859F9A0047B750 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979423859F9A0047B750 /* AppDelegate.swift */; };
 		E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979623859F9A0047B750 /* SceneDelegate.swift */; };
 		E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434979823859F9A0047B750 /* MainTabBarController.swift */; };
@@ -66,6 +67,7 @@
 		E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCellViewModel.swift; sourceTree = "<group>"; };
 		E414E24C238B628600A7AB93 /* ProfileCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellViewModel.swift; sourceTree = "<group>"; };
 		E414E24E238B635800A7AB93 /* GamesBoughtCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesBoughtCellViewModel.swift; sourceTree = "<group>"; };
+		E414E251238B9E9600A7AB93 /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 		E434979123859F9A0047B750 /* Steamo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steamo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E434979423859F9A0047B750 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E434979623859F9A0047B750 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		E414E23D238B55A800A7AB93 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E414E250238B9E8800A7AB93 /* Games */,
 				E414E242238B567500A7AB93 /* Profile */,
 				E414E23E238B55B400A7AB93 /* SteamoError */,
 			);
@@ -175,6 +178,14 @@
 				E414E24E238B635800A7AB93 /* GamesBoughtCellViewModel.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		E414E250238B9E8800A7AB93 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				E414E251238B9E9600A7AB93 /* Games.swift */,
+			);
+			path = Games;
 			sourceTree = "<group>";
 		};
 		E434978823859F9A0047B750 = {
@@ -472,6 +483,7 @@
 				E414E240238B55C400A7AB93 /* SteamoError.swift in Sources */,
 				E414E244238B568600A7AB93 /* Profile.swift in Sources */,
 				E414E24F238B635800A7AB93 /* GamesBoughtCellViewModel.swift in Sources */,
+				E414E252238B9E9600A7AB93 /* Games.swift in Sources */,
 				E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */,
 				E4F61648238A84CE006D832B /* API.swift in Sources */,
 				E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */,

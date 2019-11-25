@@ -93,7 +93,14 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setup()
         toggleLogoutButton()
-        loadProfile()
+        viewModel.profileSummary { [weak self] _ in
+            self?.showLoginButton(isUserAuthorized: true)
+            self?.showTableView(isUserAuthorized: true)
+        }
+        
+        viewModel.ownedGames { result in
+            
+        }
     }
     
     @objc private func loginButtonDidTap() {
@@ -140,9 +147,11 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func refresh() {
-        loadProfile { [weak self] in
+        viewModel.profileSummary { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
+        
+        
     }
     
     private func toggleLogoutButton() {
@@ -168,16 +177,6 @@ class ProfileViewController: UIViewController {
         showLoginButton(isUserAuthorized: viewModel.isUserAuthorized)
         showTableView(isUserAuthorized: viewModel.isUserAuthorized)
         toggleLogoutButton()
-    }
-    
-    private func loadProfile(completion: (() -> Void)? = nil) {
-        if viewModel.isUserAuthorized {
-            viewModel.profileSummary { [weak self] _ in
-                self?.showLoginButton(isUserAuthorized: true)
-                self?.showTableView(isUserAuthorized: true)
-                completion?()
-            }
-        }
     }
     
     private func showTableView(isUserAuthorized: Bool) {
