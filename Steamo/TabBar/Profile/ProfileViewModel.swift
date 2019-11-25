@@ -6,20 +6,26 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class ProfileViewModel {
+class ProfileViewModel: NSObject {
+    //MARK:- Public properties
     
     /// Состояние авторизации пользователя
     var isUserAuthorized: Bool {
         return steamId != nil
     }
-    
     /// Стим айди игрока
     var steamId: String? {
         get { UserDefaults.standard.string(forKey: SteamoUserDefaultsKeys.steamId) }
         set { UserDefaults.standard.set(newValue, forKey: SteamoUserDefaultsKeys.steamId) }
     }
+    /// Профиль пользователя
+    var profile: Profile? = nil
+    
+    //MARK:- Private properties
+    
+    private var cellViewModels: [ProfileCellViewModel] = []
     
     /// Адаптер для работы с сетью
     private let networkAdapter: Networking
@@ -30,19 +36,73 @@ class ProfileViewModel {
         self.networkAdapter = networkAdapter
     }
     
+    //MARK:- Methods
+    
     /// Получить сводную информацию по профилю
     /// - Parameter completion: колбэк по завершению запроса
-    func profileSummary(completion: @escaping (Result<Profile, SteamoError>) -> Void) {
-        networkAdapter.profileSummary { result in
-            completion(result)
+    func profileSummary(completion: @escaping (Result<Void, SteamoError>) -> Void) {
+        networkAdapter.profileSummary { [weak self] result in
+            switch result {
+            case let .success(profile):
+                self?.profile = profile
+                self?.updateProfile()
+                completion(.success(()))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+            
         }
     }
     
-    func numberOfRowsIn(_ section: Int) -> Int {
-        return 2
+    func updateProfile() {
+        if let profile = profile, let player = profile.response.players.first {
+            let avatarViewModel = AvatarCellViewModel(avatarURLString: player.avatarFull,
+                                                      name: player.personaName,
+                                                      status: UserStatus(rawValue: player.personaState) ?? .offline)
+            cellViewModels.append(avatarViewModel)
+        }
     }
     
     func logout() {
         steamId = nil
+        cellViewModels = []
     }
 }
+
+extension ProfileViewModel: UITableViewDelegate {
+    
+}
+
+extension ProfileViewModel: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        cellViewModels[section].sectionTitle
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return cellViewModels.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        cellViewModels[section].rowCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellViewModel = cellViewModels[indexPath.section]
+        
+        switch cellViewModel.type {
+        case .avatar:
+            if let cell: AvatarTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.viewModel = cellViewModel
+                return cell
+            }
+        case .gamesBought:
+            return UITableViewCell()
+        }
+        assertionFailure("New cell")
+        return UITableViewCell()
+    }
+    
+    
+}
+
+

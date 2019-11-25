@@ -25,6 +25,7 @@ struct Player: Codable {
     let avatarMedium: String
     let avatarFull: String
     let personaState: Int
+    let profileState: Int?
     let primaryClanId: String
     let timeCreated: Int
     let personaStateFlags: Int
@@ -38,6 +39,7 @@ struct Player: Codable {
         case avatarMedium = "avatarmedium"
         case avatarFull = "avatarfull"
         case personaState = "personastate"
+        case profileState = "profilestate"
         case primaryClanId = "primaryclanid"
         case timeCreated = "timecreated"
         case personaStateFlags = "personastateflags"

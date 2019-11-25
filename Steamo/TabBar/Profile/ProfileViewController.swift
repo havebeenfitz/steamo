@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.tableFooterView = UIView()
+        tableView.separatorColor = .clear
+        tableView.alwaysBounceVertical = false
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
         if #available(iOS 11.0, *) {
@@ -25,8 +27,10 @@ class ProfileViewController: UIViewController {
             tableView.backgroundColor = .background
         }
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.register(class: AvatarTableViewCell.self)
+        
+        tableView.delegate = viewModel
+        tableView.dataSource = viewModel
         
         return tableView
     }()
@@ -92,8 +96,9 @@ class ProfileViewController: UIViewController {
             self?.loginStackView.isHidden = true
             self?.toggleLogoutButton()
             
-            self?.viewModel.profileSummary { result in
-                print(result)
+            self?.viewModel.profileSummary { [weak self] _ in
+                self?.showLoginButton(isUserAuthorized: true)
+                self?.showTableView(isUserAuthorized: true)
             }
         }
         present(loginNavigationVC, animated: true)
@@ -105,6 +110,11 @@ class ProfileViewController: UIViewController {
             view.backgroundColor = UIColor(named: "Background")
         } else {
             view.backgroundColor = .background
+        }
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
 
         view.addSubview(loginStackView)
@@ -130,37 +140,34 @@ class ProfileViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = nil
         }
-        loginStackView.isHidden = viewModel.isUserAuthorized
+        showLoginButton(isUserAuthorized: viewModel.isUserAuthorized)
+        showTableView(isUserAuthorized: viewModel.isUserAuthorized)
     }
     
     @objc private func logout() {
         viewModel.logout()
-        loginStackView.isHidden = false
+        showLoginButton(isUserAuthorized: viewModel.isUserAuthorized)
+        showTableView(isUserAuthorized: viewModel.isUserAuthorized)
         toggleLogoutButton()
     }
     
     private func loadProfile() {
         if viewModel.isUserAuthorized {
-            viewModel.profileSummary { [weak self] result in
-                self?.tableView.reloadData()
+            viewModel.profileSummary { [weak self] _ in
+                self?.showLoginButton(isUserAuthorized: true)
+                self?.showTableView(isUserAuthorized: true)
             }
         }
     }
     
-}
-
-extension ProfileViewController: UITableViewDelegate {
-    
-}
-
-extension ProfileViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numberOfRowsIn(section)
+    private func showTableView(isUserAuthorized: Bool) {
+        tableView.isHidden = !isUserAuthorized
+        if isUserAuthorized {
+            tableView.reloadData()
+        }
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+
+    private func showLoginButton(isUserAuthorized: Bool) {
+        loginStackView.isHidden = isUserAuthorized
     }
-    
-    
 }
