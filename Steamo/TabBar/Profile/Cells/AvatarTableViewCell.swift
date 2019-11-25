@@ -34,7 +34,9 @@ class AvatarTableViewCell: UITableViewCell {
             label.textColor = .text
         }
         
-        label.font = UIFont.systemFont(ofSize: 30)
+        label.font = UIFont.systemFont(ofSize: 25)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
         
         return label
@@ -100,6 +102,8 @@ class AvatarTableViewCell: UITableViewCell {
     }
     
     private func setup() {
+        selectionStyle = .none
+        
         if #available(iOS 11.0, *) {
             contentView.backgroundColor = UIColor(named: "Background")
         } else {
@@ -119,7 +123,7 @@ class AvatarTableViewCell: UITableViewCell {
         
         contentView.addSubview(onlineStatusView)
         onlineStatusView.snp.makeConstraints { make in
-            make.top.right.equalToSuperview().inset(30)
+            make.top.right.equalToSuperview().inset(25)
             make.left.equalTo(nameLabel.snp.right).offset(20).priority(.low)
             make.height.width.equalTo(25)
         }
