@@ -21,9 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setRingRadius(5)
         SVProgressHUD.setRingNoTextRadius(5)
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MainTabBarController()
-        window?.makeKeyAndVisible()
+        if #available(iOS 13.0, *) {} else {
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.rootViewController = MainTabBarController()
+            window?.makeKeyAndVisible()
+        }
         
         return true
     }

@@ -95,12 +95,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setup()
         toggleLogoutButton()
-        SVProgressHUD.show()
-        viewModel.loadProfile { [weak self] _ in
-            self?.showLoginButton(isUserAuthorized: true)
-            self?.showTableView(isUserAuthorized: true)
-            SVProgressHUD.dismiss()
-        }
+        loadData()
     }
     
     @objc private func loginButtonDidTap() {
@@ -110,15 +105,20 @@ class ProfileViewController: UIViewController {
             self?.viewModel.steamId = steamId
             self?.loginStackView.isHidden = true
             self?.toggleLogoutButton()
-            
-            SVProgressHUD.show()
-            self?.viewModel.loadProfile { [weak self] _ in
-                SVProgressHUD.dismiss()
-                self?.showLoginButton(isUserAuthorized: true)
-                self?.showTableView(isUserAuthorized: true)
-            }
+            self?.loadData()
         }
         present(loginNavigationVC, animated: true)
+    }
+    
+    private func loadData() {
+        if viewModel.isUserAuthorized {
+            SVProgressHUD.show()
+            viewModel.loadProfile { [weak self] _ in
+                self?.showLoginButton(isUserAuthorized: true)
+                self?.showTableView(isUserAuthorized: true)
+                SVProgressHUD.dismiss()
+            }
+        }
     }
     
     private func setup() {

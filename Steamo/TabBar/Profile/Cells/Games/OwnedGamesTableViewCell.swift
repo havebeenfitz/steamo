@@ -34,7 +34,7 @@ class OwnedGamesTableViewCell: UITableViewCell {
             collectionView.backgroundColor = .background
         }
         
-        collectionView.register(class: GameCollectionViewCell.self)
+        collectionView.register(class: CollectionCellContainer<GameView>.self)
         
         return collectionView
     }()
@@ -84,11 +84,12 @@ extension OwnedGamesTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel = viewModel, let cell: GameCollectionViewCell = collectionView.dequeue(indexPath: indexPath) else {
+        guard let viewModel = viewModel,
+              let cell: CollectionCellContainer<GameView> = collectionView.dequeue(indexPath: indexPath) else {
             return UICollectionViewCell()
         }
         
-        cell.configure(with: viewModel.games.response.games[indexPath.item])
+        cell.containedView.configure(with: viewModel.games.response.games[indexPath.item])
         
         return cell
     }

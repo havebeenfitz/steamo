@@ -47,7 +47,6 @@ class ProfileViewModel: NSObject {
     /// Получить информацию по экрану
     /// - Parameter completion: колбэк по завершению запроса
     func loadProfile(completion: ((Result<Void, SteamoError>) -> Void)? = nil) {
-        guard isUserAuthorized else { return }
         
         cellViewModels = []
         

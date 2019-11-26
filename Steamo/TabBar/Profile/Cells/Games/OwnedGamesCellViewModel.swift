@@ -16,7 +16,7 @@ class OwnedGamesCellViewModel: ProfileCellViewModelRepresentable {
     }
     
     var sectionTitle: String {
-        return "Games (\(games.response.gameCount))"
+        return "Games (\(games.response.gameCount ?? 0))"
     }
     
     var games: Games

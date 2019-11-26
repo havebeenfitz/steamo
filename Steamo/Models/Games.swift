@@ -13,11 +13,13 @@ struct Games: Codable {
 }
 
 struct GamesResponse: Codable {
-    let gameCount: Int
+    let gameCount: Int?
+    let totalCount: Int?
     let games: [Game]
 
     enum CodingKeys: String, CodingKey {
         case gameCount = "game_count"
+        case totalCount = "total_count"
         case games = "games"
     }
 }
@@ -28,7 +30,7 @@ struct Game: Codable {
     let playtimeForever: Int
     let imgIconUrl: String
     let imgLogoUrl: String
-    let hasCommunityVisibleStats: Bool
+    let hasCommunityVisibleStats: Bool?
     let playtimeWindowsForever: Int
     let playtimeMacForever: Int
     let playtimeLinuxForever: Int

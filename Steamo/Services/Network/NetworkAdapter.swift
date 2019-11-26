@@ -20,6 +20,10 @@ protocol Networking {
     /// Получить список друзей
     /// - Parameter completion: колбэк по завершению запроса
     func friends(completion: @escaping (Swift.Result<Friends, SteamoError>) -> Void)
+    
+    /// Получить список недавно сыгранных игр
+    /// - Parameter completion: колбэк по завершению запроса
+    func recentlyPlayedGames(completion: @escaping (Swift.Result<Games, SteamoError>) -> Void)
 }
 
 class NetworkAdapter: Networking {
@@ -100,5 +104,28 @@ class NetworkAdapter: Networking {
                 }
                 
             }
+    }
+    
+    func recentlyPlayedGames(completion: @escaping (Swift.Result<Games, SteamoError>) -> Void) {
+        let url = baseURL.appendingPathComponent("IPlayerService/GetRecentlyPlayedGames/v1/")
+        let parameters: JSON = ["key": API.apiKey,
+                                "steamid": steamId ?? "",
+                                "count": 0,
+                                "include_appinfo": true]
+        
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+            .responseData { response in
+                switch response.result {
+                case let .success(value):
+                    do {
+                        let games = try JSONDecoder().decode(Games.self, from: value)
+                        completion(.success(games))
+                    } catch {
+                        completion(.failure(SteamoError.cantParseJSON))
+                    }
+                case .failure:
+                    completion(.failure(SteamoError.noConnection))
+                }
+        }
     }
 }

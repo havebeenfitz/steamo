@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameCollectionViewCell: UICollectionViewCell {
+class GameView: UIView {
     
     private lazy var gameImageView: UIImageView = {
         let imageView = UIImageView()
@@ -69,40 +69,34 @@ class GameCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
-        contentView.layer.cornerRadius = 10
         if #available(iOS 11.0, *) {
-            contentView.backgroundColor = UIColor(named: "Background")
+            backgroundColor = UIColor(named: "Background")
         } else {
-            contentView.backgroundColor = .background
+            backgroundColor = .background
         }
-        
-        contentView.snp.makeConstraints { make in
+
+        snp.makeConstraints { make in
             make.width.equalTo(UIScreen.main.bounds.width)
-            make.edges.equalToSuperview()
+            make.height.equalTo(160).priority(.init(999))
         }
         
-        contentView.addSubview(gameImageView)
+        addSubview(gameImageView)
         gameImageView.snp.makeConstraints { make in
             make.left.top.equalToSuperview().inset(20)
             make.height.equalTo(64)
             make.width.equalTo(186)
         }
         
-        contentView.addSubview(playTimeLabel)
+        addSubview(playTimeLabel)
         playTimeLabel.snp.makeConstraints { make in
             make.left.equalTo(gameImageView.snp.right).offset(20)
             make.centerY.equalTo(gameImageView.snp.centerY)
         }
         
-        contentView.addSubview(gameTitleLabel)
+        addSubview(gameTitleLabel)
         gameTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(gameImageView.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
         }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        gameImageView.image = nil
     }
 }
