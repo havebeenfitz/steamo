@@ -10,12 +10,29 @@ import UIKit
 
 class GameCollectionViewCell: UICollectionViewCell {
     
-    private var gameImageView: UIImageView = {
+    private let gameImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         return imageView
+    }()
+    
+    private lazy var gameTitleLabel: UILabel = {
+        let label = UILabel()
+        if #available(iOS 11.0, *) {
+            label.textColor = UIColor(named: "Text")
+        } else {
+            label.textColor = .text
+        }
+        
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 25)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.numberOfLines = 0
+        
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -30,6 +47,7 @@ class GameCollectionViewCell: UICollectionViewCell {
     func configure(with game: Game) {
         guard let url = game.calculatedImageIconUrl else { return }
         gameImageView.kf.setImage(with: url)
+        gameTitleLabel.text = game.name
     }
     
     private func setup() {
@@ -46,6 +64,12 @@ class GameCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(110)
             let screenInset: CGFloat = 40.0
             make.width.equalTo(UIScreen.main.bounds.width - screenInset)
+        }
+        
+        contentView.addSubview(gameTitleLabel)
+        gameTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(gameImageView.snp.bottom).offset(20)
+            make.left.right.equalToSuperview().inset(20)
         }
     }
     

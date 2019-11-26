@@ -26,6 +26,7 @@ class OwnedGamesTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         
         collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
         
         if #available(iOS 11.0, *) {
             collectionView.backgroundColor = UIColor(named: "Background")
