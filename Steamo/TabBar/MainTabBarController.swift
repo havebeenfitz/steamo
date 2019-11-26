@@ -28,14 +28,18 @@ class MainTabBarController: UITabBarController {
     }
     
     private func addViewControllers() {
-        let profileViewModel = ProfileViewModel(networkAdapter: NetworkAdapter())
-        let profileVC = ProfileViewController(viewModel: profileViewModel).wrapInNavigation(tabBarStyle: TabBarStyle(title: "Profile",
-                                                                                                                     icon: UIImage(named: "profile")))
-        let stubVC1 = UIViewController().wrapInNavigation(tabBarStyle: TabBarStyle(title: "Stats",
-                                                                                   icon: UIImage(named: "stats")))
-        let stubVC2 = UIViewController().wrapInNavigation(tabBarStyle: TabBarStyle(title: "Sessions",
-                                                                                   icon: UIImage(named: "session")))
-        viewControllers = [profileVC, stubVC1, stubVC2]
+        let networkAdapter = NetworkAdapter()
+        let profileViewModel = ProfileViewModel(networkAdapter: networkAdapter)
+        let profileVC = ProfileViewController(viewModel: profileViewModel)
+                                .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Profile",
+                                                                           icon: UIImage(named: "profile")))
+        
+        let sessionsViewModel = SessionsViewModel(networkAdapter: networkAdapter)
+        let sessionsVC = SessionsViewController(viewModel: sessionsViewModel)
+                                .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Sessions",
+                                                                           icon: UIImage(named: "session")))
+        
+        viewControllers = [profileVC, sessionsVC]
     }
 
 }

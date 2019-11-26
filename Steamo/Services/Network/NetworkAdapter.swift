@@ -89,7 +89,12 @@ class NetworkAdapter: Networking {
             .responseData { response in
                 switch response.result {
                 case let .success(value):
-                    print(value as Any)
+                    do {
+                        let friends = try JSONDecoder().decode(Friends.self, from: value)
+                        completion(.success(friends))
+                    } catch {
+                        completion(.failure(SteamoError.cantParseJSON))
+                    }
                 case .failure:
                     completion(.failure(SteamoError.noConnection))
                 }

@@ -10,6 +10,8 @@
 		AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */; };
 		E4050371238D9D3700EC11A4 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050370238D9D3700EC11A4 /* FriendsTableViewCell.swift */; };
 		E4050373238D9D4400EC11A4 /* FriendsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050372238D9D4400EC11A4 /* FriendsCellViewModel.swift */; };
+		E4050376238DB05F00EC11A4 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050375238DB05F00EC11A4 /* SessionsViewController.swift */; };
+		E4050378238DB06B00EC11A4 /* SessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */; };
 		E414E230238B3D9300A7AB93 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */; };
 		E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */; };
 		E414E235238B3F6000A7AB93 /* UIColor+Appcolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */; };
@@ -63,6 +65,8 @@
 		D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.release.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.release.xcconfig"; sourceTree = "<group>"; };
 		E4050370238D9D3700EC11A4 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		E4050372238D9D4400EC11A4 /* FriendsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellViewModel.swift; sourceTree = "<group>"; };
+		E4050375238DB05F00EC11A4 /* SessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
+		E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewModel.swift; sourceTree = "<group>"; };
 		E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
 		E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Appcolor.swift"; sourceTree = "<group>"; };
@@ -138,6 +142,15 @@
 				D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E4050374238DB04000EC11A4 /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				E4050375238DB05F00EC11A4 /* SessionsViewController.swift */,
+				E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */,
+			);
+			path = Sessions;
 			sourceTree = "<group>";
 		};
 		E414E231238B3E6800A7AB93 /* Network */ = {
@@ -293,8 +306,9 @@
 		E4F61649238A89CB006D832B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				E4F6164A238A89D6006D832B /* Profile */,
 				E434979823859F9A0047B750 /* MainTabBarController.swift */,
+				E4F6164A238A89D6006D832B /* Profile */,
+				E4050374238DB04000EC11A4 /* Sessions */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -490,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E414E23A238B436500A7AB93 /* SteamoNavigationController.swift in Sources */,
+				E4050378238DB06B00EC11A4 /* SessionsViewModel.swift in Sources */,
 				E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */,
 				E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */,
 				E4050371238D9D3700EC11A4 /* FriendsTableViewCell.swift in Sources */,
@@ -514,6 +529,7 @@
 				E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */,
 				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
 				E4A9E341238D9AD200541359 /* Friends.swift in Sources */,
+				E4050376238DB05F00EC11A4 /* SessionsViewController.swift in Sources */,
 				E414E258238BABD300A7AB93 /* GameCollectionViewCell.swift in Sources */,
 				E414E23C238B4BA500A7AB93 /* SteamoButton.swift in Sources */,
 				E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */,

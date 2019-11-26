@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SVProgressHUD
 
 class ProfileViewController: UIViewController {
     
@@ -94,9 +95,11 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setup()
         toggleLogoutButton()
+        SVProgressHUD.show()
         viewModel.loadProfile { [weak self] _ in
             self?.showLoginButton(isUserAuthorized: true)
             self?.showTableView(isUserAuthorized: true)
+            SVProgressHUD.dismiss()
         }
     }
     
@@ -108,7 +111,9 @@ class ProfileViewController: UIViewController {
             self?.loginStackView.isHidden = true
             self?.toggleLogoutButton()
             
+            SVProgressHUD.show()
             self?.viewModel.loadProfile { [weak self] _ in
+                SVProgressHUD.dismiss()
                 self?.showLoginButton(isUserAuthorized: true)
                 self?.showTableView(isUserAuthorized: true)
             }
@@ -145,6 +150,7 @@ class ProfileViewController: UIViewController {
     
     @objc private func refresh() {
         viewModel.loadProfile { [weak self] _ in
+            self?.tableView.reloadData()
             self?.refreshControl.endRefreshing()
         }
         
@@ -157,7 +163,7 @@ class ProfileViewController: UIViewController {
                                                                        style: .plain,
                                                                        target: self,
                                                                        action: #selector(logout))
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "friends"),
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "stats"),
                                                                 style: .plain,
                                                                 target: self,
                                                                 action: nil)

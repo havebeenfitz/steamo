@@ -8,6 +8,22 @@
 
 import Foundation
 
-class FriendsCellViewModel {
+class FriendsCellViewModel: ProfileCellViewModelRepresentable {
+    var index: Int {
+        return 2
+    }
     
+    var type: ProfileCellViewModelType {
+        return .friends
+    }
+    
+    var sectionTitle: String {
+        return "Friends ()"
+    }
+    
+    var friends: Friends
+    
+    init(friends: Friends) {
+        self.friends = friends
+    }
 }
