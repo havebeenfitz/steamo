@@ -11,13 +11,14 @@ enum ProfileCellViewModelType {
     case ownedGames
 }
 
-protocol ProfileCellViewModel {
+protocol ProfileCellViewModelRepresentable {
+    var index: Int { get }
     var type: ProfileCellViewModelType { get }
     var rowCount: Int { get }
     var sectionTitle: String { get }
 }
 
-extension ProfileCellViewModel {
+extension ProfileCellViewModelRepresentable {
     var rowCount: Int {
         return 1
     }

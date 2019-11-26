@@ -25,7 +25,7 @@ class ProfileViewModel: NSObject {
     
     //MARK:- Private properties
     
-    private var cellViewModels: [ProfileCellViewModel] = []
+    private var cellViewModels: [ProfileCellViewModelRepresentable] = []
     
     /// Адаптер для работы с сетью
     private let networkAdapter: Networking
@@ -65,7 +65,7 @@ class ProfileViewModel: NSObject {
             self.networkAdapter.ownedGames { [weak self] result in
                 switch result {
                 case let .success(value):
-                    self?.cellViewModels.append(OwnedGamesCellViewModel(games: value.response.games))
+                    self?.cellViewModels.append(OwnedGamesCellViewModel(games: value))
                     completion?(.success(()))
                 case .failure:
                     completion?(.failure(SteamoError.noConnection))

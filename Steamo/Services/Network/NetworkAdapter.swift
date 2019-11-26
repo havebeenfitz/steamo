@@ -13,12 +13,16 @@ protocol Networking {
     /// - Parameter completion: колбэк по завершению запроса
     func profileSummary(completion: @escaping (Swift.Result<Profile, SteamoError>) -> Void)
     
+    /// Получить список игр пользователя
+    /// - Parameter completion: колбэк по завершению запроса
     func ownedGames(completion: @escaping (Swift.Result<Games, SteamoError>) -> Void)
+    
+    /// Получить список друзей
+    /// - Parameter completion: колбэк по завершению запроса
+    func friends(completion: @escaping (Swift.Result<Friends, SteamoError>) -> Void)
 }
 
 class NetworkAdapter: Networking {
-    
-    
     
     typealias JSON = [String: Any]
     
@@ -73,5 +77,23 @@ class NetworkAdapter: Networking {
                     completion(.failure(SteamoError.noConnection))
                 }
         }
+    }
+    
+    func friends(completion: @escaping (Swift.Result<Friends, SteamoError>) -> Void) {
+        let url = baseURL.appendingPathComponent("ISteamUser/GetFriendList/v0001/")
+        let parameters: JSON = ["key": API.apiKey,
+                                "steamid": steamId ?? "",
+                                "relationship": "friend"]
+        
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+            .responseData { response in
+                switch response.result {
+                case let .success(value):
+                    print(value as Any)
+                case .failure:
+                    completion(.failure(SteamoError.noConnection))
+                }
+                
+            }
     }
 }

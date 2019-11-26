@@ -62,7 +62,7 @@ class AvatarTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with viewModel: ProfileCellViewModel?) {
+    func configure(with viewModel: ProfileCellViewModelRepresentable?) {
         guard let viewModel = viewModel as? AvatarCellViewModel, let url = URL(string: viewModel.avatarURLString) else {
             return
         }

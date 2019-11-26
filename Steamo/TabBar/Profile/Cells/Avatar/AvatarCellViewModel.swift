@@ -16,7 +16,10 @@ enum UserStatus: Int {
        case lookingToPlay = 6
    }
 
-class AvatarCellViewModel: ProfileCellViewModel {
+class AvatarCellViewModel: ProfileCellViewModelRepresentable {
+    var index: Int {
+        return 0
+    }
     
     var type: ProfileCellViewModelType {
         return .avatar

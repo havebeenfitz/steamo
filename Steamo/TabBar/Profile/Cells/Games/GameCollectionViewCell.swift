@@ -10,7 +10,7 @@ import UIKit
 
 class GameCollectionViewCell: UICollectionViewCell {
     
-    private let gameImageView: UIImageView = {
+    private lazy var gameImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -26,8 +26,25 @@ class GameCollectionViewCell: UICollectionViewCell {
             label.textColor = .text
         }
         
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 25)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.numberOfLines = 0
+        
+        return label
+    }()
+    
+    private lazy var playTimeLabel: UILabel = {
+        let label = UILabel()
+        if #available(iOS 11.0, *) {
+            label.textColor = UIColor(named: "Text")
+        } else {
+            label.textColor = .text
+        }
+        
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 16)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
@@ -48,6 +65,7 @@ class GameCollectionViewCell: UICollectionViewCell {
         guard let url = game.calculatedImageIconUrl else { return }
         gameImageView.kf.setImage(with: url)
         gameTitleLabel.text = game.name
+        playTimeLabel.text = "Playtime:\n\(game.playtimeForever.steamFormatted())"
     }
     
     private func setup() {
@@ -58,12 +76,22 @@ class GameCollectionViewCell: UICollectionViewCell {
             contentView.backgroundColor = .background
         }
         
+        contentView.snp.makeConstraints { make in
+            make.width.equalTo(UIScreen.main.bounds.width)
+            make.edges.equalToSuperview()
+        }
+        
         contentView.addSubview(gameImageView)
         gameImageView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview().inset(20)
-            make.height.equalTo(110)
-            let screenInset: CGFloat = 40.0
-            make.width.equalTo(UIScreen.main.bounds.width - screenInset)
+            make.left.top.equalToSuperview().inset(20)
+            make.height.equalTo(64)
+            make.width.equalTo(186)
+        }
+        
+        contentView.addSubview(playTimeLabel)
+        playTimeLabel.snp.makeConstraints { make in
+            make.left.equalTo(gameImageView.snp.right).offset(20)
+            make.centerY.equalTo(gameImageView.snp.centerY)
         }
         
         contentView.addSubview(gameTitleLabel)

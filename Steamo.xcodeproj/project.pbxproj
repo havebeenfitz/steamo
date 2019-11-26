@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */; };
+		E4050371238D9D3700EC11A4 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050370238D9D3700EC11A4 /* FriendsTableViewCell.swift */; };
+		E4050373238D9D4400EC11A4 /* FriendsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050372238D9D4400EC11A4 /* FriendsCellViewModel.swift */; };
 		E414E230238B3D9300A7AB93 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */; };
 		E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */; };
 		E414E235238B3F6000A7AB93 /* UIColor+Appcolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */; };
@@ -19,7 +21,7 @@
 		E414E246238B607C00A7AB93 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E245238B607C00A7AB93 /* UITableView+Register.swift */; };
 		E414E249238B60F400A7AB93 /* AvatarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E248238B60F400A7AB93 /* AvatarTableViewCell.swift */; };
 		E414E24B238B624600A7AB93 /* AvatarCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */; };
-		E414E24D238B628600A7AB93 /* ProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24C238B628600A7AB93 /* ProfileCellViewModel.swift */; };
+		E414E24D238B628600A7AB93 /* ProfileCellViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24C238B628600A7AB93 /* ProfileCellViewModelRepresentable.swift */; };
 		E414E24F238B635800A7AB93 /* OwnedGamesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24E238B635800A7AB93 /* OwnedGamesCellViewModel.swift */; };
 		E414E252238B9E9600A7AB93 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E251238B9E9600A7AB93 /* Games.swift */; };
 		E414E254238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E253238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift */; };
@@ -33,6 +35,8 @@
 		E43497AC23859F9C0047B750 /* SteamoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43497AB23859F9C0047B750 /* SteamoTests.swift */; };
 		E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */; };
 		E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */; };
+		E4A9E33E238D8F6700541359 /* Double+Pluralize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */; };
+		E4A9E341238D9AD200541359 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E340238D9AD200541359 /* Friends.swift */; };
 		E4F61646238A828A006D832B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61645238A828A006D832B /* LoginViewController.swift */; };
 		E4F61648238A84CE006D832B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61647238A84CE006D832B /* API.swift */; };
 		E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6164B238A89E7006D832B /* ProfileViewController.swift */; };
@@ -57,6 +61,8 @@
 		CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steamo.debug.xcconfig"; path = "Target Support Files/Pods-Steamo/Pods-Steamo.debug.xcconfig"; sourceTree = "<group>"; };
 		D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SteamoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.release.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.release.xcconfig"; sourceTree = "<group>"; };
+		E4050370238D9D3700EC11A4 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		E4050372238D9D4400EC11A4 /* FriendsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellViewModel.swift; sourceTree = "<group>"; };
 		E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
 		E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Appcolor.swift"; sourceTree = "<group>"; };
@@ -68,7 +74,7 @@
 		E414E245238B607C00A7AB93 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		E414E248238B60F400A7AB93 /* AvatarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarTableViewCell.swift; sourceTree = "<group>"; };
 		E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCellViewModel.swift; sourceTree = "<group>"; };
-		E414E24C238B628600A7AB93 /* ProfileCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellViewModel.swift; sourceTree = "<group>"; };
+		E414E24C238B628600A7AB93 /* ProfileCellViewModelRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellViewModelRepresentable.swift; sourceTree = "<group>"; };
 		E414E24E238B635800A7AB93 /* OwnedGamesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedGamesCellViewModel.swift; sourceTree = "<group>"; };
 		E414E251238B9E9600A7AB93 /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 		E414E253238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedGamesTableViewCell.swift; sourceTree = "<group>"; };
@@ -86,6 +92,8 @@
 		E43497AD23859F9C0047B750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestBuilder.swift; sourceTree = "<group>"; };
 		E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoUserDefaultsKeys.swift; sourceTree = "<group>"; };
+		E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Pluralize.swift"; sourceTree = "<group>"; };
+		E4A9E340238D9AD200541359 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		E4F61645238A828A006D832B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E4F61647238A84CE006D832B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		E4F6164B238A89E7006D832B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -153,47 +161,23 @@
 		E414E23D238B55A800A7AB93 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E414E250238B9E8800A7AB93 /* Games */,
-				E414E242238B567500A7AB93 /* Profile */,
-				E414E23E238B55B400A7AB93 /* SteamoError */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		E414E23E238B55B400A7AB93 /* SteamoError */ = {
-			isa = PBXGroup;
-			children = (
+				E414E243238B568600A7AB93 /* Profile.swift */,
+				E4A9E340238D9AD200541359 /* Friends.swift */,
+				E414E251238B9E9600A7AB93 /* Games.swift */,
 				E414E23F238B55C400A7AB93 /* SteamoError.swift */,
 			);
-			path = SteamoError;
-			sourceTree = "<group>";
-		};
-		E414E242238B567500A7AB93 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				E414E243238B568600A7AB93 /* Profile.swift */,
-			);
-			path = Profile;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E414E247238B60E600A7AB93 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				E414E248238B60F400A7AB93 /* AvatarTableViewCell.swift */,
-				E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */,
-				E414E253238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift */,
-				E414E24E238B635800A7AB93 /* OwnedGamesCellViewModel.swift */,
-				E414E257238BABD300A7AB93 /* GameCollectionViewCell.swift */,
+				E414E24C238B628600A7AB93 /* ProfileCellViewModelRepresentable.swift */,
+				E45559AC238D9C7A000A5AC8 /* Avatar */,
+				E45559AD238D9C97000A5AC8 /* Games */,
+				E45559AE238D9CA8000A5AC8 /* Friends */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		E414E250238B9E8800A7AB93 /* Games */ = {
-			isa = PBXGroup;
-			children = (
-				E414E251238B9E9600A7AB93 /* Games.swift */,
-			);
-			path = Games;
 			sourceTree = "<group>";
 		};
 		E434978823859F9A0047B750 = {
@@ -242,6 +226,34 @@
 				E43497AD23859F9C0047B750 /* Info.plist */,
 			);
 			path = SteamoTests;
+			sourceTree = "<group>";
+		};
+		E45559AC238D9C7A000A5AC8 /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				E414E248238B60F400A7AB93 /* AvatarTableViewCell.swift */,
+				E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */,
+			);
+			path = Avatar;
+			sourceTree = "<group>";
+		};
+		E45559AD238D9C97000A5AC8 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				E414E253238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift */,
+				E414E24E238B635800A7AB93 /* OwnedGamesCellViewModel.swift */,
+				E414E257238BABD300A7AB93 /* GameCollectionViewCell.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		E45559AE238D9CA8000A5AC8 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				E4050370238D9D3700EC11A4 /* FriendsTableViewCell.swift */,
+				E4050372238D9D4400EC11A4 /* FriendsCellViewModel.swift */,
+			);
+			path = Friends;
 			sourceTree = "<group>";
 		};
 		E45BDFE7238A80FE005AA028 /* App */ = {
@@ -293,7 +305,6 @@
 				E414E247238B60E600A7AB93 /* Cells */,
 				E4F6164B238A89E7006D832B /* ProfileViewController.swift */,
 				E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */,
-				E414E24C238B628600A7AB93 /* ProfileCellViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -305,6 +316,7 @@
 				E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */,
 				E414E245238B607C00A7AB93 /* UITableView+Register.swift */,
 				E414E255238BAB8100A7AB93 /* UICollectionView+Register.swift */,
+				E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -480,16 +492,19 @@
 				E414E23A238B436500A7AB93 /* SteamoNavigationController.swift in Sources */,
 				E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */,
 				E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */,
+				E4050371238D9D3700EC11A4 /* FriendsTableViewCell.swift in Sources */,
 				E414E249238B60F400A7AB93 /* AvatarTableViewCell.swift in Sources */,
 				E4F61646238A828A006D832B /* LoginViewController.swift in Sources */,
 				E414E24B238B624600A7AB93 /* AvatarCellViewModel.swift in Sources */,
-				E414E24D238B628600A7AB93 /* ProfileCellViewModel.swift in Sources */,
+				E414E24D238B628600A7AB93 /* ProfileCellViewModelRepresentable.swift in Sources */,
 				E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */,
 				E414E230238B3D9300A7AB93 /* ProfileViewModel.swift in Sources */,
 				E414E235238B3F6000A7AB93 /* UIColor+Appcolor.swift in Sources */,
 				E434979523859F9A0047B750 /* AppDelegate.swift in Sources */,
 				E414E254238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift in Sources */,
 				E414E246238B607C00A7AB93 /* UITableView+Register.swift in Sources */,
+				E4A9E33E238D8F6700541359 /* Double+Pluralize.swift in Sources */,
+				E4050373238D9D4400EC11A4 /* FriendsCellViewModel.swift in Sources */,
 				E414E240238B55C400A7AB93 /* SteamoError.swift in Sources */,
 				E414E244238B568600A7AB93 /* Profile.swift in Sources */,
 				E414E24F238B635800A7AB93 /* OwnedGamesCellViewModel.swift in Sources */,
@@ -498,6 +513,7 @@
 				E4F61648238A84CE006D832B /* API.swift in Sources */,
 				E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */,
 				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
+				E4A9E341238D9AD200541359 /* Friends.swift in Sources */,
 				E414E258238BABD300A7AB93 /* GameCollectionViewCell.swift in Sources */,
 				E414E23C238B4BA500A7AB93 /* SteamoButton.swift in Sources */,
 				E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */,

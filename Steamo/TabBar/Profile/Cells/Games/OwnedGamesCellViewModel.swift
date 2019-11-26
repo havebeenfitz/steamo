@@ -6,18 +6,22 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-class OwnedGamesCellViewModel: ProfileCellViewModel {
+class OwnedGamesCellViewModel: ProfileCellViewModelRepresentable {
+    var index: Int {
+        return 1
+    }
+    
     var type: ProfileCellViewModelType {
         return .ownedGames
     }
     
     var sectionTitle: String {
-        return "Games"
+        return "Games (\(games.response.gameCount))"
     }
     
-    var games: [Game] = []
+    var games: Games
     
-    init(games: [Game]) {
+    init(games: Games) {
         self.games = games
     }
 }

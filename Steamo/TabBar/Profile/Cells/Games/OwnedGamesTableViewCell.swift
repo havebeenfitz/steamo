@@ -15,7 +15,7 @@ class OwnedGamesTableViewCell: UITableViewCell {
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
+        flowLayout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: 200)
         flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0
@@ -48,7 +48,7 @@ class OwnedGamesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with viewModel: ProfileCellViewModel) {
+    func configure(with viewModel: ProfileCellViewModelRepresentable) {
         guard let viewModel = viewModel as? OwnedGamesCellViewModel else { return }
         self.viewModel = viewModel
         collectionView.reloadData()
@@ -56,7 +56,6 @@ class OwnedGamesTableViewCell: UITableViewCell {
     
     private func setup() {
         selectionStyle = .none
-        contentView.addSubview(collectionView)
         
         if #available(iOS 11.0, *) {
             contentView.backgroundColor = UIColor(named: "Background")
@@ -64,10 +63,10 @@ class OwnedGamesTableViewCell: UITableViewCell {
             contentView.backgroundColor = .background
         }
         
-        
+        contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
+            make.height.equalTo(200).priority(.init(999))
             make.edges.equalToSuperview()
-            make.height.equalTo(300)
         }
     }
     
@@ -81,7 +80,7 @@ extension OwnedGamesTableViewCell: UICollectionViewDelegate {}
 
 extension OwnedGamesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.games.count ?? 0
+        viewModel?.games.response.games.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,7 +88,7 @@ extension OwnedGamesTableViewCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.configure(with: viewModel.games[indexPath.item])
+        cell.configure(with: viewModel.games.response.games[indexPath.item])
         
         return cell
     }
