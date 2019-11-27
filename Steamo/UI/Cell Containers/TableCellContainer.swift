@@ -11,12 +11,12 @@ import UIKit
 class TableCellContainer<View: UIView>: UITableViewCell {
     public private(set) lazy var containedView: View = View(frame: .zero)
 
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
     }
 
-    public required init?(coder _: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
