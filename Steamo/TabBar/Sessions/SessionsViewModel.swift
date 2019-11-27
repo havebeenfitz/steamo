@@ -10,7 +10,7 @@ import UIKit
 
 class SessionsViewModel: NSObject {
     
-    private let networkAdapter: Networking
+    private let networkAdapter: SteamAPINetworkAdapterProtocol
     
     fileprivate var games: Games?
     
@@ -19,7 +19,7 @@ class SessionsViewModel: NSObject {
         set { UserDefaults.standard.set(newValue, forKey: SteamoUserDefaultsKeys.steamId) }
     }
     
-    init(networkAdapter: Networking) {
+    init(networkAdapter: SteamAPINetworkAdapterProtocol) {
         self.networkAdapter = networkAdapter
     }
     

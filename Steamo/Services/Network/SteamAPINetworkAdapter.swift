@@ -8,7 +8,7 @@
 
 import Alamofire
 
-protocol Networking {
+protocol SteamAPINetworkAdapterProtocol {
     /// Получить сводную информацию по профилю
     /// - Parameter steamIds: Список идентификаторов стима
     /// - Parameter completion: колбэк по завершению запроса
@@ -30,7 +30,7 @@ protocol Networking {
     func recentlyPlayedGames(steamId: String, completion: @escaping (Swift.Result<Games, SteamoError>) -> Void)
 }
 
-class NetworkAdapter: Networking {
+class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
     
     typealias JSON = [String: Any]
     

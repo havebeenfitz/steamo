@@ -47,11 +47,11 @@ class ProfileViewModel: NSObject {
     private var friends: Friends? = nil
     
     /// Адаптер для работы с сетью
-    private let networkAdapter: Networking
+    private let networkAdapter: SteamAPINetworkAdapterProtocol
     
     /// Инициализватор по адаптеру
     /// - Parameter networkAdapter: адаптер для работы с сетью
-    init(networkAdapter: Networking, state: State) {
+    init(networkAdapter: SteamAPINetworkAdapterProtocol, state: State) {
         self.networkAdapter = networkAdapter
         self.state = state
     }

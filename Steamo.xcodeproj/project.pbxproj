@@ -13,7 +13,7 @@
 		E4050376238DB05F00EC11A4 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050375238DB05F00EC11A4 /* SessionsViewController.swift */; };
 		E4050378238DB06B00EC11A4 /* SessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */; };
 		E414E230238B3D9300A7AB93 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */; };
-		E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */; };
+		E414E233238B3E7800A7AB93 /* SteamAPINetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E232238B3E7800A7AB93 /* SteamAPINetworkAdapter.swift */; };
 		E414E235238B3F6000A7AB93 /* UIColor+Appcolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */; };
 		E414E237238B400000A7AB93 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E414E236238B400000A7AB93 /* Colors.xcassets */; };
 		E414E23A238B436500A7AB93 /* SteamoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E239238B436500A7AB93 /* SteamoNavigationController.swift */; };
@@ -71,7 +71,7 @@
 		E4050375238DB05F00EC11A4 /* SessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
 		E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewModel.swift; sourceTree = "<group>"; };
 		E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
+		E414E232238B3E7800A7AB93 /* SteamAPINetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamAPINetworkAdapter.swift; sourceTree = "<group>"; };
 		E414E234238B3F6000A7AB93 /* UIColor+Appcolor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Appcolor.swift"; sourceTree = "<group>"; };
 		E414E236238B400000A7AB93 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		E414E239238B436500A7AB93 /* SteamoNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoNavigationController.swift; sourceTree = "<group>"; };
@@ -171,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */,
-				E414E232238B3E7800A7AB93 /* NetworkAdapter.swift */,
+				E414E232238B3E7800A7AB93 /* SteamAPINetworkAdapter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -562,7 +562,7 @@
 				E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */,
 				E4424E0C238EE41C00B5A7BD /* ProfileRouter.swift in Sources */,
 				E4F61648238A84CE006D832B /* API.swift in Sources */,
-				E414E233238B3E7800A7AB93 /* NetworkAdapter.swift in Sources */,
+				E414E233238B3E7800A7AB93 /* SteamAPINetworkAdapter.swift in Sources */,
 				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
 				E4A9E341238D9AD200541359 /* Friends.swift in Sources */,
 				E4050376238DB05F00EC11A4 /* SessionsViewController.swift in Sources */,

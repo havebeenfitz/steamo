@@ -28,7 +28,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func addViewControllers() {
-        let networkAdapter = NetworkAdapter()
+        let networkAdapter = SteamAPINetworkAdapter()
         let router = ProfileRouter()
         let profileViewModel = ProfileViewModel(networkAdapter: networkAdapter,
                                                 state: .you)

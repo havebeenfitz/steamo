@@ -11,7 +11,7 @@ import UIKit
 class ProfileRouter {
     
     func routeToFriendProfile(from vc: UIViewController, steamId: String) {
-        let profileViewModel = ProfileViewModel(networkAdapter: NetworkAdapter(),
+        let profileViewModel = ProfileViewModel(networkAdapter: SteamAPINetworkAdapter(),
                                                 state: .friend(steamId: steamId))
         let friendProfileVC = ProfileViewController(viewModel: profileViewModel,
                                                     router: self)
