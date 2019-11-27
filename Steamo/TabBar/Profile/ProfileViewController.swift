@@ -127,7 +127,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func setup() {
-        title = "Profile"
+        title = viewModel.screenTitle
         if #available(iOS 11.0, *) {
             view.backgroundColor = UIColor(named: "Background")
         } else {

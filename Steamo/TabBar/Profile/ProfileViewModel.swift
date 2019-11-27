@@ -17,6 +17,15 @@ class ProfileViewModel: NSObject {
     
     //MARK:- Public properties
     
+    var screenTitle: String {
+        switch state {
+        case .you:
+            return "Profile"
+        case .friend:
+            return "Friend"
+        }
+    }
+    
     /// Состояние авторизации пользователя
     var isUserAuthorized: Bool {
         return steamId != nil
@@ -82,7 +91,6 @@ class ProfileViewModel: NSObject {
                 self?.profiles = profiles
                 chainDispatchGroup.leave()
             case .failure:
-//                completion?(.failure(SteamoError.noConnection))
                 chainDispatchGroup.leave()
             }
             
@@ -95,7 +103,6 @@ class ProfileViewModel: NSObject {
                 self?.games = value
                 chainDispatchGroup.leave()
             case .failure:
-//                completion?(.failure(SteamoError.noConnection))
                 chainDispatchGroup.leave()
             }
         }
@@ -107,7 +114,6 @@ class ProfileViewModel: NSObject {
                 self?.friends = value
                 chainDispatchGroup.leave()
             case .failure:
-//                completion?(.failure(SteamoError.noConnection))
                 chainDispatchGroup.leave()
             }
         }
@@ -171,11 +177,6 @@ class ProfileViewModel: NSObject {
         sectionViewModels.sort(by: { $0.index < $1.index })
     }
     
-    /// "Разлогиниться"
-    func logout() {
-        steamId = nil
-        sectionViewModels = []
-    }
 }
 
 

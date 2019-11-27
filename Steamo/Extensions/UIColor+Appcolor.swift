@@ -22,4 +22,8 @@ extension UIColor {
     class var accent: UIColor {
         return UIColor(red: 4 / 255, green: 31 / 255, blue: 96 / 255, alpha: 1)
     }
+    
+    class var hud: UIColor {
+        return UIColor(red: 235 / 255, green: 235 / 255, blue: 235 / 255, alpha: 0.8)
+    }
 }

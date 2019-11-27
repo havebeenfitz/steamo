@@ -16,10 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        SVProgressHUD.setDefaultStyle(.dark)
-        SVProgressHUD.setCornerRadius(5)
-        SVProgressHUD.setRingRadius(5)
-        SVProgressHUD.setRingNoTextRadius(5)
+        configureHUD()
         
         if #available(iOS 13.0, *) {} else {
             window = UIWindow(frame: UIScreen.main.bounds)
@@ -28,6 +25,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    private func configureHUD() {
+        SVProgressHUD.setDefaultStyle(.custom)
+        SVProgressHUD.setCornerRadius(5)
+        SVProgressHUD.setRingRadius(5)
+        SVProgressHUD.setRingNoTextRadius(5)
+        
+        
+        let backgoundColor: UIColor
+        
+        if #available(iOS 11.0, *) {
+            backgoundColor = UIColor(named: "Hud") ?? UIColor.background
+        } else {
+            backgoundColor = .background
+        }
+        
+        SVProgressHUD.setBackgroundColor(backgoundColor)
+        
+        let foregroundColor: UIColor
+        
+        if #available(iOS 11.0, *) {
+            foregroundColor = UIColor(named: "Text") ?? UIColor.background
+        } else {
+            foregroundColor = .text
+        }
+        
+        SVProgressHUD.setForegroundColor(foregroundColor)
     }
 
     // MARK: UISceneSession Lifecycle
