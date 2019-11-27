@@ -63,7 +63,7 @@ class GameView: UIView {
     
     func configure(with game: Game) {
         guard let url = game.calculatedImageIconUrl else { return }
-        gameImageView.kf.setImage(with: url)
+        gameImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         gameTitleLabel.text = game.name
         playTimeLabel.text = "Playtime:\n\(game.playtimeForever.steamFormatted())"
     }
