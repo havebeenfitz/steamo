@@ -253,9 +253,8 @@
 				E414E238238B434F00A7AB93 /* UI */,
 				E4687509238B23E900D7083E /* Keys */,
 				E4687506238AF1DD00D7083E /* Services */,
-				E4F61649238A89CB006D832B /* TabBar */,
+				E4F61649238A89CB006D832B /* Screens */,
 				E4424E0A238EE40600B5A7BD /* Routers */,
-				E4F61644238A826E006D832B /* Login */,
 				E414E23D238B55A800A7AB93 /* Models */,
 				E4F6164D238A8AA7006D832B /* Extensions */,
 				E434979D23859F9C0047B750 /* Assets.xcassets */,
@@ -362,15 +361,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		E4F61649238A89CB006D832B /* TabBar */ = {
+		E4F61649238A89CB006D832B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				E434979823859F9A0047B750 /* MainTabBarController.swift */,
+				E4F61644238A826E006D832B /* Login */,
 				E4F6164A238A89D6006D832B /* Profile */,
 				E4050374238DB04000EC11A4 /* Sessions */,
 				E4424E17238EFD7F00B5A7BD /* Settings */,
 			);
-			path = TabBar;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		E4F6164A238A89D6006D832B /* Profile */ = {
