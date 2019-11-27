@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.9.1)
+  - Charts (3.4.0):
+    - Charts/Core (= 3.4.0)
+  - Charts/Core (3.4.0)
   - Kingfisher (5.10.1):
     - Kingfisher/Core (= 5.10.1)
   - Kingfisher/Core (5.10.1)
@@ -13,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Charts
   - Kingfisher
   - RealmSwift
   - SnapKit
@@ -21,6 +25,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Charts
     - Kingfisher
     - Realm
     - RealmSwift
@@ -29,12 +34,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
   Kingfisher: eb36b7dfcc78d60877051c92c119a2865972961a
   Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
   RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 889e276c79d4952daea7c75ffc1b1f326f4ce66d
+PODFILE CHECKSUM: eb419e2f561a612203b478409f0221f6bf63582a
 
 COCOAPODS: 1.8.4

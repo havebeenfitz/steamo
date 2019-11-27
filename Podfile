@@ -7,11 +7,12 @@ target 'Steamo' do
 
   # Pods for Steamo
   pod 'Alamofire'
-  pod 'SnapKit'
   pod 'SVProgressHUD'
   pod 'Kingfisher'
   
+  pod 'SnapKit'
   pod 'RealmSwift'
+  pod 'Charts'
 
   target 'SteamoTests' do
     inherit! :search_paths
