@@ -10,6 +10,8 @@ target 'Steamo' do
   pod 'SnapKit'
   pod 'SVProgressHUD'
   pod 'Kingfisher'
+  
+  pod 'RealmSwift'
 
   target 'SteamoTests' do
     inherit! :search_paths
