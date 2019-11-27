@@ -41,8 +41,7 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        // TODO: Разобраться с крэшом
-        //tableView.refreshControl = refreshControl
+        tableView.refreshControl = refreshControl
         
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
@@ -107,8 +106,8 @@ class ProfileViewController: UIViewController {
     @objc private func loginButtonDidTap() {
         let loginVC = LoginViewController(nibName: nil, bundle: nil)
         let loginNavigationVC = loginVC.wrapInNavigation()
-        loginVC.completion = { [weak self] steamId in
-            self?.viewModel.steamId = steamId
+        loginVC.completion = { [weak self] steamUser in
+            self?.viewModel.steamId = steamUser.steamID64
             self?.loginStackView.isHidden = true
             self?.toggleLogoutButton()
             self?.loadData()
@@ -174,13 +173,6 @@ class ProfileViewController: UIViewController {
         showTableView(isUserAuthorized: viewModel.isUserAuthorized)
     }
     
-    @objc private func logout() {
-        viewModel.logout()
-        showLoginButton(isUserAuthorized: viewModel.isUserAuthorized)
-        showTableView(isUserAuthorized: viewModel.isUserAuthorized)
-        toggleLogoutButton()
-    }
-    
     private func showTableView(isUserAuthorized: Bool) {
         tableView.isHidden = !isUserAuthorized
         if isUserAuthorized {
@@ -215,8 +207,15 @@ extension ProfileViewController: UITableViewDelegate {
 
 extension ProfileViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        viewModel.sectionViewModels[section].sectionTitle
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = SectionHeaderView()
+        let title = viewModel.sectionViewModels[safe: section]?.sectionTitle ?? ""
+        view.configure(with: title)
+        return view
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -224,11 +223,13 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.sectionViewModels[section].rowCount
+        viewModel.sectionViewModels[safe: section]?.rowCount ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sectionViewModel = viewModel.sectionViewModels[indexPath.section]
+        guard let sectionViewModel = viewModel.sectionViewModels[safe: indexPath.section] else {
+            return UITableViewCell()
+        }
         
         switch sectionViewModel.type {
         case .avatar:

@@ -28,7 +28,7 @@ class AvatarTableViewCell: UITableViewCell {
             label.textColor = .text
         }
         
-        label.font = UIFont.systemFont(ofSize: 25)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
@@ -44,7 +44,7 @@ class AvatarTableViewCell: UITableViewCell {
     
     private lazy var onlineStatusLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 15)
         if #available(iOS 11.0, *) {
             label.textColor = UIColor(named: "Text")
         } else {

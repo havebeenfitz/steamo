@@ -14,7 +14,7 @@ import Alamofire
 class LoginViewController: UIViewController {
     
     /// Колбэк по завершению работы экрана
-    var completion: ((String) -> Void)!
+    var completion: ((SteamUser) -> Void)!
     
     /// Вебвью
     private lazy var webView: WKWebView = {
@@ -27,20 +27,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setup()
         webView.load(AuthRequestBuilder.authRequest())
-    }
-    
-    /// Фэйковый запрос на валидацию авторизации. На самом деле тут мы уже имеем нужный нам steamid
-    /// - Parameter response: ответ от сервера
-    fileprivate func validateSteamAPICall(with response: URLResponse) {
-        let request = AuthRequestBuilder.validationRequest(for: response)
-        if let steamId = String(data: request.httpBody ?? Data(), encoding: .utf8)?
-                            .components(separatedBy: "&").first(where: {$0.contains("identity")})?
-                            .components(separatedBy: "=").last?
-                            .components(separatedBy: "%2F").last {
-            completion(steamId)
-            dismiss(animated: true, completion: nil)
-        }
-        
     }
     
     private func setup() {
@@ -64,13 +50,25 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        if navigationResponse.response.url?.absoluteString.contains(API.redirectURL.absoluteString) ?? false {
-            validateSteamAPICall(with: navigationResponse.response)
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        let url = navigationAction.request.url
+        if ((url?.absoluteString as NSString?)?.range(of: "steamcommunity.com/profiles/"))?.location != NSNotFound {
+            let urlComponents = url?.absoluteString.components(separatedBy: "/")
+            let potentialID: String = urlComponents?[4] ?? ""
+            let user = SteamUser(steamID64: potentialID)
+            completion(user)
+            dismiss(animated: true, completion: nil)
             decisionHandler(.cancel)
-            return
+        } else if ((url?.absoluteString as NSString?)?.range(of: "steamcommunity.com/id/"))?.location != NSNotFound {
+            let urlComponents = url?.absoluteString.components(separatedBy: "/")
+            let potentialVanityID: String = urlComponents?[4] ?? ""
+            let user = SteamUser(steamVanityID: potentialVanityID)
+            completion(user)
+            dismiss(animated: true, completion: nil)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
         }
-        decisionHandler(.allow)
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {

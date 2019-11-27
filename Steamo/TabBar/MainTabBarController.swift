@@ -42,7 +42,12 @@ class MainTabBarController: UITabBarController {
                                 .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Sessions",
                                                                            icon: UIImage(named: "session")))
         
-        viewControllers = [profileVC, sessionsVC]
+        let settingsViewModel = SettingsViewModel()
+        let settingsVC = SettingsViewController(viewModel: settingsViewModel)
+                            .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Settings",
+                                                                       icon: UIImage(named: "settings")))
+        
+        viewControllers = [profileVC, sessionsVC, settingsVC]
     }
 
 }

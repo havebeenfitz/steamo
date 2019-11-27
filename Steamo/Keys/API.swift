@@ -11,9 +11,7 @@ import Foundation
 /// Эндпоинты
 struct API {
     /// Эндпоинт авторизации
-    static let authURL: URL = URL(string: "https://steamcommunity.com/openid/login/")!
-    /// Куда редиректим после успешной авторизации
-    static let redirectURL: URL = URL(string: "https://flip-learn.flycricket.io")!
+    static let authURL: URL = URL(string: "https://steamcommunity.com/mobilelogin")!
     /// Эндпоинт для всех методов API
     static let baseURL: URL = URL(string: "https://api.steampowered.com/")!
     /// API ключ для стима
