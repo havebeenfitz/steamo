@@ -32,6 +32,7 @@ class AvatarTableViewCell: UITableViewCell {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
+        label.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         
         return label
     }()
@@ -45,6 +46,7 @@ class AvatarTableViewCell: UITableViewCell {
     private lazy var onlineStatusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
+        label.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         if #available(iOS 11.0, *) {
             label.textColor = UIColor(named: "Text")
         } else {

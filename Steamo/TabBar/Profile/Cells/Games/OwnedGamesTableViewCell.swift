@@ -15,7 +15,7 @@ class OwnedGamesTableViewCell: UITableViewCell {
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: 200)
+        flowLayout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: 170)
         flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0
@@ -65,7 +65,7 @@ class OwnedGamesTableViewCell: UITableViewCell {
         
         contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.height.equalTo(200).priority(.init(999))
+            make.height.equalTo(170).priority(.init(999))
             make.edges.equalToSuperview()
         }
     }

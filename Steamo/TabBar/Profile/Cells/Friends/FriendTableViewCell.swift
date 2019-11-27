@@ -40,6 +40,7 @@ class FriendTableViewCell: UITableViewCell {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
+        label.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         
         return label
     }()
@@ -53,6 +54,7 @@ class FriendTableViewCell: UITableViewCell {
     private lazy var onlineStatusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         if #available(iOS 11.0, *) {
             label.textColor = UIColor(named: "Text")
         } else {
