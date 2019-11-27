@@ -10,20 +10,24 @@ import Alamofire
 
 protocol Networking {
     /// Получить сводную информацию по профилю
+    /// - Parameter steamIds: Список идентификаторов стима
     /// - Parameter completion: колбэк по завершению запроса
-    func profileSummary(completion: @escaping (Swift.Result<Profile, SteamoError>) -> Void)
+    func profileSummary(steamIds: [String], completion: @escaping (Swift.Result<Profiles, SteamoError>) -> Void)
     
     /// Получить список игр пользователя
+    /// - Parameter steamId: идентификатор пользователя в стиме
     /// - Parameter completion: колбэк по завершению запроса
-    func ownedGames(completion: @escaping (Swift.Result<Games, SteamoError>) -> Void)
+    func ownedGames(steamId: String, completion: @escaping (Swift.Result<Games, SteamoError>) -> Void)
     
     /// Получить список друзей
+    /// - Parameter steamId: идентификатор пользователя в стиме
     /// - Parameter completion: колбэк по завершению запроса
-    func friends(completion: @escaping (Swift.Result<Friends, SteamoError>) -> Void)
+    func friends(steamId: String, completion: @escaping (Swift.Result<Friends, SteamoError>) -> Void)
     
     /// Получить список недавно сыгранных игр
+    /// - Parameter steamId: идентификатор пользователя в стиме
     /// - Parameter completion: колбэк по завершению запроса
-    func recentlyPlayedGames(completion: @escaping (Swift.Result<Games, SteamoError>) -> Void)
+    func recentlyPlayedGames(steamId: String, completion: @escaping (Swift.Result<Games, SteamoError>) -> Void)
 }
 
 class NetworkAdapter: Networking {
@@ -36,11 +40,11 @@ class NetworkAdapter: Networking {
         UserDefaults.standard.string(forKey: SteamoUserDefaultsKeys.steamId)
     }
     
-    func profileSummary(completion: @escaping (Swift.Result<Profile, SteamoError>) -> Void) {
+    func profileSummary(steamIds: [String], completion: @escaping (Swift.Result<Profiles, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("ISteamUser/GetPlayerSummaries/v0002/")
         
         let parameters: JSON = ["key": API.apiKey,
-                                "steamids": steamId ?? ""]
+                                "steamids": steamIds.joined(separator: ",")]
         
         
         Alamofire.request(url, method: .get, parameters: parameters)
@@ -48,7 +52,7 @@ class NetworkAdapter: Networking {
                 switch response.result {
                 case let .success(value):
                     do {
-                        let profile = try JSONDecoder().decode(Profile.self, from: value)
+                        let profile = try JSONDecoder().decode(Profiles.self, from: value)
                         completion(.success(profile))
                     } catch {
                         completion(.failure(SteamoError.cantParseJSON))
@@ -59,10 +63,10 @@ class NetworkAdapter: Networking {
         }
     }
     
-    func ownedGames(completion: @escaping (Swift.Result<Games, SteamoError>) -> Void) {
+    func ownedGames(steamId: String, completion: @escaping (Swift.Result<Games, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("IPlayerService/GetOwnedGames/v0001/")
         let parameters: JSON = ["key": API.apiKey,
-                                "steamid": steamId ?? "",
+                                "steamid": steamId,
                                 "include_appinfo": true]
         
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString,
@@ -83,10 +87,10 @@ class NetworkAdapter: Networking {
         }
     }
     
-    func friends(completion: @escaping (Swift.Result<Friends, SteamoError>) -> Void) {
+    func friends(steamId: String, completion: @escaping (Swift.Result<Friends, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("ISteamUser/GetFriendList/v0001/")
         let parameters: JSON = ["key": API.apiKey,
-                                "steamid": steamId ?? "",
+                                "steamid": steamId,
                                 "relationship": "friend"]
         
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
@@ -106,10 +110,10 @@ class NetworkAdapter: Networking {
             }
     }
     
-    func recentlyPlayedGames(completion: @escaping (Swift.Result<Games, SteamoError>) -> Void) {
+    func recentlyPlayedGames(steamId: String, completion: @escaping (Swift.Result<Games, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("IPlayerService/GetRecentlyPlayedGames/v1/")
         let parameters: JSON = ["key": API.apiKey,
-                                "steamid": steamId ?? "",
+                                "steamid": steamId,
                                 "count": 0,
                                 "include_appinfo": true]
         

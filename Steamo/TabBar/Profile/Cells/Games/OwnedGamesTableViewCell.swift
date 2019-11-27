@@ -48,7 +48,7 @@ class OwnedGamesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with viewModel: ProfileCellViewModelRepresentable) {
+    func configure(with viewModel: ProfileSectionViewModelRepresentable) {
         guard let viewModel = viewModel as? OwnedGamesCellViewModel else { return }
         self.viewModel = viewModel
         collectionView.reloadData()

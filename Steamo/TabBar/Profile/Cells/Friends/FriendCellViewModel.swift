@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FriendsCellViewModel: ProfileCellViewModelRepresentable {
+class FriendsSectionViewModel: ProfileSectionViewModelRepresentable {
     var index: Int {
         return 2
     }
@@ -18,12 +18,16 @@ class FriendsCellViewModel: ProfileCellViewModelRepresentable {
     }
     
     var sectionTitle: String {
-        return "Friends ()"
+        return "Friends (\(profiles.response.players.count))"
     }
     
-    var friends: Friends
+    var rowCount: Int {
+        return profiles.response.players.count
+    }
     
-    init(friends: Friends) {
-        self.friends = friends
+    var profiles: Profiles
+    
+    init(profiles: Profiles) {
+        self.profiles = profiles
     }
 }

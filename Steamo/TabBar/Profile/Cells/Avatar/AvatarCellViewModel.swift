@@ -6,17 +6,7 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-enum UserStatus: Int {
-       case offline = 0
-       case online = 1
-       case busy = 2
-       case away = 3
-       case snooze = 4
-       case trade = 5
-       case lookingToPlay = 6
-   }
-
-class AvatarCellViewModel: ProfileCellViewModelRepresentable {
+class AvatarCellViewModel: ProfileSectionViewModelRepresentable {
     var index: Int {
         return 0
     }
@@ -29,13 +19,9 @@ class AvatarCellViewModel: ProfileCellViewModelRepresentable {
         return "User"
     }
     
-    var avatarURLString: String
-    var name: String
-    var status: UserStatus
+    var profiles: Profiles
     
-    init(avatarURLString: String, name: String, status: UserStatus) {
-        self.avatarURLString = avatarURLString
-        self.name = name
-        self.status = status
+    init(profiles: Profiles) {
+        self.profiles = profiles
     }
 }

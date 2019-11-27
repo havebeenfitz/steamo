@@ -13,7 +13,9 @@ import SVProgressHUD
 class ProfileViewController: UIViewController {
     
     /// Вьюмодель экрана
-    private let viewModel: ProfileViewModel
+    fileprivate let viewModel: ProfileViewModel
+    
+    fileprivate let router: ProfileRouter
     
     private var refreshControl = UIRefreshControl()
     
@@ -34,11 +36,13 @@ class ProfileViewController: UIViewController {
         
         tableView.register(class: AvatarTableViewCell.self)
         tableView.register(class: OwnedGamesTableViewCell.self)
+        tableView.register(class: FriendTableViewCell.self)
         
-        tableView.delegate = viewModel
-        tableView.dataSource = viewModel
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        tableView.refreshControl = refreshControl
+        // TODO: Разобраться с крэшом
+        //tableView.refreshControl = refreshControl
         
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
@@ -82,8 +86,10 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
-    init(viewModel: ProfileViewModel) {
+    init(viewModel: ProfileViewModel,
+         router: ProfileRouter) {
         self.viewModel = viewModel
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -150,25 +156,18 @@ class ProfileViewController: UIViewController {
     
     @objc private func refresh() {
         viewModel.loadProfile { [weak self] _ in
-            self?.tableView.reloadData()
             self?.refreshControl.endRefreshing()
+            self?.tableView.reloadData()
         }
-        
-        
     }
     
     private func toggleLogoutButton() {
         if viewModel.isUserAuthorized {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"),
-                                                                       style: .plain,
-                                                                       target: self,
-                                                                       action: #selector(logout))
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "stats"),
                                                                 style: .plain,
                                                                 target: self,
                                                                 action: nil)
         } else {
-            navigationItem.leftBarButtonItem = nil
             navigationItem.rightBarButtonItem = nil
         }
         showLoginButton(isUserAuthorized: viewModel.isUserAuthorized)
@@ -192,4 +191,65 @@ class ProfileViewController: UIViewController {
     private func showLoginButton(isUserAuthorized: Bool) {
         loginStackView.isHidden = isUserAuthorized
     }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let sectionViewModel = viewModel.sectionViewModels[indexPath.section]
+        
+        switch sectionViewModel.type {
+        case .friends:
+            if let friendsSectionViewModel = sectionViewModel as? FriendsSectionViewModel {
+                let steamId = friendsSectionViewModel.profiles.response.players[indexPath.row].steamId
+                router.routeToFriendProfile(from: self, steamId: steamId)
+            }
+            
+        default:
+            break
+        }
+    }
+    
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        viewModel.sectionViewModels[section].sectionTitle
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionViewModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.sectionViewModels[section].rowCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let sectionViewModel = viewModel.sectionViewModels[indexPath.section]
+        
+        switch sectionViewModel.type {
+        case .avatar:
+            if let cell: AvatarTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.configure(with: sectionViewModel, index: indexPath.row)
+                return cell
+            }
+        case .ownedGames:
+            if let cell: OwnedGamesTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.configure(with: sectionViewModel)
+                return cell
+            }
+        case .friends:
+            if let cell: FriendTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.configure(with: sectionViewModel, index: indexPath.row)
+                return cell
+            }
+        }
+        assertionFailure("New cell")
+        return UITableViewCell()
+    }
+    
+    
 }

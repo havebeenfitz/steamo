@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Profile: Codable {
+struct Profiles: Codable {
     let response: ProfileResponse
 }
 
@@ -18,7 +18,7 @@ struct ProfileResponse: Codable {
 
 struct Player: Codable {
     let steamId: String
-    let communityVisibilityState: Int
+    let communityVisibilityState: Int?
     let personaName: String
     let profileURL: String
     let avatar: String
@@ -26,9 +26,9 @@ struct Player: Codable {
     let avatarFull: String
     let personaState: Int
     let profileState: Int?
-    let primaryClanId: String
-    let timeCreated: Int
-    let personaStateFlags: Int
+    let primaryClanId: String?
+    let timeCreated: Int?
+    let personaStateFlags: Int?
 
     enum CodingKeys: String, CodingKey {
         case steamId = "steamid"
@@ -43,5 +43,22 @@ struct Player: Codable {
         case primaryClanId = "primaryclanid"
         case timeCreated = "timecreated"
         case personaStateFlags = "personastateflags"
+    }
+}
+
+extension Player {
+    
+    enum Status: Int {
+        case offline = 0
+        case online = 1
+        case busy = 2
+        case away = 3
+        case snooze = 4
+        case trade = 5
+        case lookingToPlay = 6
+    }
+    
+    var onlineStatus: Status {
+        return Status(rawValue: personaState) ?? .offline
     }
 }

@@ -9,6 +9,12 @@
 import UIKit
 
 class ProfileViewModel: NSObject {
+    
+    enum State {
+        case you
+        case friend(steamId: String)
+    }
+    
     //MARK:- Public properties
     
     /// Состояние авторизации пользователя
@@ -20,26 +26,34 @@ class ProfileViewModel: NSObject {
         get { UserDefaults.standard.string(forKey: SteamoUserDefaultsKeys.steamId) }
         set { UserDefaults.standard.set(newValue, forKey: SteamoUserDefaultsKeys.steamId) }
     }
-    /// Профиль пользователя
-    var profile: Profile? = nil
     
-    /// Игры пользователя
-    var games: Games? = nil
-    
-    /// Друзья пользователя
-    var friends: Friends? = nil
+    /// Вьюмодели секций
+    var sectionViewModels: [ProfileSectionViewModelRepresentable] = []
     
     //MARK:- Private properties
     
-    private var cellViewModels: [ProfileCellViewModelRepresentable] = []
+    private var state: State
+    
+    /// Профиль пользователя
+    private var profiles: Profiles? = nil
+    
+    /// Профили друзей
+    private var friendsProfiles: Profiles? = nil
+    
+    /// Игры пользователя
+    private var games: Games? = nil
+    
+    /// Друзья пользователя
+    private var friends: Friends? = nil
     
     /// Адаптер для работы с сетью
     private let networkAdapter: Networking
     
     /// Инициализватор по адаптеру
     /// - Parameter networkAdapter: адаптер для работы с сетью
-    init(networkAdapter: Networking) {
+    init(networkAdapter: Networking, state: State) {
         self.networkAdapter = networkAdapter
+        self.state = state
     }
     
     //MARK:- Methods
@@ -47,66 +61,92 @@ class ProfileViewModel: NSObject {
     /// Получить информацию по экрану
     /// - Parameter completion: колбэк по завершению запроса
     func loadProfile(completion: ((Result<Void, SteamoError>) -> Void)? = nil) {
-        
-        cellViewModels = []
+    
+        sectionViewModels = []
         
         let chainDispatchGroup = DispatchGroup()
         
+        let steamId: String
+        
+        switch state {
+        case .you:
+            steamId = self.steamId ?? "noSteamId"
+        case let .friend(steamId: friendSteamId):
+            steamId = friendSteamId
+        }
+        
         chainDispatchGroup.enter()
-        networkAdapter.profileSummary { [weak self] result in
+        networkAdapter.profileSummary(steamIds: [steamId]) { [weak self] result in
             switch result {
-            case let .success(profile):
-                self?.profile = profile
+            case let .success(profiles):
+                self?.profiles = profiles
                 chainDispatchGroup.leave()
             case .failure:
-                completion?(.failure(SteamoError.noConnection))
+//                completion?(.failure(SteamoError.noConnection))
                 chainDispatchGroup.leave()
             }
             
         }
         
         chainDispatchGroup.enter()
-        networkAdapter.ownedGames { [weak self] result in
+        networkAdapter.ownedGames(steamId: steamId) { [weak self] result in
             switch result {
             case let .success(value):
                 self?.games = value
                 chainDispatchGroup.leave()
             case .failure:
-                completion?(.failure(SteamoError.noConnection))
+//                completion?(.failure(SteamoError.noConnection))
                 chainDispatchGroup.leave()
             }
         }
         
         chainDispatchGroup.enter()
-        networkAdapter.friends { [weak self] result in
+        networkAdapter.friends(steamId: steamId) { [weak self] result in
             switch result {
             case let .success(value):
                 self?.friends = value
                 chainDispatchGroup.leave()
             case .failure:
-                completion?(.failure(SteamoError.noConnection))
+//                completion?(.failure(SteamoError.noConnection))
                 chainDispatchGroup.leave()
             }
         }
         
-        chainDispatchGroup.notify(queue: .main) {
-            self.updateProfile()
-            self.updateGames()
-            self.updateFriends()
-            self.sortSections()
-            completion?(.success(()))
+        let workItem = DispatchWorkItem {
+            guard let friends = self.friends else { return }
+            let steamIds = friends.friendsList.friends.map { $0.steamId }
+            
+            self.networkAdapter.profileSummary(steamIds: steamIds) { [weak self] result in
+                switch result {
+                case let .success(profiles):
+                    self?.friendsProfiles = profiles
+                    
+                    self?.updateData()
+                    
+                    completion?(.success(()))
+                case let .failure(error):
+                    completion?(.failure(error))
+                }
+            }
         }
+        
+        chainDispatchGroup.notify(queue: .main, work: workItem)
+    }
+    
+    private func updateData() {
+        updateProfile()
+        updateGames()
+        updateFriends()
+        sortSections()
     }
     
     private func updateProfile() {
-        guard let profile = profile, let player = profile.response.players.first else {
+        guard let profiles = profiles else {
             return
         }
         
-        let avatarViewModel = AvatarCellViewModel(avatarURLString: player.avatarFull,
-                                                  name: player.personaName,
-                                                  status: UserStatus(rawValue: player.personaState) ?? .offline)
-        cellViewModels.append(avatarViewModel)
+        let avatarViewModel = AvatarCellViewModel(profiles: profiles)
+        sectionViewModels.append(avatarViewModel)
     }
     
     private func updateGames() {
@@ -115,70 +155,27 @@ class ProfileViewModel: NSObject {
         }
         
         let gamesViewModel = OwnedGamesCellViewModel(games: games)
-        cellViewModels.append(gamesViewModel)
+        sectionViewModels.append(gamesViewModel)
     }
     
     private func updateFriends() {
-        guard let friends = friends else {
+        guard let friendsProfiles = friendsProfiles else {
             return
         }
         
-        
+        let friendsSectionViewModel = FriendsSectionViewModel(profiles: friendsProfiles)
+        sectionViewModels.append(friendsSectionViewModel)
     }
     
     private func sortSections() {
-        cellViewModels.sort(by: { $0.index < $1.index })
+        sectionViewModels.sort(by: { $0.index < $1.index })
     }
     
     /// "Разлогиниться"
     func logout() {
         steamId = nil
-        cellViewModels = []
+        sectionViewModels = []
     }
-}
-
-extension ProfileViewModel: UITableViewDelegate {
-    
-}
-
-extension ProfileViewModel: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        cellViewModels[section].sectionTitle
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return cellViewModels.count
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cellViewModels[section].rowCount
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellViewModel = cellViewModels[indexPath.section]
-        
-        switch cellViewModel.type {
-        case .avatar:
-            if let cell: AvatarTableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.configure(with: cellViewModel)
-                return cell
-            }
-        case .ownedGames:
-            if let cell: OwnedGamesTableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.configure(with: cellViewModel)
-                return cell
-            }
-        case .friends:
-            if let cell: FriendsTableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.configure(with: cellViewModel)
-                return cell
-            }
-        }
-        assertionFailure("New cell")
-        return UITableViewCell()
-    }
-    
-    
 }
 
 

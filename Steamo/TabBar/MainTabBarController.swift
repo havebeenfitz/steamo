@@ -29,8 +29,11 @@ class MainTabBarController: UITabBarController {
     
     private func addViewControllers() {
         let networkAdapter = NetworkAdapter()
-        let profileViewModel = ProfileViewModel(networkAdapter: networkAdapter)
-        let profileVC = ProfileViewController(viewModel: profileViewModel)
+        let router = ProfileRouter()
+        let profileViewModel = ProfileViewModel(networkAdapter: networkAdapter,
+                                                state: .you)
+        let profileVC = ProfileViewController(viewModel: profileViewModel,
+                                              router: router)
                                 .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Profile",
                                                                            icon: UIImage(named: "profile")))
         

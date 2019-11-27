@@ -25,10 +25,74 @@
             filePath = "Steamo/Services/Network/NetworkAdapter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "recentlyPlayedGames(completion:)"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "recentlyPlayedGames(steamId:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C0222E5-9425-4F2C-A0F1-9DAAF2FB712C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Steamo/TabBar/Profile/ProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95830A85-CAC2-4E0F-9681-9542D468441F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Steamo/TabBar/Profile/ProfileViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "loadProfile(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "95830A85-CAC2-4E0F-9681-9542D468441F - 46b997577f0bf17d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;Steamo.Profiles, Steamo.SteamoError&gt;) -&gt; () in closure #4 () -&gt; () in Steamo.ProfileViewModel.loadProfile(completion: Swift.Optional&lt;(Swift.Result&lt;(), Steamo.SteamoError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "Steamo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/havebeenfitz/dev/Steamo/Steamo/TabBar/Profile/ProfileViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "95830A85-CAC2-4E0F-9681-9542D468441F - 46b997577f0bf17d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;Steamo.Profiles, Steamo.SteamoError&gt;) -&gt; () in closure #4 () -&gt; () in Steamo.ProfileViewModel.loadProfile(completion: Swift.Optional&lt;(Swift.Result&lt;(), Steamo.SteamoError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "Steamo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/havebeenfitz/dev/Steamo/Steamo/TabBar/Profile/ProfileViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "268">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

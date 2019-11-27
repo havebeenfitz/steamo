@@ -14,12 +14,17 @@ class SessionsViewModel: NSObject {
     
     fileprivate var games: Games?
     
+    private var steamId: String? {
+        get { UserDefaults.standard.string(forKey: SteamoUserDefaultsKeys.steamId) }
+        set { UserDefaults.standard.set(newValue, forKey: SteamoUserDefaultsKeys.steamId) }
+    }
+    
     init(networkAdapter: Networking) {
         self.networkAdapter = networkAdapter
     }
     
     func loadRecentlyPlayedGames(completion: @escaping ((Swift.Result<Void, SteamoError>) -> Void)) {
-        networkAdapter.recentlyPlayedGames { [weak self] result in
+        networkAdapter.recentlyPlayedGames(steamId: steamId ?? "noSteamId") { [weak self] result in
             switch result {
             case let .success(games):
                 self?.games = games

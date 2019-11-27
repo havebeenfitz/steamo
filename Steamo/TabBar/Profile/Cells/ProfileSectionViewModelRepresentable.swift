@@ -12,14 +12,14 @@ enum ProfileCellViewModelType {
     case friends
 }
 
-protocol ProfileCellViewModelRepresentable {
+protocol ProfileSectionViewModelRepresentable {
     var index: Int { get }
     var type: ProfileCellViewModelType { get }
     var rowCount: Int { get }
     var sectionTitle: String { get }
 }
 
-extension ProfileCellViewModelRepresentable {
+extension ProfileSectionViewModelRepresentable {
     var rowCount: Int {
         return 1
     }
