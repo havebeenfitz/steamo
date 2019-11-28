@@ -18,7 +18,7 @@ class SectionHeaderView: UIView {
         }
 
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
 
         return label
     }()

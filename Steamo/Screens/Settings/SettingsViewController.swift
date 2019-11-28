@@ -10,6 +10,14 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     fileprivate let viewModel: SettingsViewModel
+    
+    private lazy var logoutButton: SteamoButton = {
+        let button = SteamoButton()
+        button.setTitle("Log out", for: .normal)
+        button.backgroundColor = .accent
+        button.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        return button
+    }()
 
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
@@ -33,5 +41,19 @@ class SettingsViewController: UIViewController {
         }
 
         title = "Settings"
+        
+        view.addSubview(logoutButton)
+        logoutButton.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.equalTo(50)
+        }
+    }
+    
+    //MARK: Actions
+    
+    @objc private func logout() {
+        UserDefaults.standard.set(nil, forKey: SteamoUserDefaultsKeys.steamId)
+        NotificationCenter.default.post(name: .DidLogout, object: nil)
     }
 }

@@ -87,12 +87,13 @@ class ProfileViewController: UIViewController {
         button.addTarget(nil, action: #selector(loginButtonDidTap), for: .touchUpInside)
         return button
     }()
-
+    
     init(viewModel: ProfileViewModel,
          router: ProfileRouter) {
         self.viewModel = viewModel
         self.router = router
         super.init(nibName: nil, bundle: nil)
+        addObservers()
     }
 
     required init?(coder _: NSCoder) {
@@ -163,6 +164,14 @@ class ProfileViewController: UIViewController {
         toggleBarButton()
         addShimmeringViewIfNeeded()
         loadData()
+    }
+    
+    // MARK: NotificationCenter
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(forName: .DidLogout, object: nil, queue: .main) { _ in
+            self.toggleUI()
+        }
     }
 
     // MARK: Toggle UI
