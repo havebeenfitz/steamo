@@ -11,11 +11,12 @@ import SnapKit
 import SVProgressHUD
 
 class ProfileViewController: UIViewController {
-    
     /// Вьюмодель экрана
     fileprivate let viewModel: ProfileViewModel
-    
+    /// Роутер экрана
     fileprivate let router: ProfileRouter
+    /// Лоадер
+    private let shimmeringView = ProfileShimmeringView()
     
     private var refreshControl = UIRefreshControl()
     
@@ -108,20 +109,33 @@ class ProfileViewController: UIViewController {
         let loginNavigationVC = loginVC.wrapInNavigation()
         loginVC.completion = { [weak self] steamUser in
             self?.viewModel.steamId = steamUser.steamID64
-            self?.loginStackView.isHidden = true
-            self?.toggleLogoutButton()
-            self?.loadData()
+            self?.afterLoginRoutine()
         }
         present(loginNavigationVC, animated: true)
     }
     
+    private func afterLoginRoutine() {
+        loginStackView.isHidden = true
+        toggleLogoutButton()
+        addShimmeringViewIfNeeded()
+        loadData()
+    }
+    
+    private func addShimmeringViewIfNeeded() {
+        if viewModel.isUserAuthorized {
+            view.addSubview(shimmeringView)
+            shimmeringView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
+    }
+    
     private func loadData() {
         if viewModel.isUserAuthorized {
-            SVProgressHUD.show()
             viewModel.loadProfile { [weak self] _ in
                 self?.showLoginButton(isUserAuthorized: true)
                 self?.showTableView(isUserAuthorized: true)
-                SVProgressHUD.dismiss()
+                self?.shimmeringView.removeFromSuperview()
             }
         }
     }
@@ -151,6 +165,8 @@ class ProfileViewController: UIViewController {
         loginButton.snp.makeConstraints { make in
             make.height.equalTo(60)
         }
+        
+        addShimmeringViewIfNeeded()
     }
     
     @objc private func refresh() {
@@ -197,12 +213,10 @@ extension ProfileViewController: UITableViewDelegate {
                 let steamId = friendsSectionViewModel.profiles.response.players[indexPath.row].steamId
                 router.routeToFriendProfile(from: self, steamId: steamId)
             }
-            
         default:
             break
         }
     }
-    
 }
 
 extension ProfileViewController: UITableViewDataSource {
@@ -253,6 +267,4 @@ extension ProfileViewController: UITableViewDataSource {
         assertionFailure("New cell")
         return UITableViewCell()
     }
-    
-    
 }

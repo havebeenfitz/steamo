@@ -45,6 +45,7 @@
 		E4424E16238EFA6100B5A7BD /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4424E15238EFA6100B5A7BD /* SectionHeaderView.swift */; };
 		E4424E19238EFD9000B5A7BD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4424E18238EFD9000B5A7BD /* SettingsViewController.swift */; };
 		E4424E1B238EFDAE00B5A7BD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4424E1A238EFDAE00B5A7BD /* SettingsViewModel.swift */; };
+		E4424E1D2390450400B5A7BD /* ProfileShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4424E1C2390450400B5A7BD /* ProfileShimmeringView.swift */; };
 		E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */; };
 		E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */; };
 		E4A9E33E238D8F6700541359 /* Double+Pluralize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */; };
@@ -114,6 +115,7 @@
 		E4424E15238EFA6100B5A7BD /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		E4424E18238EFD9000B5A7BD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E4424E1A238EFDAE00B5A7BD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		E4424E1C2390450400B5A7BD /* ProfileShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileShimmeringView.swift; sourceTree = "<group>"; };
 		E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestBuilder.swift; sourceTree = "<group>"; };
 		E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Pluralize.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				E414E23B238B4BA500A7AB93 /* SteamoButton.swift */,
 				E414E257238BABD300A7AB93 /* GameView.swift */,
 				E4424E15238EFA6100B5A7BD /* SectionHeaderView.swift */,
+				E4424E1C2390450400B5A7BD /* ProfileShimmeringView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				E4424E14238EF82F00B5A7BD /* Array+Safe.swift in Sources */,
 				E414E23A238B436500A7AB93 /* SteamoNavigationController.swift in Sources */,
 				E4424E10238EF58E00B5A7BD /* SteamVanity.swift in Sources */,
+				E4424E1D2390450400B5A7BD /* ProfileShimmeringView.swift in Sources */,
 				E4050378238DB06B00EC11A4 /* SessionsViewModel.swift in Sources */,
 				E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */,
 				E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */,
