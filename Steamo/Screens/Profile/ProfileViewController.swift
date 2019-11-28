@@ -11,6 +11,8 @@ import SnapKit
 import SVProgressHUD
 
 class ProfileViewController: UIViewController {
+    //MARK:- Properties
+    
     /// Вьюмодель экрана
     fileprivate let viewModel: ProfileViewModel
     /// Роутер экрана
@@ -97,50 +99,18 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:- Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-        toggleLogoutButton()
+        addConstraints()
+        toggleUI()
         loadData()
     }
     
-    @objc private func loginButtonDidTap() {
-        let loginVC = LoginViewController(nibName: nil, bundle: nil)
-        let loginNavigationVC = loginVC.wrapInNavigation()
-        loginVC.completion = { [weak self] steamUser in
-            self?.viewModel.steamId = steamUser.steamID64
-            self?.afterLoginRoutine()
-        }
-        present(loginNavigationVC, animated: true)
-    }
+    //MARK: - Methods
     
-    private func afterLoginRoutine() {
-        loginStackView.isHidden = true
-        toggleLogoutButton()
-        addShimmeringViewIfNeeded()
-        loadData()
-    }
-    
-    private func addShimmeringViewIfNeeded() {
-        if viewModel.isUserAuthorized {
-            view.addSubview(shimmeringView)
-            shimmeringView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-        }
-    }
-    
-    private func loadData() {
-        if viewModel.isUserAuthorized {
-            viewModel.loadProfile { [weak self] _ in
-                self?.showLoginButton(isUserAuthorized: true)
-                self?.showTableView(isUserAuthorized: true)
-                self?.shimmeringView.removeFromSuperview()
-            }
-        }
-    }
-    
-    private func setup() {
+    private func addConstraints() {
         title = viewModel.screenTitle
         if #available(iOS 11.0, *) {
             view.backgroundColor = UIColor(named: "Background")
@@ -169,14 +139,41 @@ class ProfileViewController: UIViewController {
         addShimmeringViewIfNeeded()
     }
     
-    @objc private func refresh() {
-        viewModel.loadProfile { [weak self] _ in
-            self?.refreshControl.endRefreshing()
-            self?.tableView.reloadData()
+    private func addShimmeringViewIfNeeded() {
+        if viewModel.isUserAuthorized {
+            view.addSubview(shimmeringView)
+            shimmeringView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
         }
     }
     
-    private func toggleLogoutButton() {
+    private func loadData() {
+        if viewModel.isUserAuthorized {
+            viewModel.loadProfile { [weak self] _ in
+                self?.toggleUI()
+                self?.shimmeringView.removeFromSuperview()
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    private func afterLoginRoutine() {
+        loginStackView.isHidden = true
+        toggleBarButton()
+        addShimmeringViewIfNeeded()
+        loadData()
+    }
+    
+    // MARK: Toggle UI
+    
+    private func toggleUI() {
+        toggleBarButton()
+        showTableView(viewModel.isUserAuthorized)
+        showLoginButton(viewModel.isUserAuthorized)
+    }
+    
+    private func toggleBarButton() {
         if viewModel.isUserAuthorized {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "stats"),
                                                                 style: .plain,
@@ -185,21 +182,38 @@ class ProfileViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = nil
         }
-        showLoginButton(isUserAuthorized: viewModel.isUserAuthorized)
-        showTableView(isUserAuthorized: viewModel.isUserAuthorized)
     }
     
-    private func showTableView(isUserAuthorized: Bool) {
+    private func showTableView(_ isUserAuthorized: Bool) {
         tableView.isHidden = !isUserAuthorized
-        if isUserAuthorized {
-            tableView.reloadData()
-        }
     }
 
-    private func showLoginButton(isUserAuthorized: Bool) {
+    private func showLoginButton(_ isUserAuthorized: Bool) {
         loginStackView.isHidden = isUserAuthorized
     }
+    
+    //MARK: Actions
+    
+    @objc private func loginButtonDidTap() {
+          let loginVC = LoginViewController(nibName: nil, bundle: nil)
+          let loginNavigationVC = loginVC.wrapInNavigation()
+          loginVC.completion = { [weak self] steamUser in
+              self?.viewModel.steamId = steamUser.steamID64
+              self?.afterLoginRoutine()
+          }
+          present(loginNavigationVC, animated: true)
+      }
+
+    @objc private func refresh() {
+        viewModel.loadProfile { [weak self] _ in
+            self?.refreshControl.endRefreshing()
+            self?.tableView.reloadData()
+        }
+    }
+    
 }
+
+//MARK: - UITableViewDelegate
 
 extension ProfileViewController: UITableViewDelegate {
     
@@ -218,6 +232,8 @@ extension ProfileViewController: UITableViewDelegate {
         }
     }
 }
+
+//MARK: - UITableViewDataSource
 
 extension ProfileViewController: UITableViewDataSource {
     

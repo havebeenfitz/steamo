@@ -10,13 +10,17 @@ import UIKit
 
 class ProfileViewModel: NSObject {
     
+    /// Состояние экрана
     enum State {
+        /// Пользователь
         case you
+        /// Друг (друг друга и т.д.)
         case friend(steamId: String)
     }
     
     //MARK:- Public properties
     
+    /// Заголовок экрана
     var screenTitle: String {
         switch state {
         case .you:
@@ -41,6 +45,7 @@ class ProfileViewModel: NSObject {
     
     //MARK:- Private properties
     
+    /// Состояние экрана
     private var state: State
     
     /// Профиль пользователя
@@ -178,5 +183,3 @@ class ProfileViewModel: NSObject {
     }
     
 }
-
-
