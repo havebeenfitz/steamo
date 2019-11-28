@@ -228,7 +228,9 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionViewModel = viewModel.sectionViewModels[safe: indexPath.section] else {
-            return UITableViewCell()
+            let cell = UITableViewCell(frame: .zero)
+            cell.backgroundColor = .clear
+            return cell
         }
         
         switch sectionViewModel.type {

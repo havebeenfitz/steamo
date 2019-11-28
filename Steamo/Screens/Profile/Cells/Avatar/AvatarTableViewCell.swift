@@ -101,6 +101,7 @@ class AvatarTableViewCell: UITableViewCell {
     
     private func setup() {
         selectionStyle = .none
+        backgroundColor = .clear
         
         if #available(iOS 11.0, *) {
             contentView.backgroundColor = UIColor(named: "Background")
