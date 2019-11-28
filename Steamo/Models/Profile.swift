@@ -35,7 +35,7 @@ struct Player: Codable {
         case communityVisibilityState = "communityvisibilitystate"
         case personaName = "personaname"
         case profileURL = "profileurl"
-        case avatar = "avatar"
+        case avatar
         case avatarMedium = "avatarmedium"
         case avatarFull = "avatarfull"
         case personaState = "personastate"
@@ -47,7 +47,6 @@ struct Player: Codable {
 }
 
 extension Player {
-    
     enum Status: Int {
         case offline = 0
         case online = 1
@@ -57,7 +56,7 @@ extension Player {
         case trade = 5
         case lookingToPlay = 6
     }
-    
+
     var onlineStatus: Status {
         return Status(rawValue: personaState) ?? .offline
     }

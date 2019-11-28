@@ -8,28 +8,28 @@
 
 import Foundation
 
-struct SteamVanity : Codable {
-    let response : SteamVanityResponse?
-    
+struct SteamVanity: Codable {
+    let response: SteamVanityResponse?
+
     enum CodingKeys: String, CodingKey {
         case response
     }
-    
+
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         response = try values.decodeIfPresent(SteamVanityResponse.self, forKey: .response)
     }
 }
 
-struct SteamVanityResponse : Codable {
-    let steamid : String?
-    let success : Int?
+struct SteamVanityResponse: Codable {
+    let steamid: String?
+    let success: Int?
 
     enum CodingKeys: String, CodingKey {
         case steamid
         case success
     }
-    
+
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         steamid = try values.decodeIfPresent(String.self, forKey: .steamid)

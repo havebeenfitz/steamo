@@ -6,15 +6,14 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 class SessionsViewController: UIViewController {
-    
     private let viewModel: SessionsViewModel
-    
+
     private var refreshControl = UIRefreshControl()
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.tableFooterView = UIView()
@@ -29,41 +28,41 @@ class SessionsViewController: UIViewController {
             tableView.backgroundColor = .background
             refreshControl.tintColor = .accent
         }
-        
+
         tableView.register(class: TableCellContainer<GameView>.self)
-        
+
         tableView.delegate = viewModel
         tableView.dataSource = viewModel
-        
+
         tableView.refreshControl = refreshControl
-        
+
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        
+
         return tableView
     }()
-    
+
     init(viewModel: SessionsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        
+
         setup()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.loadRecentlyPlayedGames { [weak self] result in
+        viewModel.loadRecentlyPlayedGames { [weak self] _ in
             self?.tableView.reloadData()
         }
     }
-    
-    required init?(coder: NSCoder) {
+
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc private func refresh() {
         refreshControl.endRefreshing()
     }
-    
+
     private func setup() {
         title = "Sessions"
         if #available(iOS 11.0, *) {
@@ -71,7 +70,7 @@ class SessionsViewController: UIViewController {
         } else {
             view.backgroundColor = .background
         }
-        
+
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

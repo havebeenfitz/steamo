@@ -20,11 +20,12 @@ struct FriendsList: Codable {
     let friends: [Friend]
 
     enum CodingKeys: String, CodingKey {
-        case friends = "friends"
+        case friends
     }
 }
 
 // MARK: - Friend
+
 struct Friend: Codable {
     let steamId: String
     let relationship: String
@@ -32,8 +33,7 @@ struct Friend: Codable {
 
     enum CodingKeys: String, CodingKey {
         case steamId = "steamid"
-        case relationship = "relationship"
+        case relationship
         case friendSince = "friend_since"
     }
 }
-

@@ -14,12 +14,11 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-import UIKit
 import Kingfisher
 import SnapKit
+import UIKit
 
 class FriendTableViewCell: UITableViewCell {
-    
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -27,7 +26,7 @@ class FriendTableViewCell: UITableViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
-    
+
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         if #available(iOS 11.0, *) {
@@ -35,22 +34,22 @@ class FriendTableViewCell: UITableViewCell {
         } else {
             label.textColor = .text
         }
-        
+
         label.font = UIFont.systemFont(ofSize: 16)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
         label.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
-        
+
         return label
     }()
-    
+
     private lazy var onlineStatusView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
         return view
     }()
-    
+
     private lazy var onlineStatusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -62,29 +61,28 @@ class FriendTableViewCell: UITableViewCell {
         }
         return label
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
     }
-    
-    required init?(coder: NSCoder) {
+
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func configure(with viewModel: ProfileSectionViewModelRepresentable?, index: Int) {
         guard let viewModel = viewModel as? FriendsSectionViewModel else {
             return
         }
-        
+
         let player = viewModel.profiles.response.players[index]
         let url = URL(string: player.avatarFull)
-        
+
         avatarImageView.kf.setImage(with: url)
         nameLabel.text = player.personaName
-        
+
         switch player.onlineStatus {
-            
         case .offline:
             onlineStatusView.backgroundColor = .lightGray
             onlineStatusLabel.text = "Offline"
@@ -108,10 +106,10 @@ class FriendTableViewCell: UITableViewCell {
             onlineStatusLabel.text = "Looking to play"
         }
     }
-    
+
     private func setup() {
         selectionStyle = .gray
-        
+
         if #available(iOS 11.0, *) {
             contentView.backgroundColor = UIColor(named: "Background")
         } else {
@@ -122,24 +120,24 @@ class FriendTableViewCell: UITableViewCell {
             make.left.top.bottom.equalToSuperview().inset(20).priority(.required)
             make.height.width.equalTo(50).priority(.init(999))
         }
-        
+
         contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
             make.left.equalTo(avatarImageView.snp.right).offset(20)
             make.top.equalToSuperview().inset(20)
         }
-        
+
         contentView.addSubview(onlineStatusView)
         onlineStatusView.snp.makeConstraints { make in
             make.top.right.equalToSuperview().inset(25)
             make.left.equalTo(nameLabel.snp.right).offset(20).priority(.low)
             make.height.width.equalTo(10)
         }
-        
+
         contentView.addSubview(onlineStatusLabel)
         onlineStatusLabel.snp.makeConstraints { make in
             make.left.equalTo(avatarImageView.snp.right).offset(20)
             make.top.equalTo(nameLabel.snp.bottom).offset(10)
         }
-    } 
+    }
 }

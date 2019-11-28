@@ -20,7 +20,7 @@ struct GamesResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case gameCount = "game_count"
         case totalCount = "total_count"
-        case games = "games"
+        case games
     }
 }
 
@@ -38,7 +38,7 @@ struct Game: Codable {
 
     enum CodingKeys: String, CodingKey {
         case appId = "appid"
-        case name = "name"
+        case name
         case playtimeForever = "playtime_forever"
         case imgIconUrl = "img_icon_url"
         case imgLogoUrl = "img_logo_url"
@@ -54,7 +54,7 @@ extension Game {
     var calculatedImageLogoUrl: URL? {
         return URL(string: "http://media.steampowered.com/steamcommunity/public/images/apps/\(appId)/\(imgLogoUrl).jpg")
     }
-    
+
     var calculatedImageIconUrl: URL? {
         return URL(string: "http://media.steampowered.com/steamcommunity/public/images/apps/\(appId)/\(imgLogoUrl).jpg")
     }

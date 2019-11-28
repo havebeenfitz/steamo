@@ -8,6 +8,4 @@
 
 import Foundation
 
-class SettingsViewModel {
-    
-}
+class SettingsViewModel {}

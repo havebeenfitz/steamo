@@ -9,7 +9,6 @@
 import UIKit
 
 class ProfileRouter {
-    
     func routeToFriendProfile(from vc: UIViewController, steamId: String) {
         let profileViewModel = ProfileViewModel(networkAdapter: SteamAPINetworkAdapter(),
                                                 state: .friend(steamId: steamId))
@@ -18,4 +17,3 @@ class ProfileRouter {
         vc.navigationController?.pushViewController(friendProfileVC, animated: true)
     }
 }
-

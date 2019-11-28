@@ -6,29 +6,28 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
+import Alamofire
+import SVProgressHUD
 import UIKit
 import WebKit
-import SVProgressHUD
-import Alamofire
 
 class LoginViewController: UIViewController {
-    
     /// Колбэк по завершению работы экрана
     var completion: ((SteamUser) -> Void)!
-    
+
     /// Вебвью
     private lazy var webView: WKWebView = {
         let webView = WKWebView(frame: view.bounds)
         webView.navigationDelegate = self
         return webView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         webView.load(AuthRequestBuilder.authRequest())
     }
-    
+
     private func setup() {
         if #available(iOS 11.0, *) {
             view.backgroundColor = UIColor(named: "Background")
@@ -39,18 +38,17 @@ class LoginViewController: UIViewController {
         webView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
     }
-    
+
     @objc private func close() {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension LoginViewController: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let url = navigationAction.request.url
         if ((url?.absoluteString as NSString?)?.range(of: "steamcommunity.com/profiles/"))?.location != NSNotFound {
             let urlComponents = url?.absoluteString.components(separatedBy: "/")
@@ -70,8 +68,8 @@ extension LoginViewController: WKNavigationDelegate {
             decisionHandler(.allow)
         }
     }
-    
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+
+    func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
         SVProgressHUD.showError(withStatus: "Failed to load URL")
     }
 }

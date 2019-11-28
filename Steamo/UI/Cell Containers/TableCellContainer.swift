@@ -22,7 +22,7 @@ class TableCellContainer<View: UIView>: UITableViewCell {
 
     private func setup() {
         backgroundColor = .clear
-        
+
         contentView.addSubview(containedView)
         containedView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview()

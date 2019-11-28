@@ -10,17 +10,17 @@ class OwnedGamesCellViewModel: ProfileSectionViewModelRepresentable {
     var index: Int {
         return 1
     }
-    
+
     var type: ProfileCellViewModelType {
         return .ownedGames
     }
-    
+
     var sectionTitle: String {
         return "Games (\(games.response.gameCount ?? 0))"
     }
-    
+
     var games: Games
-    
+
     init(games: Games) {
         self.games = games
     }

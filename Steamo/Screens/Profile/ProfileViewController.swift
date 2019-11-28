@@ -6,22 +6,22 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-import UIKit
 import SnapKit
 import SVProgressHUD
+import UIKit
 
 class ProfileViewController: UIViewController {
-    //MARK:- Properties
-    
+    // MARK: - Properties
+
     /// Вьюмодель экрана
     fileprivate let viewModel: ProfileViewModel
     /// Роутер экрана
     fileprivate let router: ProfileRouter
     /// Лоадер
     private let shimmeringView = ProfileShimmeringView()
-    
+
     private var refreshControl = UIRefreshControl()
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.tableFooterView = UIView()
@@ -36,31 +36,31 @@ class ProfileViewController: UIViewController {
             tableView.backgroundColor = .background
             refreshControl.tintColor = .accent
         }
-        
+
         tableView.register(class: AvatarTableViewCell.self)
         tableView.register(class: OwnedGamesTableViewCell.self)
         tableView.register(class: FriendTableViewCell.self)
-        
+
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         tableView.refreshControl = refreshControl
-        
+
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        
+
         return tableView
     }()
-    
+
     /// Стэквью для показа кнопки логина и логотипа
     private lazy var loginStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [logoImageView, loginButton])
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.distribution = .fillProportionally
-        
+
         return stackView
     }()
-    
+
     /// Логотип стима
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController {
         }
         return imageView
     }()
-    
+
     /// Кнопка авторизации
     private lazy var loginButton: SteamoButton = {
         let button = SteamoButton()
@@ -87,29 +87,29 @@ class ProfileViewController: UIViewController {
         button.addTarget(nil, action: #selector(loginButtonDidTap), for: .touchUpInside)
         return button
     }()
-    
+
     init(viewModel: ProfileViewModel,
          router: ProfileRouter) {
         self.viewModel = viewModel
         self.router = router
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder: NSCoder) {
+
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK:- Lifecycle
-    
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addConstraints()
         toggleUI()
         loadData()
     }
-    
-    //MARK: - Methods
-    
+
+    // MARK: - Methods
+
     private func addConstraints() {
         title = viewModel.screenTitle
         if #available(iOS 11.0, *) {
@@ -117,7 +117,7 @@ class ProfileViewController: UIViewController {
         } else {
             view.backgroundColor = .background
         }
-        
+
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -127,18 +127,18 @@ class ProfileViewController: UIViewController {
         loginStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
-        
+
         logoImageView.snp.makeConstraints { make in
             make.height.width.equalTo(200)
         }
-        
+
         loginButton.snp.makeConstraints { make in
             make.height.equalTo(60)
         }
-        
+
         addShimmeringViewIfNeeded()
     }
-    
+
     private func addShimmeringViewIfNeeded() {
         if viewModel.isUserAuthorized {
             view.addSubview(shimmeringView)
@@ -147,7 +147,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
+
     private func loadData() {
         if viewModel.isUserAuthorized {
             viewModel.loadProfile { [weak self] _ in
@@ -157,22 +157,22 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
+
     private func afterLoginRoutine() {
         loginStackView.isHidden = true
         toggleBarButton()
         addShimmeringViewIfNeeded()
         loadData()
     }
-    
+
     // MARK: Toggle UI
-    
+
     private func toggleUI() {
         toggleBarButton()
         showTableView(viewModel.isUserAuthorized)
         showLoginButton(viewModel.isUserAuthorized)
     }
-    
+
     private func toggleBarButton() {
         if viewModel.isUserAuthorized {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "stats"),
@@ -183,7 +183,7 @@ class ProfileViewController: UIViewController {
             navigationItem.rightBarButtonItem = nil
         }
     }
-    
+
     private func showTableView(_ isUserAuthorized: Bool) {
         tableView.isHidden = !isUserAuthorized
     }
@@ -191,18 +191,18 @@ class ProfileViewController: UIViewController {
     private func showLoginButton(_ isUserAuthorized: Bool) {
         loginStackView.isHidden = isUserAuthorized
     }
-    
-    //MARK: Actions
-    
+
+    // MARK: Actions
+
     @objc private func loginButtonDidTap() {
-          let loginVC = LoginViewController(nibName: nil, bundle: nil)
-          let loginNavigationVC = loginVC.wrapInNavigation()
-          loginVC.completion = { [weak self] steamUser in
-              self?.viewModel.steamId = steamUser.steamID64
-              self?.afterLoginRoutine()
-          }
-          present(loginNavigationVC, animated: true)
-      }
+        let loginVC = LoginViewController(nibName: nil, bundle: nil)
+        let loginNavigationVC = loginVC.wrapInNavigation()
+        loginVC.completion = { [weak self] steamUser in
+            self?.viewModel.steamId = steamUser.steamID64
+            self?.afterLoginRoutine()
+        }
+        present(loginNavigationVC, animated: true)
+    }
 
     @objc private func refresh() {
         viewModel.loadProfile { [weak self] _ in
@@ -210,17 +210,15 @@ class ProfileViewController: UIViewController {
             self?.tableView.reloadData()
         }
     }
-    
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension ProfileViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let sectionViewModel = viewModel.sectionViewModels[indexPath.section]
-        
+
         switch sectionViewModel.type {
         case .friends:
             if let friendsSectionViewModel = sectionViewModel as? FriendsSectionViewModel {
@@ -233,36 +231,35 @@ extension ProfileViewController: UITableViewDelegate {
     }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ProfileViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
         return 50
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = SectionHeaderView()
         let title = viewModel.sectionViewModels[safe: section]?.sectionTitle ?? ""
         view.configure(with: title)
         return view
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+
+    func numberOfSections(in _: UITableView) -> Int {
         return viewModel.sectionViewModels.count
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.sectionViewModels[safe: section]?.rowCount ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionViewModel = viewModel.sectionViewModels[safe: indexPath.section] else {
             let cell = UITableViewCell(frame: .zero)
             cell.backgroundColor = .clear
             return cell
         }
-        
+
         switch sectionViewModel.type {
         case .avatar:
             if let cell: AvatarTableViewCell = tableView.dequeue(indexPath: indexPath) {

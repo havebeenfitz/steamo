@@ -9,16 +9,16 @@
 import UIKit
 
 public extension UITableView {
-     func register(class: UITableViewCell.Type) {
+    func register(class: UITableViewCell.Type) {
         register(`class`, forCellReuseIdentifier: String(describing: `class`))
-     }
+    }
 
-     func dequeue<RegisteredCell: UITableViewCell>(indexPath: IndexPath) -> RegisteredCell? {
+    func dequeue<RegisteredCell: UITableViewCell>(indexPath: IndexPath) -> RegisteredCell? {
         return dequeueReusableCell(withIdentifier: String(describing: RegisteredCell.self),
                                    for: indexPath) as? RegisteredCell
-     }
+    }
 
-     func cell<RegisteredCell: UITableViewCell>(for indexPath: IndexPath) -> RegisteredCell? {
+    func cell<RegisteredCell: UITableViewCell>(for indexPath: IndexPath) -> RegisteredCell? {
         return cellForRow(at: indexPath) as? RegisteredCell
-     }
+    }
 }

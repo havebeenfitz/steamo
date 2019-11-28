@@ -9,12 +9,11 @@
 import UIKit
 
 class SteamoNavigationController: UINavigationController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearence()
     }
-    
+
     private func setupAppearence() {
         navigationBar.isTranslucent = false
         if #available(iOS 11.0, *) {
@@ -25,7 +24,7 @@ class SteamoNavigationController: UINavigationController {
             navigationBar.tintColor = .accent
         }
     }
-    
+
     @objc private func back() {
         navigationController?.popViewController(animated: true)
     }

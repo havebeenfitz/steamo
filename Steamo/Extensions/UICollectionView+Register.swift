@@ -9,17 +9,16 @@
 import UIKit
 
 public extension UICollectionView {
-     func register(class: UICollectionViewCell.Type) {
+    func register(class: UICollectionViewCell.Type) {
         register(`class`, forCellWithReuseIdentifier: String(describing: `class`))
-     }
+    }
 
-     func dequeue<RegisteredCell: UICollectionViewCell>(indexPath: IndexPath) -> RegisteredCell? {
+    func dequeue<RegisteredCell: UICollectionViewCell>(indexPath: IndexPath) -> RegisteredCell? {
         return dequeueReusableCell(withReuseIdentifier: String(describing: RegisteredCell.self),
                                    for: indexPath) as? RegisteredCell
-     }
+    }
 
-     func cell<RegisteredCell: UICollectionViewCell>(for indexPath: IndexPath) -> RegisteredCell? {
+    func cell<RegisteredCell: UICollectionViewCell>(for indexPath: IndexPath) -> RegisteredCell? {
         return cellForItem(at: indexPath) as? RegisteredCell
-     }
+    }
 }
-
