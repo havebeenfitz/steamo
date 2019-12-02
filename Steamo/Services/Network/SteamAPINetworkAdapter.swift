@@ -149,6 +149,7 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
                                 "appid": gameId]
         
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+            .validate()
             .responseData { response in
                 switch response.result {
                 case let .success(value):
@@ -171,6 +172,7 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
                                 "steamid": steamId,
                                 "appid": gameId]
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+            .validate()
             .responseData { response in
                 switch response.result {
                 case let .success(value):

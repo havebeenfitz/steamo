@@ -40,11 +40,6 @@ class AvatarTableViewCell: UITableViewCell {
         let label = SteamoLabel()
         label.font = UIFont.systemFont(ofSize: 15)
         label.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
-        if #available(iOS 11.0, *) {
-            label.textColor = UIColor(named: "Text")
-        } else {
-            label.textColor = .text
-        }
         return label
     }()
 

@@ -11,6 +11,10 @@ import Foundation
 enum StatsSectionViewModelType {
     case playerStats
     case playerAchievements
+    
+    case noPlayerStats
+    case noPlayerAchievements
+    case nothing
 }
 
 protocol StatsSectionViewModelRepresentable {

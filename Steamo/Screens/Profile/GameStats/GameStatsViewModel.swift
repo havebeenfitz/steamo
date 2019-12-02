@@ -47,24 +47,45 @@ class GameStatsViewModel {
         }
         
         let workItem = DispatchWorkItem {
-            self.networkAdapter.stats(for: self.gameId, steamId: self.steamId) { result in
+            self.networkAdapter.stats(for: self.gameId, steamId: self.steamId) { [weak self] result in
                 switch result {
                 case let .success(stats):
-                    let playerStatsSectionViewModel = PlayerStatsSectionViewModel(stats: stats, gameSchema: self.gameSchema)
-                    let playerAchievementsSectionViewModel = PlayerAchievementsSectionViewModel(stats: stats, gameSchema: self.gameSchema)
-                    
-                    self.sectionViewModels.append(playerStatsSectionViewModel)
-                    self.sectionViewModels.append(playerAchievementsSectionViewModel)
-                    
+                    self?.handleNew(stats)
                     completion(.success(()))
                 case let .failure(error):
-                    print(error)
+                    self?.handleError()
                     completion(.failure(error))
                 }
             }
         }
         
         chainDispatchGroup.notify(queue: .main, work: workItem)
+    }
+    
+    private func handleNew(_ stats: (PlayerStats)) {
+        let playerStatsSectionViewModel = PlayerStatsSectionViewModel(stats: stats, gameSchema: self.gameSchema)
+        let playerAchievementsSectionViewModel = PlayerAchievementsSectionViewModel(stats: stats, gameSchema: self.gameSchema)
+       
+        let isPlayerStatsAvailable = !(stats.playerStats?.stats?.isEmpty ?? true)
+        let isPlayerAchievementsAvaliable = !(stats.playerStats?.achievements?.isEmpty ?? true)
+       
+        if isPlayerStatsAvailable {
+            sectionViewModels.append(playerStatsSectionViewModel)
+        } else {
+            sectionViewModels.append(NoPlayerStatsSectionViewModel())
+        }
+       
+        if isPlayerAchievementsAvaliable {
+            sectionViewModels.append(playerAchievementsSectionViewModel)
+        } else {
+            sectionViewModels.append(NoPlayerAchievementsSectionViewModel())
+        }
+    }
+    
+    private func handleError() {
+        sectionViewModels = []
+        let errorSection = StatsErrorSectionViewModel()
+        sectionViewModels.append(errorSection)
     }
     
 }
