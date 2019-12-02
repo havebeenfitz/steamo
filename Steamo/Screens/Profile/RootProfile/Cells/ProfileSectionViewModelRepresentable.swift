@@ -6,7 +6,7 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-enum ProfileCellViewModelType {
+enum ProfileSectionViewModelType {
     case avatar
     case ownedGames
     case friends
@@ -14,7 +14,7 @@ enum ProfileCellViewModelType {
 
 protocol ProfileSectionViewModelRepresentable {
     var index: Int { get }
-    var type: ProfileCellViewModelType { get }
+    var type: ProfileSectionViewModelType { get }
     var rowCount: Int { get }
     var sectionTitle: String { get }
 }

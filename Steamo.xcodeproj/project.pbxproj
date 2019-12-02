@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */; };
 		E4050371238D9D3700EC11A4 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050370238D9D3700EC11A4 /* FriendTableViewCell.swift */; };
-		E4050373238D9D4400EC11A4 /* FriendCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050372238D9D4400EC11A4 /* FriendCellViewModel.swift */; };
+		E4050373238D9D4400EC11A4 /* FriendSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050372238D9D4400EC11A4 /* FriendSectionViewModel.swift */; };
 		E4050376238DB05F00EC11A4 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050375238DB05F00EC11A4 /* SessionsViewController.swift */; };
 		E4050378238DB06B00EC11A4 /* SessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */; };
 		E414E230238B3D9300A7AB93 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */; };
@@ -22,9 +22,9 @@
 		E414E244238B568600A7AB93 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E243238B568600A7AB93 /* Profile.swift */; };
 		E414E246238B607C00A7AB93 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E245238B607C00A7AB93 /* UITableView+Register.swift */; };
 		E414E249238B60F400A7AB93 /* AvatarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E248238B60F400A7AB93 /* AvatarTableViewCell.swift */; };
-		E414E24B238B624600A7AB93 /* AvatarCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */; };
+		E414E24B238B624600A7AB93 /* AvatarSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24A238B624600A7AB93 /* AvatarSectionViewModel.swift */; };
 		E414E24D238B628600A7AB93 /* ProfileSectionViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24C238B628600A7AB93 /* ProfileSectionViewModelRepresentable.swift */; };
-		E414E24F238B635800A7AB93 /* OwnedGamesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24E238B635800A7AB93 /* OwnedGamesCellViewModel.swift */; };
+		E414E24F238B635800A7AB93 /* OwnedGamesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E24E238B635800A7AB93 /* OwnedGamesSectionViewModel.swift */; };
 		E414E252238B9E9600A7AB93 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E251238B9E9600A7AB93 /* Games.swift */; };
 		E414E254238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E253238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift */; };
 		E414E256238BAB8100A7AB93 /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414E255238BAB8100A7AB93 /* UICollectionView+Register.swift */; };
@@ -50,7 +50,17 @@
 		E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */; };
 		E4A9E33E238D8F6700541359 /* Double+Pluralize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */; };
 		E4A9E341238D9AD200541359 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E340238D9AD200541359 /* Friends.swift */; };
+		E4C068AD23955FDB00A3F5F0 /* GameSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068AC23955FDB00A3F5F0 /* GameSchema.swift */; };
+		E4C068AF239561D500A3F5F0 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068AE239561D500A3F5F0 /* PlayerStats.swift */; };
+		E4C068B223956CD900A3F5F0 /* StatsSectionViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068B123956CD900A3F5F0 /* StatsSectionViewModelRepresentable.swift */; };
+		E4C068B623956E3900A3F5F0 /* PlayerStatsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068B523956E3900A3F5F0 /* PlayerStatsSectionViewModel.swift */; };
+		E4C068B823956F8200A3F5F0 /* PlayerAchievementsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068B723956F8200A3F5F0 /* PlayerAchievementsSectionViewModel.swift */; };
+		E4C068BA2395702500A3F5F0 /* PlayerStatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068B92395702500A3F5F0 /* PlayerStatTableViewCell.swift */; };
+		E4C068BC2395708800A3F5F0 /* SteamoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068BB2395708800A3F5F0 /* SteamoLabel.swift */; };
+		E4C068BE23957EC000A3F5F0 /* PlayerAchievementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068BD23957EC000A3F5F0 /* PlayerAchievementsTableViewCell.swift */; };
 		E4EA79D823907019006C5890 /* NSNotification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79D723907019006C5890 /* NSNotification+Name.swift */; };
+		E4EA79DC23953282006C5890 /* GameStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DB23953282006C5890 /* GameStatsViewController.swift */; };
+		E4EA79DE2395328D006C5890 /* GameStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */; };
 		E4F61646238A828A006D832B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61645238A828A006D832B /* LoginViewController.swift */; };
 		E4F61648238A84CE006D832B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61647238A84CE006D832B /* API.swift */; };
 		E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6164B238A89E7006D832B /* ProfileViewController.swift */; };
@@ -76,7 +86,7 @@
 		D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SteamoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.release.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.release.xcconfig"; sourceTree = "<group>"; };
 		E4050370238D9D3700EC11A4 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
-		E4050372238D9D4400EC11A4 /* FriendCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellViewModel.swift; sourceTree = "<group>"; };
+		E4050372238D9D4400EC11A4 /* FriendSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSectionViewModel.swift; sourceTree = "<group>"; };
 		E4050375238DB05F00EC11A4 /* SessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
 		E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewModel.swift; sourceTree = "<group>"; };
 		E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -89,9 +99,9 @@
 		E414E243238B568600A7AB93 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		E414E245238B607C00A7AB93 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		E414E248238B60F400A7AB93 /* AvatarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarTableViewCell.swift; sourceTree = "<group>"; };
-		E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCellViewModel.swift; sourceTree = "<group>"; };
+		E414E24A238B624600A7AB93 /* AvatarSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSectionViewModel.swift; sourceTree = "<group>"; };
 		E414E24C238B628600A7AB93 /* ProfileSectionViewModelRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionViewModelRepresentable.swift; sourceTree = "<group>"; };
-		E414E24E238B635800A7AB93 /* OwnedGamesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedGamesCellViewModel.swift; sourceTree = "<group>"; };
+		E414E24E238B635800A7AB93 /* OwnedGamesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedGamesSectionViewModel.swift; sourceTree = "<group>"; };
 		E414E251238B9E9600A7AB93 /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 		E414E253238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedGamesTableViewCell.swift; sourceTree = "<group>"; };
 		E414E255238BAB8100A7AB93 /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
@@ -121,7 +131,17 @@
 		E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Pluralize.swift"; sourceTree = "<group>"; };
 		E4A9E340238D9AD200541359 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
+		E4C068AC23955FDB00A3F5F0 /* GameSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSchema.swift; sourceTree = "<group>"; };
+		E4C068AE239561D500A3F5F0 /* PlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
+		E4C068B123956CD900A3F5F0 /* StatsSectionViewModelRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsSectionViewModelRepresentable.swift; sourceTree = "<group>"; };
+		E4C068B523956E3900A3F5F0 /* PlayerStatsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsSectionViewModel.swift; sourceTree = "<group>"; };
+		E4C068B723956F8200A3F5F0 /* PlayerAchievementsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAchievementsSectionViewModel.swift; sourceTree = "<group>"; };
+		E4C068B92395702500A3F5F0 /* PlayerStatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatTableViewCell.swift; sourceTree = "<group>"; };
+		E4C068BB2395708800A3F5F0 /* SteamoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoLabel.swift; sourceTree = "<group>"; };
+		E4C068BD23957EC000A3F5F0 /* PlayerAchievementsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAchievementsTableViewCell.swift; sourceTree = "<group>"; };
 		E4EA79D723907019006C5890 /* NSNotification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Name.swift"; sourceTree = "<group>"; };
+		E4EA79DB23953282006C5890 /* GameStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewController.swift; sourceTree = "<group>"; };
+		E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewModel.swift; sourceTree = "<group>"; };
 		E4F61645238A828A006D832B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E4F61647238A84CE006D832B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		E4F6164B238A89E7006D832B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +220,7 @@
 				E4424E05238DC0F700B5A7BD /* Cell Containers */,
 				E414E239238B436500A7AB93 /* SteamoNavigationController.swift */,
 				E414E23B238B4BA500A7AB93 /* SteamoButton.swift */,
+				E4C068BB2395708800A3F5F0 /* SteamoLabel.swift */,
 				E414E257238BABD300A7AB93 /* GameView.swift */,
 				E4424E15238EFA6100B5A7BD /* SectionHeaderView.swift */,
 				E4424E1C2390450400B5A7BD /* ProfileShimmeringView.swift */,
@@ -213,9 +234,11 @@
 				E414E243238B568600A7AB93 /* Profile.swift */,
 				E4A9E340238D9AD200541359 /* Friends.swift */,
 				E414E251238B9E9600A7AB93 /* Games.swift */,
-				E414E23F238B55C400A7AB93 /* SteamoError.swift */,
+				E4C068AC23955FDB00A3F5F0 /* GameSchema.swift */,
+				E4C068AE239561D500A3F5F0 /* PlayerStats.swift */,
 				E4424E0F238EF58E00B5A7BD /* SteamVanity.swift */,
 				E4424E11238EF5DD00B5A7BD /* SteamUser.swift */,
+				E414E23F238B55C400A7AB93 /* SteamoError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,7 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				E414E248238B60F400A7AB93 /* AvatarTableViewCell.swift */,
-				E414E24A238B624600A7AB93 /* AvatarCellViewModel.swift */,
+				E414E24A238B624600A7AB93 /* AvatarSectionViewModel.swift */,
 			);
 			path = Avatar;
 			sourceTree = "<group>";
@@ -318,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				E414E253238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift */,
-				E414E24E238B635800A7AB93 /* OwnedGamesCellViewModel.swift */,
+				E414E24E238B635800A7AB93 /* OwnedGamesSectionViewModel.swift */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -327,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				E4050370238D9D3700EC11A4 /* FriendTableViewCell.swift */,
-				E4050372238D9D4400EC11A4 /* FriendCellViewModel.swift */,
+				E4050372238D9D4400EC11A4 /* FriendSectionViewModel.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -358,6 +381,54 @@
 			path = Keys;
 			sourceTree = "<group>";
 		};
+		E4C068B023956CC500A3F5F0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E4C068B123956CD900A3F5F0 /* StatsSectionViewModelRepresentable.swift */,
+				E4C068B323956CDE00A3F5F0 /* Stats */,
+				E4C068B423956CE300A3F5F0 /* Achievements */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E4C068B323956CDE00A3F5F0 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				E4C068B523956E3900A3F5F0 /* PlayerStatsSectionViewModel.swift */,
+				E4C068B92395702500A3F5F0 /* PlayerStatTableViewCell.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		E4C068B423956CE300A3F5F0 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				E4C068B723956F8200A3F5F0 /* PlayerAchievementsSectionViewModel.swift */,
+				E4C068BD23957EC000A3F5F0 /* PlayerAchievementsTableViewCell.swift */,
+			);
+			path = Achievements;
+			sourceTree = "<group>";
+		};
+		E4EA79D923953266006C5890 /* RootProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E414E247238B60E600A7AB93 /* Cells */,
+				E4F6164B238A89E7006D832B /* ProfileViewController.swift */,
+				E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */,
+			);
+			path = RootProfile;
+			sourceTree = "<group>";
+		};
+		E4EA79DA23953274006C5890 /* GameStats */ = {
+			isa = PBXGroup;
+			children = (
+				E4C068B023956CC500A3F5F0 /* Cells */,
+				E4EA79DB23953282006C5890 /* GameStatsViewController.swift */,
+				E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */,
+			);
+			path = GameStats;
+			sourceTree = "<group>";
+		};
 		E4F61644238A826E006D832B /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,9 +452,8 @@
 		E4F6164A238A89D6006D832B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				E414E247238B60E600A7AB93 /* Cells */,
-				E4F6164B238A89E7006D832B /* ProfileViewController.swift */,
-				E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */,
+				E4EA79DA23953274006C5890 /* GameStats */,
+				E4EA79D923953266006C5890 /* RootProfile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -576,32 +646,41 @@
 				E4424E10238EF58E00B5A7BD /* SteamVanity.swift in Sources */,
 				E4EA79D823907019006C5890 /* NSNotification+Name.swift in Sources */,
 				E4424E1D2390450400B5A7BD /* ProfileShimmeringView.swift in Sources */,
+				E4C068BC2395708800A3F5F0 /* SteamoLabel.swift in Sources */,
 				E4050378238DB06B00EC11A4 /* SessionsViewModel.swift in Sources */,
 				E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */,
 				E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */,
+				E4C068AD23955FDB00A3F5F0 /* GameSchema.swift in Sources */,
 				E4050371238D9D3700EC11A4 /* FriendTableViewCell.swift in Sources */,
 				E414E249238B60F400A7AB93 /* AvatarTableViewCell.swift in Sources */,
 				E4F61646238A828A006D832B /* LoginViewController.swift in Sources */,
-				E414E24B238B624600A7AB93 /* AvatarCellViewModel.swift in Sources */,
+				E414E24B238B624600A7AB93 /* AvatarSectionViewModel.swift in Sources */,
 				E414E24D238B628600A7AB93 /* ProfileSectionViewModelRepresentable.swift in Sources */,
+				E4C068B623956E3900A3F5F0 /* PlayerStatsSectionViewModel.swift in Sources */,
 				E4424E07238DC14A00B5A7BD /* CollectionCellContainer.swift in Sources */,
+				E4C068B223956CD900A3F5F0 /* StatsSectionViewModelRepresentable.swift in Sources */,
 				E4424E1B238EFDAE00B5A7BD /* SettingsViewModel.swift in Sources */,
 				E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */,
+				E4C068B823956F8200A3F5F0 /* PlayerAchievementsSectionViewModel.swift in Sources */,
+				E4C068BA2395702500A3F5F0 /* PlayerStatTableViewCell.swift in Sources */,
 				E414E230238B3D9300A7AB93 /* ProfileViewModel.swift in Sources */,
 				E414E235238B3F6000A7AB93 /* UIColor+Appcolor.swift in Sources */,
 				E4424E09238DC17A00B5A7BD /* TableCellContainer.swift in Sources */,
 				E434979523859F9A0047B750 /* AppDelegate.swift in Sources */,
 				E414E254238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift in Sources */,
 				E414E246238B607C00A7AB93 /* UITableView+Register.swift in Sources */,
+				E4EA79DE2395328D006C5890 /* GameStatsViewModel.swift in Sources */,
 				E4A9E33E238D8F6700541359 /* Double+Pluralize.swift in Sources */,
-				E4050373238D9D4400EC11A4 /* FriendCellViewModel.swift in Sources */,
+				E4050373238D9D4400EC11A4 /* FriendSectionViewModel.swift in Sources */,
+				E4EA79DC23953282006C5890 /* GameStatsViewController.swift in Sources */,
 				E414E240238B55C400A7AB93 /* SteamoError.swift in Sources */,
 				E4424E12238EF5DD00B5A7BD /* SteamUser.swift in Sources */,
 				E4424E19238EFD9000B5A7BD /* SettingsViewController.swift in Sources */,
 				E414E244238B568600A7AB93 /* Profile.swift in Sources */,
-				E414E24F238B635800A7AB93 /* OwnedGamesCellViewModel.swift in Sources */,
+				E414E24F238B635800A7AB93 /* OwnedGamesSectionViewModel.swift in Sources */,
 				E414E252238B9E9600A7AB93 /* Games.swift in Sources */,
 				E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */,
+				E4C068AF239561D500A3F5F0 /* PlayerStats.swift in Sources */,
 				E4424E0C238EE41C00B5A7BD /* ProfileRouter.swift in Sources */,
 				E4424E16238EFA6100B5A7BD /* SectionHeaderView.swift in Sources */,
 				E4F61648238A84CE006D832B /* API.swift in Sources */,
@@ -610,6 +689,7 @@
 				E4424E0E238EF54200B5A7BD /* String+SteamId.swift in Sources */,
 				E4A9E341238D9AD200541359 /* Friends.swift in Sources */,
 				E4050376238DB05F00EC11A4 /* SessionsViewController.swift in Sources */,
+				E4C068BE23957EC000A3F5F0 /* PlayerAchievementsTableViewCell.swift in Sources */,
 				E414E258238BABD300A7AB93 /* GameView.swift in Sources */,
 				E414E23C238B4BA500A7AB93 /* SteamoButton.swift in Sources */,
 				E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */,

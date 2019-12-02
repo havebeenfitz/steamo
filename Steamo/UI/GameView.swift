@@ -17,14 +17,8 @@ class GameView: UIView {
         return imageView
     }()
 
-    private lazy var gameTitleLabel: UILabel = {
-        let label = UILabel()
-        if #available(iOS 11.0, *) {
-            label.textColor = UIColor(named: "Text")
-        } else {
-            label.textColor = .text
-        }
-
+    private lazy var gameTitleLabel: SteamoLabel = {
+        let label = SteamoLabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 25)
         label.adjustsFontSizeToFitWidth = true
@@ -34,14 +28,8 @@ class GameView: UIView {
         return label
     }()
 
-    private lazy var playTimeLabel: UILabel = {
-        let label = UILabel()
-        if #available(iOS 11.0, *) {
-            label.textColor = UIColor(named: "Text")
-        } else {
-            label.textColor = .text
-        }
-
+    private lazy var playTimeLabel: SteamoLabel = {
+        let label = SteamoLabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 16)
         label.adjustsFontSizeToFitWidth = true

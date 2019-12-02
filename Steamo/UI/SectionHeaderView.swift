@@ -9,14 +9,8 @@
 import UIKit
 
 class SectionHeaderView: UIView {
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        if #available(iOS 11.0, *) {
-            label.textColor = UIColor(named: "Text")
-        } else {
-            label.textColor = .text
-        }
-
+    private lazy var titleLabel: SteamoLabel = {
+        let label = SteamoLabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
 

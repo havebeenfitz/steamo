@@ -1,12 +1,4 @@
 //
-//  FriendsTableViewCell.swift
-//  Steamo
-//
-//  Created by Max Kraev on 26.11.2019.
-//  Copyright © 2019 Max Kraev. All rights reserved.
-//
-
-//
 //  ProfileTableViewCell.swift
 //  Steamo
 //
@@ -18,7 +10,7 @@ import Kingfisher
 import SnapKit
 import UIKit
 
-class FriendTableViewCell: UITableViewCell {
+class AvatarTableViewCell: UITableViewCell {
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -27,15 +19,9 @@ class FriendTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        if #available(iOS 11.0, *) {
-            label.textColor = UIColor(named: "Text")
-        } else {
-            label.textColor = .text
-        }
-
-        label.font = UIFont.systemFont(ofSize: 16)
+    private lazy var nameLabel: SteamoLabel = {
+        let label = SteamoLabel()
+        label.font = UIFont.systemFont(ofSize: 20)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
@@ -46,13 +32,13 @@ class FriendTableViewCell: UITableViewCell {
 
     private lazy var onlineStatusView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 7.5
         return view
     }()
 
-    private lazy var onlineStatusLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+    private lazy var onlineStatusLabel: SteamoLabel = {
+        let label = SteamoLabel()
+        label.font = UIFont.systemFont(ofSize: 15)
         label.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         if #available(iOS 11.0, *) {
             label.textColor = UIColor(named: "Text")
@@ -72,13 +58,11 @@ class FriendTableViewCell: UITableViewCell {
     }
 
     func configure(with viewModel: ProfileSectionViewModelRepresentable?, index: Int) {
-        guard let viewModel = viewModel as? FriendsSectionViewModel else {
+        guard let viewModel = viewModel as? AvatarSectionViewModel else {
             return
         }
-
         let player = viewModel.profiles.response.players[index]
         let url = URL(string: player.avatarFull)
-
         avatarImageView.kf.setImage(with: url)
         nameLabel.text = player.personaName
 
@@ -108,7 +92,8 @@ class FriendTableViewCell: UITableViewCell {
     }
 
     private func setup() {
-        selectionStyle = .gray
+        selectionStyle = .none
+        backgroundColor = .clear
 
         if #available(iOS 11.0, *) {
             contentView.backgroundColor = UIColor(named: "Background")
@@ -118,7 +103,7 @@ class FriendTableViewCell: UITableViewCell {
         contentView.addSubview(avatarImageView)
         avatarImageView.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview().inset(20).priority(.required)
-            make.height.width.equalTo(50).priority(.init(999))
+            make.height.width.equalTo(100).priority(.init(999))
         }
 
         contentView.addSubview(nameLabel)
@@ -129,15 +114,15 @@ class FriendTableViewCell: UITableViewCell {
 
         contentView.addSubview(onlineStatusView)
         onlineStatusView.snp.makeConstraints { make in
-            make.top.right.equalToSuperview().inset(25)
-            make.left.equalTo(nameLabel.snp.right).offset(20).priority(.low)
-            make.height.width.equalTo(10)
+            make.top.right.equalToSuperview().inset(27)
+            make.left.equalTo(nameLabel.snp.right).offset(20)
+            make.height.width.equalTo(15)
         }
 
         contentView.addSubview(onlineStatusLabel)
         onlineStatusLabel.snp.makeConstraints { make in
             make.left.equalTo(avatarImageView.snp.right).offset(20)
-            make.top.equalTo(nameLabel.snp.bottom).offset(10)
+            make.top.equalTo(nameLabel.snp.bottom).offset(20)
         }
     }
 }

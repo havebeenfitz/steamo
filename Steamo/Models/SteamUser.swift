@@ -53,8 +53,6 @@ extension SteamUser {
 
     func save() {
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: self)
-        let defaults = UserDefaults.standard
-        defaults.set(encodedObject, forKey: "SteamUser")
-        defaults.synchronize()
+        UserDefaults.standard.set(encodedObject, forKey: "SteamUser")
     }
 }

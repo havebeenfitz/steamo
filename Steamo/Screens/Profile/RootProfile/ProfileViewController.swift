@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     /// Вьюмодель экрана
     fileprivate let viewModel: ProfileViewModel
     /// Роутер экрана
-    fileprivate let router: ProfileRouter
+    fileprivate let router: ProfileRouterProtocol
     /// Лоадер
     private let shimmeringView = ProfileShimmeringView()
 
@@ -89,7 +89,7 @@ class ProfileViewController: UIViewController {
     }()
     
     init(viewModel: ProfileViewModel,
-         router: ProfileRouter) {
+         router: ProfileRouterProtocol) {
         self.viewModel = viewModel
         self.router = router
         super.init(nibName: nil, bundle: nil)
@@ -170,6 +170,7 @@ class ProfileViewController: UIViewController {
     
     private func addObservers() {
         NotificationCenter.default.addObserver(forName: .DidLogout, object: nil, queue: .main) { _ in
+            self.navigationController?.popToRootViewController(animated: false)
             self.toggleUI()
         }
     }
@@ -207,7 +208,7 @@ class ProfileViewController: UIViewController {
         let loginVC = LoginViewController(nibName: nil, bundle: nil)
         let loginNavigationVC = loginVC.wrapInNavigation()
         loginVC.completion = { [weak self] steamUser in
-            self?.viewModel.steamId = steamUser.steamID64
+            steamUser.save()
             self?.afterLoginRoutine()
         }
         present(loginNavigationVC, animated: true)
@@ -278,6 +279,7 @@ extension ProfileViewController: UITableViewDataSource {
         case .ownedGames:
             if let cell: OwnedGamesTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.configure(with: sectionViewModel)
+                cell.delegate = self
                 return cell
             }
         case .friends:
@@ -288,5 +290,14 @@ extension ProfileViewController: UITableViewDataSource {
         }
         assertionFailure("New cell")
         return UITableViewCell()
+    }
+}
+
+// MARK: - OwnedGamesCollectionViewCellDelegate
+
+extension ProfileViewController: OwnedGamesCollectionViewCellDelegate {
+    func cellDidTap(_ cell: UICollectionViewCell, with game: Game?) {
+        guard let game = game, let steamId = viewModel.currentSteamId else { return }
+        router.routeToGameStats(from: self, steamId: steamId, gameId: game.appId)
     }
 }

@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol OwnedGamesCollectionViewCellDelegate: class {
+    func cellDidTap(_ cell: UICollectionViewCell, with game: Game?)
+}
+
 class OwnedGamesTableViewCell: UITableViewCell {
-    private var viewModel: OwnedGamesCellViewModel?
+    fileprivate var viewModel: OwnedGamesSectionViewModel?
+    
+    weak var delegate: OwnedGamesCollectionViewCellDelegate?
 
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -48,7 +54,7 @@ class OwnedGamesTableViewCell: UITableViewCell {
     }
 
     func configure(with viewModel: ProfileSectionViewModelRepresentable) {
-        guard let viewModel = viewModel as? OwnedGamesCellViewModel else { return }
+        guard let viewModel = viewModel as? OwnedGamesSectionViewModel else { return }
         self.viewModel = viewModel
         collectionView.reloadData()
     }
@@ -75,7 +81,14 @@ class OwnedGamesTableViewCell: UITableViewCell {
     }
 }
 
-extension OwnedGamesTableViewCell: UICollectionViewDelegate {}
+extension OwnedGamesTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cell(for: indexPath) else {
+            return
+        }
+        delegate?.cellDidTap(cell, with: viewModel?.games.response.games[indexPath.item])
+    }
+}
 
 extension OwnedGamesTableViewCell: UICollectionViewDataSource {
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {

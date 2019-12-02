@@ -13,7 +13,7 @@ class FriendsSectionViewModel: ProfileSectionViewModelRepresentable {
         return 2
     }
 
-    var type: ProfileCellViewModelType {
+    var type: ProfileSectionViewModelType {
         return .friends
     }
 

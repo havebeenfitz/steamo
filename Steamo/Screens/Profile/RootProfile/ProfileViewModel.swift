@@ -31,13 +31,16 @@ class ProfileViewModel: NSObject {
 
     /// Состояние авторизации пользователя
     var isUserAuthorized: Bool {
-        return steamId != nil
+        return steamUser != nil
     }
-
-    /// Стим айди игрока
-    var steamId: String? {
-        get { UserDefaults.standard.string(forKey: SteamoUserDefaultsKeys.steamId) }
-        set { UserDefaults.standard.set(newValue, forKey: SteamoUserDefaultsKeys.steamId) }
+    
+    var currentSteamId: String? {
+        switch state {
+        case .you:
+            return steamUser?.steamID64
+        case let .friend(steamId):
+            return steamId
+        }
     }
 
     /// Вьюмодели секций
@@ -47,6 +50,11 @@ class ProfileViewModel: NSObject {
 
     /// Состояние экрана
     private var state: State
+    
+    /// Стим айди игрока
+    private var steamUser: SteamUser? {
+        return SteamUser.load()
+    }
 
     /// Профиль пользователя
     private var profiles: Profiles?
@@ -83,7 +91,7 @@ class ProfileViewModel: NSObject {
 
         switch state {
         case .you:
-            steamId = self.steamId ?? "noSteamId"
+            steamId = steamUser?.steamID64 ?? "noSteamId"
         case let .friend(steamId: friendSteamId):
             steamId = friendSteamId
         }
@@ -154,7 +162,7 @@ class ProfileViewModel: NSObject {
             return
         }
 
-        let avatarViewModel = AvatarCellViewModel(profiles: profiles)
+        let avatarViewModel = AvatarSectionViewModel(profiles: profiles)
         sectionViewModels.append(avatarViewModel)
     }
 
@@ -163,7 +171,7 @@ class ProfileViewModel: NSObject {
             return
         }
 
-        let gamesViewModel = OwnedGamesCellViewModel(games: games)
+        let gamesViewModel = OwnedGamesSectionViewModel(games: games)
         sectionViewModels.append(gamesViewModel)
     }
 

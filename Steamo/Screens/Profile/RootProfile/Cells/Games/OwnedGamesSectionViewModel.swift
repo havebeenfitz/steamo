@@ -6,12 +6,12 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-class OwnedGamesCellViewModel: ProfileSectionViewModelRepresentable {
+class OwnedGamesSectionViewModel: ProfileSectionViewModelRepresentable {
     var index: Int {
         return 1
     }
 
-    var type: ProfileCellViewModelType {
+    var type: ProfileSectionViewModelType {
         return .ownedGames
     }
 

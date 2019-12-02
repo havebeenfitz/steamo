@@ -6,12 +6,12 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-class AvatarCellViewModel: ProfileSectionViewModelRepresentable {
+class AvatarSectionViewModel: ProfileSectionViewModelRepresentable {
     var index: Int {
         return 0
     }
 
-    var type: ProfileCellViewModelType {
+    var type: ProfileSectionViewModelType {
         return .avatar
     }
 
