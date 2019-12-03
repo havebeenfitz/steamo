@@ -38,6 +38,12 @@ extension SteamAPINetworkAdapter: Dota2APINetworkAdapterProtocol {
     }
     
     func matchDetails(for matchId: String, completion: @escaping (Swift.Result<MatchDetails, SteamoError>) -> Void) {
+        let url = baseURL.appendingPathComponent("IDOTA2Match_570/GetMatchDetails/v001/")
         
+        Alamofire.request(url, method: .get, parameters: defaultParams, encoding: URLEncoding.default)
+            .validate()
+            .responseData { [weak self] response in
+                self?.handleResponse(response: response, completion: completion)
+        }
     }
 }
