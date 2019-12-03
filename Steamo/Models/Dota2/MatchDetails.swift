@@ -17,27 +17,27 @@ struct MatchDetails: Codable {
 struct MatchResult: Codable {
     let players: [Dota2DetailPlayer]
     let radiantWin: Bool
-    let duration: Int
-    let preGameDuration: Int
-    let startTime: Int
+    let duration: Int?
+    let preGameDuration: Int?
+    let startTime: Int?
     let matchId: Int
     let matchSeqNum: Int
-    let towerStatusRadiant: Int
-    let towerStatusDire: Int
-    let barracksStatusRadiant: Int
-    let barracksStatusDire: Int
-    let cluster: Int
-    let firstBloodTime: Int
-    let lobbyType: Int
-    let humanPlayers: Int
-    let leagueid: Int
-    let positiveVotes: Int
-    let negativeVotes: Int
-    let gameMode: Int
-    let flags: Int
-    let engine: Int
-    let radiantScore: Int
-    let direScore: Int
+    let towerStatusRadiant: Int?
+    let towerStatusDire: Int?
+    let barracksStatusRadiant: Int?
+    let barracksStatusDire: Int?
+    let cluster: Int?
+    let firstBloodTime: Int?
+    let lobbyType: Int?
+    let humanPlayers: Int?
+    let leagueid: Int?
+    let positiveVotes: Int?
+    let negativeVotes: Int?
+    let gameMode: Int?
+    let flags: Int?
+    let engine: Int?
+    let radiantScore: Int?
+    let direScore: Int?
     let picksBans: [PicksBan]?
 
     enum CodingKeys: String, CodingKey {
@@ -88,33 +88,33 @@ struct Dota2DetailPlayer: Codable {
     let accountId: Int
     let playerSlot: UInt8
     let heroId: Int
-    let item0: Int
-    let item1: Int
-    let item2: Int
-    let item3: Int
-    let item4: Int
-    let item5: Int
-    let backpack0: Int
-    let backpack1: Int
-    let backpack2: Int
-    let kills: Int
-    let deaths: Int
-    let assists: Int
-    let leaverStatus: Int
-    let lastHits: Int
-    let denies: Int
-    let goldPerMin: Int
-    let xpPerMin: Int
-    let level: Int
-    let heroDamage: Int
-    let towerDamage: Int
-    let heroHealing: Int
-    let gold: Int
-    let goldSpent: Int
-    let scaledHeroDamage: Int
-    let scaledTowerDamage: Int
-    let scaledHeroHealing: Int
-    let abilityUpgrades: [AbilityUpgrade]
+    let item0: Int?
+    let item1: Int?
+    let item2: Int?
+    let item3: Int?
+    let item4: Int?
+    let item5: Int?
+    let backpack0: Int?
+    let backpack1: Int?
+    let backpack2: Int?
+    let kills: Int?
+    let deaths: Int?
+    let assists: Int?
+    let leaverStatus: Int?
+    let lastHits: Int?
+    let denies: Int?
+    let goldPerMin: Int?
+    let xpPerMin: Int?
+    let level: Int?
+    let heroDamage: Int?
+    let towerDamage: Int?
+    let heroHealing: Int?
+    let gold: Int?
+    let goldSpent: Int?
+    let scaledHeroDamage: Int?
+    let scaledTowerDamage: Int?
+    let scaledHeroHealing: Int?
+    let abilityUpgrades: [AbilityUpgrade]?
 
     enum CodingKeys: String, CodingKey {
         case accountId = "account_id"

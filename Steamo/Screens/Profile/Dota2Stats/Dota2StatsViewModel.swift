@@ -23,7 +23,7 @@ class Dota2StatsViewModel {
         self.steamId = steamId
     }
     
-    func fetch(completion: @escaping (Result<Void, SteamoError>) -> Void) {
+    func fetch(progress: @escaping (Float) -> Void, completion: @escaping (Result<Void, SteamoError>) -> Void) {
         let chainDispatchGroup = DispatchGroup()
         
         chainDispatchGroup.enter()
@@ -50,13 +50,14 @@ class Dota2StatsViewModel {
                 semaphore.wait()
                 self.networkAdapter.matchDetails(for: match.matchId) { [weak self] result in
                     guard let self = self else {
-                        completion(.failure(.noConnection))
+                        completion(.failure(.noData))
                         semaphore.signal()
                         return
                     }
                     switch result {
                     case let .success(matchDetails):
                         self.matchDetailsCollection.append(matchDetails)
+                        progress(Float(self.matchDetailsCollection.count) / Float(matches.count))
                         if index == matches.count - 1 {
                             let totalWinsSection = TotalWinsSectionViewModel(matchDetailsCollection: self.matchDetailsCollection,
                                                                              steamId: self.steamId)
@@ -66,9 +67,10 @@ class Dota2StatsViewModel {
                         semaphore.signal()
                     case .failure(_):
                         if index == matches.count - 1 && self.matchDetailsCollection.isEmpty {
-                            completion(.failure(.noConnection))
+                            completion(.failure(.noData))
+                        } else {
+                            semaphore.signal()
                         }
-                        semaphore.signal()
                     }
                 }
             }

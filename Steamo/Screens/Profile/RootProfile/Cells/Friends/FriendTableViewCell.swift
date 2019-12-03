@@ -119,7 +119,7 @@ class FriendTableViewCell: UITableViewCell {
         contentView.addSubview(onlineStatusView)
         onlineStatusView.snp.makeConstraints { make in
             make.top.right.equalToSuperview().inset(25)
-            make.left.equalTo(nameLabel.snp.right).offset(20).priority(.low)
+            make.left.equalTo(nameLabel.snp.right).offset(20)
             make.height.width.equalTo(10)
         }
 

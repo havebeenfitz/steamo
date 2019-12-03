@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureHUD() {
         SVProgressHUD.setDefaultStyle(.custom)
         SVProgressHUD.setCornerRadius(5)
-        SVProgressHUD.setRingRadius(5)
-        SVProgressHUD.setRingNoTextRadius(5)
+        SVProgressHUD.setRingRadius(10)
+        SVProgressHUD.setRingNoTextRadius(10)
 
         let backgoundColor: UIColor
 

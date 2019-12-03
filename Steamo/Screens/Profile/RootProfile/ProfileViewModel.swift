@@ -170,7 +170,7 @@ class ProfileViewModel: NSObject {
         guard let games = games else {
             return
         }
-        if !(games.response?.games?.isEmpty ?? false) {
+        if !(games.response?.games?.isEmpty ?? true) {
             let gamesViewModel = OwnedGamesSectionViewModel(games: games)
             sectionViewModels.append(gamesViewModel)
         }
