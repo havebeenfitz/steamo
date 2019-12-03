@@ -15,10 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureHUD()
+        
+        let container = DependencyContainer()
 
         if #available(iOS 13.0, *) {} else {
             window = UIWindow(frame: UIScreen.main.bounds)
-            window?.rootViewController = MainTabBarController()
+            window?.rootViewController = MainTabBarController(container: container)
             window?.makeKeyAndVisible()
         }
 

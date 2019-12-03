@@ -205,13 +205,10 @@ class ProfileViewController: UIViewController {
     // MARK: Actions
 
     @objc private func loginButtonDidTap() {
-        let loginVC = LoginViewController(nibName: nil, bundle: nil)
-        let loginNavigationVC = loginVC.wrapInNavigation()
-        loginVC.completion = { [weak self] steamUser in
+        router.routeToLogin(from: self) { [weak self] steamUser in
             steamUser.save()
             self?.afterLoginRoutine()
         }
-        present(loginNavigationVC, animated: true)
     }
 
     @objc private func refresh() {

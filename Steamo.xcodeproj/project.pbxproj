@@ -71,6 +71,9 @@
 		E4C068D92396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068D82396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift */; };
 		E4C068DC2396832C00A3F5F0 /* TotalWinsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068DB2396832C00A3F5F0 /* TotalWinsTableViewCell.swift */; };
 		E4C068DE2396842300A3F5F0 /* TotalWinsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068DD2396842300A3F5F0 /* TotalWinsSectionViewModel.swift */; };
+		E4C068E32396C50C00A3F5F0 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E22396C50C00A3F5F0 /* DependencyContainer.swift */; };
+		E4C068E52396C52500A3F5F0 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E42396C52500A3F5F0 /* ViewControllerFactory.swift */; };
+		E4C068E92396C72600A3F5F0 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */; };
 		E4EA79D823907019006C5890 /* NSNotification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79D723907019006C5890 /* NSNotification+Name.swift */; };
 		E4EA79DC23953282006C5890 /* GameStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DB23953282006C5890 /* GameStatsViewController.swift */; };
 		E4EA79DE2395328D006C5890 /* GameStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */; };
@@ -165,6 +168,9 @@
 		E4C068D82396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dota2StatsSectionViewModelRepresentable.swift; sourceTree = "<group>"; };
 		E4C068DB2396832C00A3F5F0 /* TotalWinsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWinsTableViewCell.swift; sourceTree = "<group>"; };
 		E4C068DD2396842300A3F5F0 /* TotalWinsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWinsSectionViewModel.swift; sourceTree = "<group>"; };
+		E4C068E22396C50C00A3F5F0 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		E4C068E42396C52500A3F5F0 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		E4EA79D723907019006C5890 /* NSNotification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Name.swift"; sourceTree = "<group>"; };
 		E4EA79DB23953282006C5890 /* GameStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewController.swift; sourceTree = "<group>"; };
 		E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewModel.swift; sourceTree = "<group>"; };
@@ -395,6 +401,7 @@
 		E4687506238AF1DD00D7083E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E4C068E12396C4F700A3F5F0 /* DI */,
 				E414E231238B3E6800A7AB93 /* Network */,
 				E4C068D62396786B00A3F5F0 /* Persistance */,
 			);
@@ -492,6 +499,24 @@
 				E4C068DD2396842300A3F5F0 /* TotalWinsSectionViewModel.swift */,
 			);
 			path = TotalWins;
+			sourceTree = "<group>";
+		};
+		E4C068E12396C4F700A3F5F0 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				E4C068EC2396C97F00A3F5F0 /* Protocols */,
+				E4C068E22396C50C00A3F5F0 /* DependencyContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		E4C068EC2396C97F00A3F5F0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E4C068E42396C52500A3F5F0 /* ViewControllerFactory.swift */,
+				E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		E4EA79D923953266006C5890 /* RootProfile */ = {
@@ -740,6 +765,8 @@
 				E4050378238DB06B00EC11A4 /* SessionsViewModel.swift in Sources */,
 				E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */,
 				E4C068CE23965C6200A3F5F0 /* Dota2StatsViewModel.swift in Sources */,
+				E4C068E32396C50C00A3F5F0 /* DependencyContainer.swift in Sources */,
+				E4C068E92396C72600A3F5F0 /* ViewModelFactory.swift in Sources */,
 				E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */,
 				E4C068AD23955FDB00A3F5F0 /* GameSchema.swift in Sources */,
 				E4050371238D9D3700EC11A4 /* FriendTableViewCell.swift in Sources */,
@@ -768,6 +795,7 @@
 				E4050373238D9D4400EC11A4 /* FriendSectionViewModel.swift in Sources */,
 				E4EA79DC23953282006C5890 /* GameStatsViewController.swift in Sources */,
 				E414E240238B55C400A7AB93 /* SteamoError.swift in Sources */,
+				E4C068E52396C52500A3F5F0 /* ViewControllerFactory.swift in Sources */,
 				E4424E12238EF5DD00B5A7BD /* SteamUser.swift in Sources */,
 				E4424E19238EFD9000B5A7BD /* SettingsViewController.swift in Sources */,
 				E414E244238B568600A7AB93 /* Profile.swift in Sources */,

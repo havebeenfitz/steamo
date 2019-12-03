@@ -49,6 +49,10 @@ extension SteamUser {
         let object = NSKeyedUnarchiver.unarchiveObject(with: encodedObject) as? SteamUser
         return object
     }
+    
+    static func remove() {
+        UserDefaults.standard.set(nil, forKey: "SteamUser")
+    }
 
     func save() {
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: self)

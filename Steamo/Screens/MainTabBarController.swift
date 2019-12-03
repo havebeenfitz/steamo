@@ -9,6 +9,18 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
+    
+    private let container: DependencyContainer
+    
+    init(container: DependencyContainer) {
+        self.container = container
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearence()
@@ -27,24 +39,17 @@ class MainTabBarController: UITabBarController {
     }
 
     private func addViewControllers() {
-        let networkAdapter = SteamAPINetworkAdapter()
-        let router = ProfileRouter()
-        let profileViewModel = ProfileViewModel(networkAdapter: networkAdapter,
-                                                state: .you)
-        let profileVC = ProfileViewController(viewModel: profileViewModel,
-                                              router: router)
-            .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Profile",
-                                                       icon: UIImage(named: "profile")))
+        let profileVC = container.makeProfileVC(state: .you)
+                                 .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Profile",
+                                                                            icon: UIImage(named: "profile")))
 
-        let sessionsViewModel = SessionsViewModel(networkAdapter: networkAdapter)
-        let sessionsVC = SessionsViewController(viewModel: sessionsViewModel)
-            .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Sessions",
-                                                       icon: UIImage(named: "session")))
+        let sessionsVC = container.makeSessionsVC()
+                                  .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Sessions",
+                                                                             icon: UIImage(named: "session")))
 
-        let settingsViewModel = SettingsViewModel()
-        let settingsVC = SettingsViewController(viewModel: settingsViewModel)
-            .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Settings",
-                                                       icon: UIImage(named: "settings")))
+        let settingsVC = container.makeSettingsVC()
+                                  .wrapInNavigation(tabBarStyle: TabBarStyle(title: "Settings",
+                                                                             icon: UIImage(named: "settings")))
 
         viewControllers = [profileVC, sessionsVC, settingsVC]
     }
