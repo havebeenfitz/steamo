@@ -76,6 +76,7 @@
 		E4C068E92396C72600A3F5F0 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */; };
 		E4D4AA982397044700867281 /* NoFriendsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4AA972397044700867281 /* NoFriendsSectionViewModel.swift */; };
 		E4D4AA9A2397048B00867281 /* NoOwnedGamesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4AA992397048B00867281 /* NoOwnedGamesSectionViewModel.swift */; };
+		E4D4AA9E23970E1800867281 /* Dota2ErrorSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4AA9D23970E1800867281 /* Dota2ErrorSectionViewModel.swift */; };
 		E4EA79D823907019006C5890 /* NSNotification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79D723907019006C5890 /* NSNotification+Name.swift */; };
 		E4EA79DC23953282006C5890 /* GameStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DB23953282006C5890 /* GameStatsViewController.swift */; };
 		E4EA79DE2395328D006C5890 /* GameStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */; };
@@ -175,6 +176,7 @@
 		E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		E4D4AA972397044700867281 /* NoFriendsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFriendsSectionViewModel.swift; sourceTree = "<group>"; };
 		E4D4AA992397048B00867281 /* NoOwnedGamesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOwnedGamesSectionViewModel.swift; sourceTree = "<group>"; };
+		E4D4AA9D23970E1800867281 /* Dota2ErrorSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dota2ErrorSectionViewModel.swift; sourceTree = "<group>"; };
 		E4EA79D723907019006C5890 /* NSNotification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Name.swift"; sourceTree = "<group>"; };
 		E4EA79DB23953282006C5890 /* GameStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewController.swift; sourceTree = "<group>"; };
 		E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewModel.swift; sourceTree = "<group>"; };
@@ -227,18 +229,10 @@
 		E4050374238DB04000EC11A4 /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
-				E405037B238DB65B00EC11A4 /* Views */,
 				E4050375238DB05F00EC11A4 /* SessionsViewController.swift */,
 				E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */,
 			);
 			path = Sessions;
-			sourceTree = "<group>";
-		};
-		E405037B238DB65B00EC11A4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		E414E231238B3E6800A7AB93 /* Network */ = {
@@ -494,6 +488,7 @@
 			children = (
 				E4C068D82396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift */,
 				E4C068DA2396830E00A3F5F0 /* TotalWins */,
+				E4D4AA9C23970DFB00867281 /* Error */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -523,6 +518,14 @@
 				E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E4D4AA9C23970DFB00867281 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				E4D4AA9D23970E1800867281 /* Dota2ErrorSectionViewModel.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		E4EA79D923953266006C5890 /* RootProfile */ = {
@@ -815,6 +818,7 @@
 				E4F61648238A84CE006D832B /* API.swift in Sources */,
 				E4C068C323959CC700A3F5F0 /* StatsErrorTableViewCell.swift in Sources */,
 				E4D4AA982397044700867281 /* NoFriendsSectionViewModel.swift in Sources */,
+				E4D4AA9E23970E1800867281 /* Dota2ErrorSectionViewModel.swift in Sources */,
 				E414E233238B3E7800A7AB93 /* SteamAPINetworkAdapter.swift in Sources */,
 				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
 				E4424E0E238EF54200B5A7BD /* String+SteamId.swift in Sources */,

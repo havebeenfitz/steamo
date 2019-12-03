@@ -33,6 +33,7 @@ class Dota2StatsViewController: UIViewController {
         }
         
         tableView.register(class: TotalWinsTableViewCell.self)
+        tableView.register(class: StatsErrorTableViewCell.self)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -129,6 +130,11 @@ extension Dota2StatsViewController: UITableViewDelegate, UITableViewDataSource {
         
         case .winsByDate:
             return UITableViewCell()
+        case .error:
+            if let cell: StatsErrorTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.configure(with: .noDota2Stats)
+                return cell
+            }
         }
         
         assertionFailure("NewCell")

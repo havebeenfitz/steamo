@@ -62,12 +62,19 @@ class GameStatsViewModel {
         chainDispatchGroup.notify(queue: .main, work: workItem)
     }
     
+    /// Добавить новые секции, если есть или показать заглушку
+    /// - Parameter stats: статистика и ачивки
     private func handleNew(_ stats: (PlayerStats)) {
         let playerStatsSectionViewModel = PlayerStatsSectionViewModel(stats: stats, gameSchema: self.gameSchema)
         let playerAchievementsSectionViewModel = PlayerAchievementsSectionViewModel(stats: stats, gameSchema: self.gameSchema)
        
         let isPlayerStatsAvailable = !(stats.playerStats?.stats?.isEmpty ?? true)
         let isPlayerAchievementsAvaliable = !(stats.playerStats?.achievements?.isEmpty ?? true)
+        
+        guard isPlayerStatsAvailable || isPlayerAchievementsAvaliable else {
+            handleError()
+            return
+        }
        
         if isPlayerStatsAvailable {
             sectionViewModels.append(playerStatsSectionViewModel)
@@ -82,6 +89,7 @@ class GameStatsViewModel {
         }
     }
     
+    /// Добавить заглушку
     private func handleError() {
         sectionViewModels = []
         let errorSection = StatsErrorSectionViewModel()

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class GameStatsViewController: UIViewController {
     
@@ -78,7 +79,9 @@ class GameStatsViewController: UIViewController {
     //MARK:- Actions
     
     private func loadData() {
+        SVProgressHUD.show(withStatus: "Fetching stats")
         viewModel.load { [weak self] _ in
+            SVProgressHUD.dismiss()
             self?.reloadTableViewOnMain()
         }
     }
@@ -148,6 +151,7 @@ extension GameStatsViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case .nothing:
             if let cell: StatsErrorTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.configure(with: .noCommonStats)
                 return cell
             }
         }

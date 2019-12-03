@@ -40,6 +40,7 @@ class Dota2StatsViewModel {
         
         let workItem = DispatchWorkItem(qos: .utility) {
             guard let matchHistory = self.matchHistory, let matches = matchHistory.result.matches else {
+                self.sectionViewModels.append(Dota2ErrorSectionViewModel())
                 completion(.failure(SteamoError.noData))
                 return
             }

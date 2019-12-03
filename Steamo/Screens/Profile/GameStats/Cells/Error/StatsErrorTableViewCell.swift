@@ -10,6 +10,11 @@ import UIKit
 
 class StatsErrorTableViewCell: UITableViewCell {
     
+    enum ErrorStyle {
+        case noCommonStats
+        case noDota2Stats
+    }
+    
     private let errorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "error")
@@ -27,12 +32,6 @@ class StatsErrorTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.text = """
-                        It seems like user prefer
-                        not to share his/her stats
-                        
-                        Or maybe there is no visible statistics
-                        """
         return label
     }()
     
@@ -43,6 +42,23 @@ class StatsErrorTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with style: ErrorStyle) {
+        switch style {
+        case .noCommonStats:
+            errorLabel.text = """
+                              It seems like user prefer
+                              not to share his/her stats
+                              
+                              Or maybe there is no visible statistics
+                              """
+        case .noDota2Stats:
+            errorLabel.text = """
+                              It seems like user either
+                              didn't play Dota2 or private
+                              """
+        }
     }
     
     private func setup() {

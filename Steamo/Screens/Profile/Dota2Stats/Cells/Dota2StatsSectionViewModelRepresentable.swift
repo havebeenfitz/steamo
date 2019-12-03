@@ -12,6 +12,7 @@ enum Dota2StatsSectionViewModelType {
     case gameSummary
     case totalWins
     case winsByDate
+    case error
 }
 
 protocol Dota2StatsSectionViewModelRepresentable {
