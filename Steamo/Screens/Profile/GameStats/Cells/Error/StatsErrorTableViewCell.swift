@@ -32,7 +32,7 @@ class StatsErrorTableViewCell: UITableViewCell {
                         not to share his/her stats
                         
                         Or maybe there is no visible statistics
-                     """
+                        """
         return label
     }()
     

@@ -20,9 +20,21 @@ protocol ProfileRouterProtocol {
     ///   - steamId: стим айди игрока
     ///   - gameId: идентификатор игры
     func routeToGameStats(from vc: UIViewController, steamId: String, gameId: Int)
+    
+    /// Перейти на детальную статистику по доте
+    /// - Parameters:
+    ///   - vc: контроллер, с которого пушим
+    ///   - steamId: стим айди игрока
+    func routeToDota2Stats(from vc: UIViewController, steamId: String)
 }
 
 class ProfileRouter: ProfileRouterProtocol {
+    func routeToDota2Stats(from vc: UIViewController, steamId: String) {
+        let dota2StatsViewModel = Dota2StatsViewModel(networkAdapter: SteamAPINetworkAdapter(), steamId: steamId)
+        let dota2StatsVC = Dota2StatsViewController(viewModel: dota2StatsViewModel)
+        vc.navigationController?.pushViewController(dota2StatsVC, animated: true)
+    }
+    
     func routeToFriendProfile(from vc: UIViewController, steamId: String) {
         let profileViewModel = ProfileViewModel(networkAdapter: SteamAPINetworkAdapter(),
                                                 state: .friend(steamId: steamId))

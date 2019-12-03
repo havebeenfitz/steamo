@@ -52,9 +52,9 @@ class ProfileViewModel: NSObject {
     private var state: State
     
     /// Стим айди игрока
-    private var steamUser: SteamUser? {
-        return SteamUser.load()
-    }
+    private var steamUser: SteamUser? = {
+        return SteamUser.fetch()
+    }()
 
     /// Профиль пользователя
     private var profiles: Profiles?

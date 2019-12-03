@@ -185,10 +185,10 @@ class ProfileViewController: UIViewController {
 
     private func toggleBarButton() {
         if viewModel.isUserAuthorized {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "stats"),
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dota2"),
                                                                 style: .plain,
                                                                 target: self,
-                                                                action: nil)
+                                                                action: #selector(routeToDota2Stats))
         } else {
             navigationItem.rightBarButtonItem = nil
         }
@@ -219,6 +219,10 @@ class ProfileViewController: UIViewController {
             self?.refreshControl.endRefreshing()
             self?.tableView.reloadData()
         }
+    }
+    
+    @objc private func routeToDota2Stats() {
+        router.routeToDota2Stats(from: self, steamId: viewModel.currentSteamId ?? "")
     }
 }
 

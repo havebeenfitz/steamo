@@ -46,146 +46,103 @@ protocol SteamAPINetworkAdapterProtocol {
 class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
     typealias JSON = [String: Any]
 
-    private let baseURL: URL = API.baseURL
-
-    private var steamId: String? {
-        UserDefaults.standard.string(forKey: SteamoUserDefaultsKeys.steamId)
-    }
+    let baseURL: URL = API.baseURL
+    
+    var defaultParams: JSON = ["key": API.apiKey]
 
     func profileSummary(steamIds: [String], completion: @escaping (Swift.Result<Profiles, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("ISteamUser/GetPlayerSummaries/v0002/")
 
-        let parameters: JSON = ["key": API.apiKey,
-                                "steamids": steamIds.joined(separator: ",")]
+        var parameters = defaultParams
+        parameters["steamids"] = steamIds.joined(separator: ",")
 
         Alamofire.request(url, method: .get, parameters: parameters)
-            .responseData { response in
-                switch response.result {
-                case let .success(value):
-                    do {
-                        let profile = try JSONDecoder().decode(Profiles.self, from: value)
-                        completion(.success(profile))
-                    } catch {
-                        completion(.failure(SteamoError.cantParseJSON))
-                    }
-                case .failure:
-                    completion(.failure(SteamoError.noConnection))
-                }
+            .validate()
+            .responseData { [weak self] response in
+                self?.handleResponse(response: response, completion: completion)
             }
     }
 
     func ownedGames(steamId: String, completion: @escaping (Swift.Result<Games, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("IPlayerService/GetOwnedGames/v0001/")
-        let parameters: JSON = ["key": API.apiKey,
-                                "steamid": steamId,
-                                "include_appinfo": true]
+        var parameters = defaultParams
+        parameters["steamid"] = steamId
+        parameters["include_appinfo"] = true
 
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString,
                                                                                            arrayEncoding: .brackets,
                                                                                            boolEncoding: .literal))
-            .responseData { response in
-                switch response.result {
-                case let .success(value):
-                    do {
-                        let games = try JSONDecoder().decode(Games.self, from: value)
-                        completion(.success(games))
-                    } catch {
-                        completion(.failure(SteamoError.cantParseJSON))
-                    }
-                case .failure:
-                    completion(.failure(SteamoError.noConnection))
-                }
+            .validate()
+            .responseData { [weak self] response in
+                self?.handleResponse(response: response, completion: completion)
             }
     }
 
     func friends(steamId: String, completion: @escaping (Swift.Result<Friends, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("ISteamUser/GetFriendList/v0001/")
-        let parameters: JSON = ["key": API.apiKey,
-                                "steamid": steamId,
-                                "relationship": "friend"]
+        var parameters = defaultParams
+        parameters["steamid"] = steamId
+        parameters["relationship"] = "friend"
 
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
-            .responseData { response in
-                switch response.result {
-                case let .success(value):
-                    do {
-                        let friends = try JSONDecoder().decode(Friends.self, from: value)
-                        completion(.success(friends))
-                    } catch {
-                        completion(.failure(SteamoError.cantParseJSON))
-                    }
-                case .failure:
-                    completion(.failure(SteamoError.noConnection))
-                }
+            .validate()
+            .responseData { [weak self] response in
+                self?.handleResponse(response: response, completion: completion)
             }
     }
 
     func recentlyPlayedGames(steamId: String, completion: @escaping (Swift.Result<Games, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("IPlayerService/GetRecentlyPlayedGames/v1/")
-        let parameters: JSON = ["key": API.apiKey,
-                                "steamid": steamId,
-                                "count": 0,
-                                "include_appinfo": true]
+        var parameters: JSON = defaultParams
+        parameters["steamid"] = steamId
+        parameters["count"] = 100
+        parameters["include_appinfo"] = true
 
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
-            .responseData { response in
-                switch response.result {
-                case let .success(value):
-                    do {
-                        let games = try JSONDecoder().decode(Games.self, from: value)
-                        completion(.success(games))
-                    } catch {
-                        completion(.failure(SteamoError.cantParseJSON))
-                    }
-                case .failure:
-                    completion(.failure(SteamoError.noConnection))
-                }
+            .validate()
+            .responseData { [weak self] response in
+                self?.handleResponse(response: response, completion: completion)
             }
     }
     
     func gameSchema(for gameId: Int, completion: @escaping (Swift.Result<GameSchema, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("ISteamUserStats/GetSchemaForGame/v2/")
-        let parameters: JSON = ["key": API.apiKey,
-                                "appid": gameId]
+        var parameters: JSON = defaultParams
+        parameters["appid"] = gameId
         
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
-            .responseData { response in
-                switch response.result {
-                case let .success(value):
-                    do {
-                        let gameSchema = try JSONDecoder().decode(GameSchema.self, from: value)
-                        completion(.success(gameSchema))
-                    } catch {
-                        print(error)
-                        completion(.failure(SteamoError.cantParseJSON))
-                    }
-                case .failure:
-                    completion(.failure(SteamoError.noConnection))
-                }
+            .responseData { [weak self] response in
+                self?.handleResponse(response: response, completion: completion)
         }
     }
     
     func stats(for gameId: Int, steamId: String, completion: @escaping (Swift.Result<PlayerStats, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("ISteamUserStats/GetUserStatsForGame/v0002/")
-        let parameters: JSON = ["key": API.apiKey,
-                                "steamid": steamId,
-                                "appid": gameId]
+        var parameters: JSON = defaultParams
+        parameters["steamid"] = steamId
+        parameters["appid"] = gameId
+        
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
-            .responseData { response in
-                switch response.result {
-                case let .success(value):
-                    do {
-                        let playerStats = try JSONDecoder().decode(PlayerStats.self, from: value)
-                        completion(.success(playerStats))
-                    } catch {
-                        print(error)
-                        completion(.failure(SteamoError.cantParseJSON))
-                    }
-                case .failure:
-                    completion(.failure(SteamoError.noConnection))
-                }
+            .responseData { [weak self] response in
+                self?.handleResponse(response: response, completion: completion)
+        }
+    }
+}
+
+extension SteamAPINetworkAdapter {
+    func handleResponse<T: Codable>(response: DataResponse<Data>, completion: (Swift.Result<T, SteamoError>) -> Void) {
+        switch response.result {
+        case let .success(value):
+            do {
+                let object = try JSONDecoder().decode(T.self, from: value)
+                completion(.success(object))
+            } catch {
+                completion(.failure(SteamoError.cantParseJSON))
+            }
+        case .failure:
+            completion(.failure(SteamoError.noConnection))
         }
     }
 }
