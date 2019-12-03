@@ -40,6 +40,7 @@ class Dota2StatsViewModel {
         
         let workItem = DispatchWorkItem(qos: .utility) {
             guard let matchHistory = self.matchHistory, let matches = matchHistory.result.matches else {
+                completion(.failure(SteamoError.noData))
                 return
             }
             

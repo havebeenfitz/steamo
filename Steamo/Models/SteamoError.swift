@@ -10,4 +10,5 @@
 enum SteamoError: Error {
     case cantParseJSON
     case noConnection
+    case noData
 }
