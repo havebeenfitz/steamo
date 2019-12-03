@@ -20,10 +20,10 @@ struct MatchHistory: Codable {
 // MARK: - Result
 struct MatchHistoryResult: Codable {
     let status: Int
-    let numResults: Int
-    let totalResults: Int
-    let resultsRemaining: Int
-    let matches: [Match]
+    let numResults: Int?
+    let totalResults: Int?
+    let resultsRemaining: Int?
+    let matches: [Match]?
 
     enum CodingKeys: String, CodingKey {
         case status = "status"

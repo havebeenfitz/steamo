@@ -20,7 +20,7 @@ protocol Dota2APINetworkAdapterProtocol {
     /// - Parameters:
     ///   - matchId: id матча
     ///   - completion: колбэк по завершению запроса
-    func matchDetails(for matchId: String, completion: @escaping (Swift.Result<MatchDetails, SteamoError>) -> Void)
+    func matchDetails(for matchId: Int, completion: @escaping (Swift.Result<MatchDetails, SteamoError>) -> Void)
 }
 
 extension SteamAPINetworkAdapter: Dota2APINetworkAdapterProtocol {
@@ -37,10 +37,12 @@ extension SteamAPINetworkAdapter: Dota2APINetworkAdapterProtocol {
         }
     }
     
-    func matchDetails(for matchId: String, completion: @escaping (Swift.Result<MatchDetails, SteamoError>) -> Void) {
+    func matchDetails(for matchId: Int, completion: @escaping (Swift.Result<MatchDetails, SteamoError>) -> Void) {
         let url = baseURL.appendingPathComponent("IDOTA2Match_570/GetMatchDetails/v001/")
+        var parameters = defaultParams
+        parameters["match_id"] = matchId
         
-        Alamofire.request(url, method: .get, parameters: defaultParams, encoding: URLEncoding.default)
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseData { [weak self] response in
                 self?.handleResponse(response: response, completion: completion)

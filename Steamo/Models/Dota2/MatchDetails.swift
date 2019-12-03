@@ -38,7 +38,7 @@ struct MatchResult: Codable {
     let engine: Int
     let radiantScore: Int
     let direScore: Int
-    let picksBans: [PicksBan]
+    let picksBans: [PicksBan]?
 
     enum CodingKeys: String, CodingKey {
         case players = "players"

@@ -170,9 +170,10 @@ class ProfileViewModel: NSObject {
         guard let games = games else {
             return
         }
-
-        let gamesViewModel = OwnedGamesSectionViewModel(games: games)
-        sectionViewModels.append(gamesViewModel)
+        if !(games.response?.games?.isEmpty ?? false) {
+            let gamesViewModel = OwnedGamesSectionViewModel(games: games)
+            sectionViewModels.append(gamesViewModel)
+        }
     }
 
     private func updateFriends() {

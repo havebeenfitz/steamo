@@ -68,6 +68,9 @@
 		E4C068D023965D7000A3F5F0 /* SteamAPINetworkAdapter+Dota2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068CF23965D7000A3F5F0 /* SteamAPINetworkAdapter+Dota2.swift */; };
 		E4C068D32396600000A3F5F0 /* MatchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068D22396600000A3F5F0 /* MatchHistory.swift */; };
 		E4C068D52396604100A3F5F0 /* MatchDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068D42396604100A3F5F0 /* MatchDetails.swift */; };
+		E4C068D92396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068D82396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift */; };
+		E4C068DC2396832C00A3F5F0 /* TotalWinsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068DB2396832C00A3F5F0 /* TotalWinsTableViewCell.swift */; };
+		E4C068DE2396842300A3F5F0 /* TotalWinsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068DD2396842300A3F5F0 /* TotalWinsSectionViewModel.swift */; };
 		E4EA79D823907019006C5890 /* NSNotification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79D723907019006C5890 /* NSNotification+Name.swift */; };
 		E4EA79DC23953282006C5890 /* GameStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DB23953282006C5890 /* GameStatsViewController.swift */; };
 		E4EA79DE2395328D006C5890 /* GameStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */; };
@@ -159,6 +162,9 @@
 		E4C068CF23965D7000A3F5F0 /* SteamAPINetworkAdapter+Dota2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SteamAPINetworkAdapter+Dota2.swift"; sourceTree = "<group>"; };
 		E4C068D22396600000A3F5F0 /* MatchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistory.swift; sourceTree = "<group>"; };
 		E4C068D42396604100A3F5F0 /* MatchDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetails.swift; sourceTree = "<group>"; };
+		E4C068D82396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dota2StatsSectionViewModelRepresentable.swift; sourceTree = "<group>"; };
+		E4C068DB2396832C00A3F5F0 /* TotalWinsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWinsTableViewCell.swift; sourceTree = "<group>"; };
+		E4C068DD2396842300A3F5F0 /* TotalWinsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWinsSectionViewModel.swift; sourceTree = "<group>"; };
 		E4EA79D723907019006C5890 /* NSNotification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Name.swift"; sourceTree = "<group>"; };
 		E4EA79DB23953282006C5890 /* GameStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewController.swift; sourceTree = "<group>"; };
 		E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewModel.swift; sourceTree = "<group>"; };
@@ -390,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				E414E231238B3E6800A7AB93 /* Network */,
+				E4C068D62396786B00A3F5F0 /* Persistance */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -446,8 +453,9 @@
 		E4C068CA23965C0700A3F5F0 /* Dota2Stats */ = {
 			isa = PBXGroup;
 			children = (
-				E4C068CB23965C2100A3F5F0 /* Dota2StatsViewController.swift */,
+				E4C068D72396821C00A3F5F0 /* Cells */,
 				E4C068CD23965C6200A3F5F0 /* Dota2StatsViewModel.swift */,
+				E4C068CB23965C2100A3F5F0 /* Dota2StatsViewController.swift */,
 			);
 			path = Dota2Stats;
 			sourceTree = "<group>";
@@ -459,6 +467,31 @@
 				E4C068D42396604100A3F5F0 /* MatchDetails.swift */,
 			);
 			path = Dota2;
+			sourceTree = "<group>";
+		};
+		E4C068D62396786B00A3F5F0 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		E4C068D72396821C00A3F5F0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E4C068D82396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift */,
+				E4C068DA2396830E00A3F5F0 /* TotalWins */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E4C068DA2396830E00A3F5F0 /* TotalWins */ = {
+			isa = PBXGroup;
+			children = (
+				E4C068DB2396832C00A3F5F0 /* TotalWinsTableViewCell.swift */,
+				E4C068DD2396842300A3F5F0 /* TotalWinsSectionViewModel.swift */,
+			);
+			path = TotalWins;
 			sourceTree = "<group>";
 		};
 		E4EA79D923953266006C5890 /* RootProfile */ = {
@@ -475,8 +508,8 @@
 			isa = PBXGroup;
 			children = (
 				E4C068B023956CC500A3F5F0 /* Cells */,
-				E4EA79DB23953282006C5890 /* GameStatsViewController.swift */,
 				E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */,
+				E4EA79DB23953282006C5890 /* GameStatsViewController.swift */,
 			);
 			path = GameStats;
 			sourceTree = "<group>";
@@ -719,6 +752,7 @@
 				E4C068B223956CD900A3F5F0 /* StatsSectionViewModelRepresentable.swift in Sources */,
 				E4424E1B238EFDAE00B5A7BD /* SettingsViewModel.swift in Sources */,
 				E4C068D32396600000A3F5F0 /* MatchHistory.swift in Sources */,
+				E4C068DE2396842300A3F5F0 /* TotalWinsSectionViewModel.swift in Sources */,
 				E434979923859F9A0047B750 /* MainTabBarController.swift in Sources */,
 				E4C068B823956F8200A3F5F0 /* PlayerAchievementsSectionViewModel.swift in Sources */,
 				E4C068BA2395702500A3F5F0 /* PlayerStatTableViewCell.swift in Sources */,
@@ -742,6 +776,7 @@
 				E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */,
 				E4C068AF239561D500A3F5F0 /* PlayerStats.swift in Sources */,
 				E4424E0C238EE41C00B5A7BD /* ProfileRouter.swift in Sources */,
+				E4C068DC2396832C00A3F5F0 /* TotalWinsTableViewCell.swift in Sources */,
 				E4424E16238EFA6100B5A7BD /* SectionHeaderView.swift in Sources */,
 				E4F61648238A84CE006D832B /* API.swift in Sources */,
 				E4C068C323959CC700A3F5F0 /* StatsErrorTableViewCell.swift in Sources */,
@@ -757,6 +792,7 @@
 				E4C068C923965BCD00A3F5F0 /* Integer+Bits.swift in Sources */,
 				E414E23C238B4BA500A7AB93 /* SteamoButton.swift in Sources */,
 				E434979723859F9A0047B750 /* SceneDelegate.swift in Sources */,
+				E4C068D92396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift in Sources */,
 				E414E256238BAB8100A7AB93 /* UICollectionView+Register.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

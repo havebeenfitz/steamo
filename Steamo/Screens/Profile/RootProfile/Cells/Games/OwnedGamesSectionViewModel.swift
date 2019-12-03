@@ -16,7 +16,7 @@ class OwnedGamesSectionViewModel: ProfileSectionViewModelRepresentable {
     }
 
     var sectionTitle: String {
-        return "Games (\(games.response.gameCount ?? 0))"
+        return "Games (\(games.response?.gameCount ?? 0))"
     }
 
     var games: Games

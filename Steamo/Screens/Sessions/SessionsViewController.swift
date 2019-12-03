@@ -31,8 +31,8 @@ class SessionsViewController: UIViewController {
 
         tableView.register(class: TableCellContainer<GameView>.self)
 
-        tableView.delegate = viewModel
-        tableView.dataSource = viewModel
+        tableView.delegate = self
+        tableView.dataSource = self
 
         tableView.refreshControl = refreshControl
 
@@ -75,5 +75,21 @@ class SessionsViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+}
+
+extension SessionsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        return viewModel.games?.response?.totalCount ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let game = viewModel.games?.response?.games?[indexPath.row],
+            let cell: TableCellContainer<GameView> = tableView.dequeue(indexPath: indexPath) else {
+            return UITableViewCell()
+        }
+        cell.containedView.configure(with: game)
+
+        return cell
     }
 }

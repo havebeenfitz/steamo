@@ -48,8 +48,8 @@ class GameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with game: Game) {
-        guard let url = game.calculatedImageIconUrl else { return }
+    func configure(with game: Game?) {
+        guard let game = game, let url = game.calculatedImageIconUrl else { return }
         gameImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         gameTitleLabel.text = game.name
         playTimeLabel.text = "Playtime:\n\(game.playtimeForever.steamFormatted())"

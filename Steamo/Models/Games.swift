@@ -9,13 +9,13 @@
 import Foundation
 
 struct Games: Codable {
-    let response: GamesResponse
+    let response: GamesResponse?
 }
 
 struct GamesResponse: Codable {
     let gameCount: Int?
     let totalCount: Int?
-    let games: [Game]
+    let games: [Game]?
 
     enum CodingKeys: String, CodingKey {
         case gameCount = "game_count"

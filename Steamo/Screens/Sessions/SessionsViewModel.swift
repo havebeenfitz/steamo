@@ -11,11 +11,11 @@ import UIKit
 class SessionsViewModel: NSObject {
     private let networkAdapter: SteamAPINetworkAdapterProtocol
 
-    fileprivate var games: Games?
+    var games: Games?
 
     private var steamId: String? {
-        get { UserDefaults.standard.string(forKey: SteamoUserDefaultsKeys.steamId) }
-        set { UserDefaults.standard.set(newValue, forKey: SteamoUserDefaultsKeys.steamId) }
+        let user = SteamUser.fetch()
+        return user?.steamID64
     }
 
     init(networkAdapter: SteamAPINetworkAdapterProtocol) {
@@ -32,23 +32,5 @@ class SessionsViewModel: NSObject {
                 completion(.failure(error))
             }
         }
-    }
-}
-
-extension SessionsViewModel: UITableViewDelegate {}
-
-extension SessionsViewModel: UITableViewDataSource {
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return games?.response.totalCount ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let game = games?.response.games[indexPath.row],
-            let cell: TableCellContainer<GameView> = tableView.dequeue(indexPath: indexPath) else {
-            return UITableViewCell()
-        }
-        cell.containedView.configure(with: game)
-
-        return cell
     }
 }
