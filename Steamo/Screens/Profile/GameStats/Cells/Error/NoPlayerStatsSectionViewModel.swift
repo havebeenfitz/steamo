@@ -19,6 +19,6 @@ class NoPlayerStatsSectionViewModel: StatsSectionViewModelRepresentable {
     }
     
     var sectionTitle: String {
-        return "User Stats"
+        return "Stats"
     }
 }

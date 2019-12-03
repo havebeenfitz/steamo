@@ -130,7 +130,11 @@ class ProfileViewModel: NSObject {
         }
 
         let workItem = DispatchWorkItem {
-            guard let friends = self.friends else { return }
+            guard let friends = self.friends else {
+                self.updateData()
+                completion?(.success(()))
+                return
+            }
             let steamIds = friends.friendsList.friends.map { $0.steamId }
 
             self.networkAdapter.profileSummary(steamIds: steamIds) { [weak self] result in
@@ -168,21 +172,29 @@ class ProfileViewModel: NSObject {
 
     private func updateGames() {
         guard let games = games else {
+            sectionViewModels.append(NoOwnedGamesSectionViewModel())
             return
         }
         if !(games.response?.games?.isEmpty ?? true) {
             let gamesViewModel = OwnedGamesSectionViewModel(games: games)
             sectionViewModels.append(gamesViewModel)
+        } else {
+            sectionViewModels.append(NoOwnedGamesSectionViewModel())
         }
     }
 
     private func updateFriends() {
         guard let friendsProfiles = friendsProfiles else {
+            sectionViewModels.append(NoFriendsSectionViewModel())
             return
         }
-
-        let friendsSectionViewModel = FriendsSectionViewModel(profiles: friendsProfiles)
-        sectionViewModels.append(friendsSectionViewModel)
+        
+        if !friendsProfiles.response.players.isEmpty {
+            let friendsSectionViewModel = FriendsSectionViewModel(profiles: friendsProfiles)
+            sectionViewModels.append(friendsSectionViewModel)
+        } else {
+            sectionViewModels.append(NoFriendsSectionViewModel())
+        }
     }
 
     private func sortSections() {

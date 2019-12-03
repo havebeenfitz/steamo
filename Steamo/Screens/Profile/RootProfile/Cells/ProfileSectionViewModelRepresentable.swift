@@ -10,6 +10,9 @@ enum ProfileSectionViewModelType {
     case avatar
     case ownedGames
     case friends
+    
+    case noVisibleGames
+    case noVisibleFriends
 }
 
 protocol ProfileSectionViewModelRepresentable {

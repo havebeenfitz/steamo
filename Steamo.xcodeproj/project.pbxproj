@@ -74,6 +74,8 @@
 		E4C068E32396C50C00A3F5F0 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E22396C50C00A3F5F0 /* DependencyContainer.swift */; };
 		E4C068E52396C52500A3F5F0 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E42396C52500A3F5F0 /* ViewControllerFactory.swift */; };
 		E4C068E92396C72600A3F5F0 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */; };
+		E4D4AA982397044700867281 /* NoFriendsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4AA972397044700867281 /* NoFriendsSectionViewModel.swift */; };
+		E4D4AA9A2397048B00867281 /* NoOwnedGamesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4AA992397048B00867281 /* NoOwnedGamesSectionViewModel.swift */; };
 		E4EA79D823907019006C5890 /* NSNotification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79D723907019006C5890 /* NSNotification+Name.swift */; };
 		E4EA79DC23953282006C5890 /* GameStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DB23953282006C5890 /* GameStatsViewController.swift */; };
 		E4EA79DE2395328D006C5890 /* GameStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */; };
@@ -171,6 +173,8 @@
 		E4C068E22396C50C00A3F5F0 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		E4C068E42396C52500A3F5F0 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		E4D4AA972397044700867281 /* NoFriendsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFriendsSectionViewModel.swift; sourceTree = "<group>"; };
+		E4D4AA992397048B00867281 /* NoOwnedGamesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOwnedGamesSectionViewModel.swift; sourceTree = "<group>"; };
 		E4EA79D723907019006C5890 /* NSNotification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Name.swift"; sourceTree = "<group>"; };
 		E4EA79DB23953282006C5890 /* GameStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewController.swift; sourceTree = "<group>"; };
 		E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsViewModel.swift; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 			children = (
 				E414E253238BA98F00A7AB93 /* OwnedGamesTableViewCell.swift */,
 				E414E24E238B635800A7AB93 /* OwnedGamesSectionViewModel.swift */,
+				E4D4AA992397048B00867281 /* NoOwnedGamesSectionViewModel.swift */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 			children = (
 				E4050370238D9D3700EC11A4 /* FriendTableViewCell.swift */,
 				E4050372238D9D4400EC11A4 /* FriendSectionViewModel.swift */,
+				E4D4AA972397044700867281 /* NoFriendsSectionViewModel.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -523,8 +529,8 @@
 			isa = PBXGroup;
 			children = (
 				E414E247238B60E600A7AB93 /* Cells */,
-				E4F6164B238A89E7006D832B /* ProfileViewController.swift */,
 				E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */,
+				E4F6164B238A89E7006D832B /* ProfileViewController.swift */,
 			);
 			path = RootProfile;
 			sourceTree = "<group>";
@@ -808,11 +814,13 @@
 				E4424E16238EFA6100B5A7BD /* SectionHeaderView.swift in Sources */,
 				E4F61648238A84CE006D832B /* API.swift in Sources */,
 				E4C068C323959CC700A3F5F0 /* StatsErrorTableViewCell.swift in Sources */,
+				E4D4AA982397044700867281 /* NoFriendsSectionViewModel.swift in Sources */,
 				E414E233238B3E7800A7AB93 /* SteamAPINetworkAdapter.swift in Sources */,
 				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
 				E4424E0E238EF54200B5A7BD /* String+SteamId.swift in Sources */,
 				E4C068C52395A28600A3F5F0 /* NoPlayerStatsSectionViewModel.swift in Sources */,
 				E4C068CC23965C2100A3F5F0 /* Dota2StatsViewController.swift in Sources */,
+				E4D4AA9A2397048B00867281 /* NoOwnedGamesSectionViewModel.swift in Sources */,
 				E4A9E341238D9AD200541359 /* Friends.swift in Sources */,
 				E4050376238DB05F00EC11A4 /* SessionsViewController.swift in Sources */,
 				E4C068BE23957EC000A3F5F0 /* PlayerAchievementsTableViewCell.swift in Sources */,

@@ -18,7 +18,7 @@ class PlayerStatsSectionViewModel: StatsSectionViewModelRepresentable {
     }
     
     var sectionTitle: String {
-        return "User Stats"
+        return "Stats"
     }
     
     var stats: PlayerStats

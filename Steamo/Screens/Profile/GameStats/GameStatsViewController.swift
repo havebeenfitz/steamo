@@ -79,7 +79,13 @@ class GameStatsViewController: UIViewController {
     
     private func loadData() {
         viewModel.load { [weak self] _ in
-            self?.tableView.reloadData()
+            self?.reloadTableViewOnMain()
+        }
+    }
+    
+    private func reloadTableViewOnMain() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     

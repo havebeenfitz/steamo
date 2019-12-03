@@ -40,6 +40,7 @@ class ProfileViewController: UIViewController {
         tableView.register(class: AvatarTableViewCell.self)
         tableView.register(class: OwnedGamesTableViewCell.self)
         tableView.register(class: FriendTableViewCell.self)
+        tableView.register(class: UITableViewCell.self)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -286,6 +287,18 @@ extension ProfileViewController: UITableViewDataSource {
         case .friends:
             if let cell: FriendTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.configure(with: sectionViewModel, index: indexPath.row)
+                return cell
+            }
+        case .noVisibleGames:
+            if let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.textLabel?.text = "No visible games"
+                cell.backgroundColor = .clear
+                return cell
+            }
+        case .noVisibleFriends:
+            if let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.textLabel?.text = "No visible friends"
+                cell.backgroundColor = .clear
                 return cell
             }
         }
