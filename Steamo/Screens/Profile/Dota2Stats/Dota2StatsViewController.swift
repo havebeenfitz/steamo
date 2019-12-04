@@ -49,6 +49,7 @@ class Dota2StatsViewController: UIViewController {
     init(viewModel: Dota2StatsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {
@@ -76,7 +77,6 @@ class Dota2StatsViewController: UIViewController {
         }
         
         title = "Dota2 Stats"
-        hidesBottomBarWhenPushed = true
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
