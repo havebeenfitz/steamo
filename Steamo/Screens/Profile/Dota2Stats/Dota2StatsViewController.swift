@@ -32,7 +32,8 @@ class Dota2StatsViewController: UIViewController {
             refreshControl.tintColor = .accent
         }
         
-        tableView.register(class: TotalWinsTableViewCell.self)
+        tableView.register(class: WinRateTableViewCell.self)
+        tableView.register(class: MatchesByDateTableViewCell.self)
         tableView.register(class: StatsErrorTableViewCell.self)
         
         tableView.dataSource = self
@@ -60,6 +61,11 @@ class Dota2StatsViewController: UIViewController {
         loadData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        viewModel.cancelRequest()
+        SVProgressHUD.dismiss()
+    }
+    
     //MARK:- Methods
     
     private func setup() {
@@ -70,6 +76,7 @@ class Dota2StatsViewController: UIViewController {
         }
         
         title = "Dota2 Stats"
+        hidesBottomBarWhenPushed = true
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -120,16 +127,16 @@ extension Dota2StatsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         switch sectionViewModel.type {
-        case .totalWins:
-            if let cell: TotalWinsTableViewCell = tableView.dequeue(indexPath: indexPath) {
+        case .winRate:
+            if let cell: WinRateTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.configure(with: sectionViewModel)
                 return cell
             }
-        case .gameSummary:
-            return UITableViewCell()
-        
-        case .winsByDate:
-            return UITableViewCell()
+        case .matchesByDate:
+            if let cell: MatchesByDateTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.configure(with: sectionViewModel)
+                return cell
+            }
         case .error:
             if let cell: StatsErrorTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.configure(with: .noDota2Stats)

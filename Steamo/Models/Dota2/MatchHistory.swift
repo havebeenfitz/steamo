@@ -38,7 +38,7 @@ struct MatchHistoryResult: Codable {
 struct Match: Codable {
     let matchId: Int
     let matchSeqNum: Int
-    let startTime: Int
+    let startTime: Double
     let lobbyType: Int
     let radiantTeamId: Int
     let direTeamId: Int

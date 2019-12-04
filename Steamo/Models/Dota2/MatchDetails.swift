@@ -19,7 +19,7 @@ struct MatchResult: Codable {
     let radiantWin: Bool
     let duration: Int?
     let preGameDuration: Int?
-    let startTime: Int?
+    let startTime: Double?
     let matchId: Int
     let matchSeqNum: Int
     let towerStatusRadiant: Int?
@@ -70,10 +70,10 @@ struct MatchResult: Codable {
 
 // MARK: - PicksBan
 struct PicksBan: Codable {
-    let isPick: Bool
-    let heroId: Int
-    let team: Int
-    let order: Int
+    let isPick: Bool?
+    let heroId: Int?
+    let team: Int?
+    let order: Int?
 
     enum CodingKeys: String, CodingKey {
         case isPick = "is_pick"
@@ -152,7 +152,7 @@ struct Dota2DetailPlayer: Codable {
 
 // MARK: - AbilityUpgrade
 struct AbilityUpgrade: Codable {
-    let ability: Int
-    let time: Int
-    let level: Int
+    let ability: Int?
+    let time: Int?
+    let level: Int?
 }

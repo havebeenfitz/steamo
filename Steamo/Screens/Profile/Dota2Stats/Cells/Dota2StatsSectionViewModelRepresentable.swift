@@ -9,9 +9,8 @@
 import Foundation
 
 enum Dota2StatsSectionViewModelType {
-    case gameSummary
-    case totalWins
-    case winsByDate
+    case winRate
+    case matchesByDate
     case error
 }
 

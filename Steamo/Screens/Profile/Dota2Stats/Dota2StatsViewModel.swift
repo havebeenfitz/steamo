@@ -14,6 +14,7 @@ class Dota2StatsViewModel {
     var matchDetailsCollection: [MatchDetails] = []
     
     var sectionViewModels: [Dota2StatsSectionViewModelRepresentable] = []
+    private var loadDataWorkItem: DispatchWorkItem?
     
     private let networkAdapter: Dota2APINetworkAdapterProtocol
     private let steamId: String
@@ -27,7 +28,7 @@ class Dota2StatsViewModel {
         let chainDispatchGroup = DispatchGroup()
         
         chainDispatchGroup.enter()
-        networkAdapter.matches(for: steamId, limit: 30) { [weak self] result in
+        networkAdapter.matches(for: steamId, limit: 100) { [weak self] result in
             switch result {
             case let .success(matchHistory):
                 self?.matchHistory = matchHistory
@@ -38,7 +39,7 @@ class Dota2StatsViewModel {
             }
         }
         
-        let workItem = DispatchWorkItem(qos: .utility) {
+        loadDataWorkItem = DispatchWorkItem(qos: .utility) {
             guard let matchHistory = self.matchHistory, let matches = matchHistory.result.matches else {
                 self.sectionViewModels.append(Dota2ErrorSectionViewModel())
                 completion(.failure(SteamoError.noData))
@@ -48,6 +49,7 @@ class Dota2StatsViewModel {
             let semaphore = DispatchSemaphore(value: 1)
             
             for (index, match) in matches.enumerated() {
+                if self.loadDataWorkItem?.isCancelled ?? false { break }
                 semaphore.wait()
                 self.networkAdapter.matchDetails(for: match.matchId) { [weak self] result in
                     guard let self = self else {
@@ -58,11 +60,16 @@ class Dota2StatsViewModel {
                     switch result {
                     case let .success(matchDetails):
                         self.matchDetailsCollection.append(matchDetails)
-                        progress(Float(self.matchDetailsCollection.count) / Float(matches.count))
+                        if !(self.loadDataWorkItem?.isCancelled ?? false) {
+                            progress(Float(self.matchDetailsCollection.count) / Float(matches.count))
+                        }
                         if index == matches.count - 1 {
-                            let totalWinsSection = TotalWinsSectionViewModel(matchDetailsCollection: self.matchDetailsCollection,
+                            let winRateSection = WinRateSectionViewModel(matchDetailsCollection: self.matchDetailsCollection,
                                                                              steamId: self.steamId)
-                            self.sectionViewModels.append(totalWinsSection)
+                            let matchesByDateSection = MatchesByDateSectionViewModel(matchDetailsCollection: self.matchDetailsCollection,
+                                                                                  steamId: self.steamId)
+                            self.sectionViewModels.append(winRateSection)
+                            self.sectionViewModels.append(matchesByDateSection)
                             completion(.success(()))
                         }
                         semaphore.signal()
@@ -77,6 +84,14 @@ class Dota2StatsViewModel {
             }
         }
         
-        chainDispatchGroup.notify(queue: .global(qos: .utility), work: workItem)
+        if let workItem = loadDataWorkItem {
+            chainDispatchGroup.notify(queue: .global(qos: .utility), work: workItem)
+        } else {
+            completion(.failure(.noData))
+        }
+    }
+    
+    func cancelRequest() {
+        loadDataWorkItem?.cancel()
     }
 }

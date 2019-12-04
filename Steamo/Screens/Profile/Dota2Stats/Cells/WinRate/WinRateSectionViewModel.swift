@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TotalWinsSectionViewModel: Dota2StatsSectionViewModelRepresentable {
+class WinRateSectionViewModel: Dota2StatsSectionViewModelRepresentable {
     
     enum MatchResult {
         case won
@@ -16,7 +16,7 @@ class TotalWinsSectionViewModel: Dota2StatsSectionViewModelRepresentable {
     }
     
     var type: Dota2StatsSectionViewModelType {
-        return .totalWins
+        return .winRate
     }
     
     var sectionTitle: String {
@@ -41,6 +41,8 @@ class TotalWinsSectionViewModel: Dota2StatsSectionViewModelRepresentable {
     
     
     func chartValues() -> [MatchResult: [Int]] {
+        
+        result = [.won: [], .lost: []]
         
         let steamId32 = String.convertSteamID64(toSteamID32: steamId)
         

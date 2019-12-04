@@ -9,7 +9,7 @@
 import Charts
 import UIKit
 
-class TotalWinsTableViewCell: UITableViewCell {
+class WinRateTableViewCell: UITableViewCell {
     private let pieChartView: PieChartView = {
         let pieChartView = PieChartView()
         pieChartView.drawHoleEnabled = true
@@ -28,7 +28,7 @@ class TotalWinsTableViewCell: UITableViewCell {
     }
     
     func configure(with viewModel: Dota2StatsSectionViewModelRepresentable) {
-        guard let viewModel = viewModel as? TotalWinsSectionViewModel else {
+        guard let viewModel = viewModel as? WinRateSectionViewModel else {
             return
         }
         
@@ -47,6 +47,7 @@ class TotalWinsTableViewCell: UITableViewCell {
         chartDataSet.sliceSpace = 3
         
         pieChartView.data = PieChartData(dataSet: chartDataSet)
+        pieChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
     }
     
     private func setup() {
@@ -63,5 +64,10 @@ class TotalWinsTableViewCell: UITableViewCell {
         }
         
         pieChartView.legend.enabled = false
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        pieChartView.data = nil
     }
 }
