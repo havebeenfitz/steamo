@@ -46,7 +46,8 @@ class Dota2StatsViewModel {
                 return
             }
             
-            let semaphore = DispatchSemaphore(value: 1)
+            // Тут мы немного рискуем, но сервер вроде переваривает по 5 запросов за раз
+            let semaphore = DispatchSemaphore(value: 5)
             
             for (index, match) in matches.enumerated() {
                 if self.loadDataWorkItem?.isCancelled ?? false { break }

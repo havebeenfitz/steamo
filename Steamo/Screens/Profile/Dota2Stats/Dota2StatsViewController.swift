@@ -88,13 +88,13 @@ class Dota2StatsViewController: UIViewController {
         viewModel.fetch(progress: { progress in
             SVProgressHUD.showProgress(progress, status: "Fetching recent matches\nThis might take a while")
         }, completion: { [weak self] _ in
-            SVProgressHUD.dismiss()
             self?.reloadTableViewOnMain()
+            SVProgressHUD.dismiss(withDelay: 0.5)
         })
     }
     
     private func reloadTableViewOnMain() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             self.tableView.reloadData()
         }
     }

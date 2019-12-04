@@ -147,23 +147,18 @@ class MatchesByDateTableViewCell: UITableViewCell {
 }
 
 extension MatchesByDateTableViewCell: ChartViewDelegate {
-    // Подменяем дату для барчарта, когда зум достаточно близкий
+
     func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
         guard let viewModel = viewModel, let barChartView = chartView as? BarChartView else {
             return
         }
-        
+        // Абсолютное расстояние между двумя крайними точками на графике
         let xAxisEntryApproximity = abs(((barChartView.xAxis.entries.first ?? 0) - (barChartView.xAxis.entries.last ?? 0)))
         
-        if xAxisEntryApproximity < 2,
-            scaleX > 1 {
+        if xAxisEntryApproximity < 2, scaleX > 1 { // Подменяем дату для барчарта, когда зум достаточно близкий
             setGranularBarChartData(with: viewModel)
-        } else if scaleX < 1, !isDaysDataSet {
+        } else if scaleX < 1, xAxisEntryApproximity >= 2, !isDaysDataSet { // Ставим обратно, если отдаляем
             setBarChartData(with: viewModel)
         }
-    }
-    
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        print(entry.x, entry.y)
     }
 }
