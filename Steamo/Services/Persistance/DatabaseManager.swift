@@ -23,9 +23,11 @@ protocol DatabaseManagerProtocol {
     func save<T: Object>(_ collection: [T], shouldUpdate: Bool)
     /// Загрузить объекты определенного типа с опциональным фильтром
     /// - Parameters:
-    ///   - objectType: Тип объекта для загрузки
     ///   - filter: Фильтр
-    func load<T: Object>(objectType: T.Type, filter: ((T) -> Bool)?) -> [T]
+    func load<T: Object>(filter: ((T) -> Bool)?) -> [T]
+    /// Миграция базы данных
+    /// - Parameter schemaVersion: Новая версия базы данных
+    func migrate(with schemaVersion: UInt64)
 }
 
 class DatabaseManager: DatabaseManagerProtocol {
@@ -33,11 +35,20 @@ class DatabaseManager: DatabaseManagerProtocol {
     private lazy var realm: Realm = {
         do {
             let realm = try Realm()
+            print(realm.configuration.fileURL as Any)
             return realm
         } catch {
             fatalError("Cannot instantiate Realm")
         }
     }()
+    
+    func migrate(with schemaVersion: UInt64) {
+        let config = Realm.Configuration(schemaVersion: schemaVersion, migrationBlock: { migration, _ in
+            print("Succsessful migration  to \(migration.newSchema)")
+        }, deleteRealmIfMigrationNeeded: false)
+        
+        Realm.Configuration.defaultConfiguration = config
+    }
     
     func save<T: Object>(_ object: T, shouldUpdate: Bool) {
         do {
@@ -67,9 +78,8 @@ class DatabaseManager: DatabaseManagerProtocol {
         }
     }
     
-    
-    func load<T: Object>(objectType: T.Type, filter: ((T) -> Bool)?) -> [T] {
-        let objects = realm.objects(objectType)
+    func load<T: Object>(filter: ((T) -> Bool)? = nil) -> [T] {
+        let objects = realm.objects(T.self)
         var result: [T] = []
         if let filter = filter {
             result = objects.filter(filter)

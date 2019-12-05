@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureHUD()
         
         let container = DependencyContainer()
+        
+        // Миграция для реалма, если нужна
+        container.databaseManager.migrate(with: 1)
 
         if #available(iOS 13.0, *) {} else {
             window = UIWindow(frame: UIScreen.main.bounds)

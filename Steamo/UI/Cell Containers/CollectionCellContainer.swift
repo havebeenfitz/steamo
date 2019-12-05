@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionCellContainer<View: UIView>: UICollectionViewCell {
+class CollectionCellContainer<View: ReusableView>: UICollectionViewCell {
     public private(set) lazy var containedView: View = View(frame: .zero)
 
     override init(frame: CGRect) {
@@ -26,5 +26,10 @@ class CollectionCellContainer<View: UIView>: UICollectionViewCell {
         containedView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview()
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        containedView.reuse()
     }
 }

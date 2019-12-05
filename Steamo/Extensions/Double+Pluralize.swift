@@ -11,9 +11,9 @@ import Foundation
 extension Int {
     func steamFormatted() -> String {
         if self == 0 || self == 1 {
-            return "0 min"
+            return "0 m"
         } else if self > 1, self < 120 {
-            return "\(self) mins"
+            return "\(self) m"
         } else {
             return roundedHours()
         }
@@ -22,6 +22,6 @@ extension Int {
     private func roundedHours() -> String {
         let hours = Double(self) / 60
         let roundedHours = (hours * 10).rounded() / 10
-        return "\(roundedHours) hours"
+        return "\(roundedHours) h"
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableCellContainer<View: UIView>: UITableViewCell {
+class TableCellContainer<View: ReusableView>: UITableViewCell {
     public private(set) lazy var containedView: View = View(frame: .zero)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,5 +27,10 @@ class TableCellContainer<View: UIView>: UITableViewCell {
         containedView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview()
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        containedView.reuse()
     }
 }

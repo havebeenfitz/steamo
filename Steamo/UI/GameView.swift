@@ -8,7 +8,11 @@
 
 import UIKit
 
-class GameView: UIView {
+protocol ReusableView: UIView {
+    func reuse()
+}
+
+class GameView: UIView, ReusableView {
     private lazy var gameImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -27,11 +31,34 @@ class GameView: UIView {
 
         return label
     }()
-
-    private lazy var playTimeLabel: SteamoLabel = {
+    
+    private lazy var playtimeTitleLabel: SteamoLabel = {
         let label = SteamoLabel()
+        label.text = "Playtime"
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 16)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.numberOfLines = 0
+
+        return label
+    }()
+
+    private lazy var playtimeValueLabel: SteamoLabel = {
+        let label = SteamoLabel()
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.numberOfLines = 0
+
+        return label
+    }()
+    
+    private lazy var recentPlaytimeValueLabel: SteamoLabel = {
+        let label = SteamoLabel()
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 14)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
@@ -52,7 +79,10 @@ class GameView: UIView {
         guard let game = game, let url = game.calculatedImageIconUrl else { return }
         gameImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         gameTitleLabel.text = game.name
-        playTimeLabel.text = "Playtime:\n\(game.playtimeForever.steamFormatted())"
+        playtimeValueLabel.text = "Total: \(game.playtimeForever.steamFormatted())"
+        if let recentPlaytime = game.playtime2Weeks.value {
+            recentPlaytimeValueLabel.text = "2 weeks: \(recentPlaytime.steamFormatted())"
+        }
     }
 
     private func setup() {
@@ -73,11 +103,26 @@ class GameView: UIView {
             make.height.equalTo(64)
             make.width.equalTo(186)
         }
-
-        addSubview(playTimeLabel)
-        playTimeLabel.snp.makeConstraints { make in
+        
+        addSubview(playtimeTitleLabel)
+        playtimeTitleLabel.snp.makeConstraints { make in
             make.left.equalTo(gameImageView.snp.right).offset(20)
-            make.centerY.equalTo(gameImageView.snp.centerY)
+            make.right.equalToSuperview().inset(20)
+            make.top.equalTo(gameImageView.snp.top)
+        }
+
+        addSubview(playtimeValueLabel)
+        playtimeValueLabel.snp.makeConstraints { make in
+            make.left.equalTo(gameImageView.snp.right).offset(20)
+            make.right.equalToSuperview().inset(20)
+            make.top.equalTo(playtimeTitleLabel.snp.bottom).offset(10)
+        }
+        
+        addSubview(recentPlaytimeValueLabel)
+        recentPlaytimeValueLabel.snp.makeConstraints { make in
+            make.left.equalTo(gameImageView.snp.right).offset(20)
+            make.right.equalToSuperview().inset(20)
+            make.top.equalTo(playtimeValueLabel.snp.bottom)
         }
 
         addSubview(gameTitleLabel)
@@ -85,5 +130,10 @@ class GameView: UIView {
             make.top.equalTo(gameImageView.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
         }
+    }
+    
+    func reuse() {
+        playtimeValueLabel.text = nil
+        recentPlaytimeValueLabel.text = nil
     }
 }

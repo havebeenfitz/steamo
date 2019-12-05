@@ -86,13 +86,13 @@ extension OwnedGamesTableViewCell: UICollectionViewDelegate {
         guard let cell = collectionView.cell(for: indexPath) else {
             return
         }
-        delegate?.cellDidTap(cell, with: viewModel?.games.response?.games?[indexPath.item])
+        delegate?.cellDidTap(cell, with: viewModel?.games[safe: indexPath.item])
     }
 }
 
 extension OwnedGamesTableViewCell: UICollectionViewDataSource {
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        viewModel?.games.response?.games?.count ?? 0
+        viewModel?.games.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -101,7 +101,7 @@ extension OwnedGamesTableViewCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        cell.containedView.configure(with: viewModel.games.response?.games?[indexPath.item])
+        cell.containedView.configure(with: viewModel.games[safe: indexPath.item])
 
         return cell
     }

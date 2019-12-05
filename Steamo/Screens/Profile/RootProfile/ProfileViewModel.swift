@@ -176,7 +176,7 @@ class ProfileViewModel: NSObject {
             return
         }
         if !(games.response?.games?.isEmpty ?? true) {
-            let gamesViewModel = OwnedGamesSectionViewModel(games: games)
+            let gamesViewModel = OwnedGamesSectionViewModel(games: games.response?.games ?? [])
             sectionViewModels.append(gamesViewModel)
         } else {
             sectionViewModels.append(NoOwnedGamesSectionViewModel())

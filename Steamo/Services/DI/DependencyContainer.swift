@@ -9,9 +9,9 @@
 import Foundation
 
 class DependencyContainer {
-    fileprivate lazy var networkAdapter: SteamAPINetworkAdapterProtocol & Dota2APINetworkAdapterProtocol = SteamAPINetworkAdapter()
-    fileprivate lazy var databaseManager: DatabaseManagerProtocol = DatabaseManager()
-    fileprivate lazy var profileRouter: ProfileRouterProtocol = ProfileRouter(container: self)
+    lazy var networkAdapter: SteamAPINetworkAdapterProtocol & Dota2APINetworkAdapterProtocol = SteamAPINetworkAdapter()
+    lazy var databaseManager: DatabaseManagerProtocol = DatabaseManager()
+    lazy var profileRouter: ProfileRouterProtocol = ProfileRouter(container: self)
 }
 
 extension DependencyContainer: ViewModelFactory {
@@ -20,7 +20,7 @@ extension DependencyContainer: ViewModelFactory {
     }
     
     func makeSessionsViewModel() -> SessionsViewModel {
-        return SessionsViewModel(networkAdapter: networkAdapter)
+        return SessionsViewModel(databaseManager: databaseManager, networkAdapter: networkAdapter)
     }
     
     func makeSettingsViewModel() -> SettingsViewModel {

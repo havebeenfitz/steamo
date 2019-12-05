@@ -50,7 +50,7 @@ class SessionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.loadRecentlyPlayedGames { [weak self] _ in
+        viewModel.load { [weak self] _ in
             self?.tableView.reloadData()
         }
     }
@@ -80,14 +80,14 @@ class SessionsViewController: UIViewController {
 
 extension SessionsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return viewModel.games?.response?.totalCount ?? 0
+        return viewModel.games.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let game = viewModel.games?.response?.games?[indexPath.row],
-            let cell: TableCellContainer<GameView> = tableView.dequeue(indexPath: indexPath) else {
+        guard let cell: TableCellContainer<GameView> = tableView.dequeue(indexPath: indexPath) else {
             return UITableViewCell()
         }
+        let game = viewModel.games[indexPath.row]
         cell.containedView.configure(with: game)
 
         return cell

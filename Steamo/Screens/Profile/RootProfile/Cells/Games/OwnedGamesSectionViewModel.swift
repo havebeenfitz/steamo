@@ -16,12 +16,12 @@ class OwnedGamesSectionViewModel: ProfileSectionViewModelRepresentable {
     }
 
     var sectionTitle: String {
-        return "Games (\(games.response?.gameCount ?? 0))"
+        return "Games (\(games.count))"
     }
 
-    var games: Games
+    var games: [Game]
 
-    init(games: Games) {
-        self.games = games
+    init(games: [Game]) {
+        self.games = games.sorted(by: { $0.playtimeForever > $1.playtimeForever })
     }
 }
