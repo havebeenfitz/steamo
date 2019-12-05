@@ -172,6 +172,7 @@ class ProfileViewController: UIViewController {
     private func addObservers() {
         NotificationCenter.default.addObserver(forName: .DidLogout, object: nil, queue: .main) { _ in
             self.navigationController?.popToRootViewController(animated: false)
+            self.viewModel.erase()
             self.toggleUI()
         }
     }

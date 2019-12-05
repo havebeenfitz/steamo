@@ -53,6 +53,7 @@ class SettingsViewController: UIViewController {
     //MARK: Actions
     
     @objc private func logout() {
+        NotificationCenter.default.post(name: .WillLogout, object: nil)
         SteamUser.remove()
         NotificationCenter.default.post(name: .DidLogout, object: nil)
     }

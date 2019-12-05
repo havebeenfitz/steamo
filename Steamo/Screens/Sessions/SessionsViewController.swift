@@ -44,13 +44,13 @@ class SessionsViewController: UIViewController {
     init(viewModel: SessionsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-
         setup()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.load { [weak self] _ in
+        addObservers()
+        viewModel.load(force: false) { [weak self] _ in
             self?.tableView.reloadData()
         }
     }
@@ -60,7 +60,10 @@ class SessionsViewController: UIViewController {
     }
 
     @objc private func refresh() {
-        refreshControl.endRefreshing()
+        viewModel.load(force: true) { [weak self] _ in
+            self?.refreshControl.endRefreshing()
+            self?.tableView.reloadData()
+        }
     }
 
     private func setup() {
@@ -76,18 +79,45 @@ class SessionsViewController: UIViewController {
             make.edges.equalToSuperview()
         }
     }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(forName: .DidLogin, object: nil, queue: .main) { _ in
+            self.viewModel.load(force: false) { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: .WillLogout, object: nil, queue: .main) { _ in
+            self.viewModel.erase()
+            self.tableView.reloadData()
+        }
+    }
 }
 
 extension SessionsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return viewModel.games.count
+    func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
+        return 50
+    }
+
+    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = SectionHeaderView()
+        let title = viewModel.sectionViewModels[safe: section]?.sectionTitle ?? ""
+        view.configure(with: title)
+        return view
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionViewModels.count
+    }
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.sectionViewModels[safe: section]?.rowCount ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: TableCellContainer<GameView> = tableView.dequeue(indexPath: indexPath) else {
             return UITableViewCell()
         }
-        let game = viewModel.games[indexPath.row]
+        let game = viewModel.sectionViewModels[indexPath.section].games[indexPath.row]
         cell.containedView.configure(with: game)
 
         return cell

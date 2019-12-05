@@ -153,6 +153,15 @@ class ProfileViewModel: NSObject {
 
         chainDispatchGroup.notify(queue: .main, work: workItem)
     }
+    
+    /// Очистить состояние
+    func erase() {
+        sectionViewModels = []
+        profiles = nil
+        friendsProfiles = nil
+        friends = nil
+        games = nil
+    }
 
     private func updateData() {
         updateProfile()

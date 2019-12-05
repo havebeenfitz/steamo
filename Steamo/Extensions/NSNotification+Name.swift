@@ -9,6 +9,14 @@
 import Foundation
 
 extension NSNotification.Name {
+    static var DidLogin: Notification.Name {
+        return Notification.Name("DidLogin")
+    }
+    
+    static var WillLogout: Notification.Name {
+        return Notification.Name("WillLogout")
+    }
+    
     static var DidLogout: Notification.Name {
         return Notification.Name("DidLogout")
     }

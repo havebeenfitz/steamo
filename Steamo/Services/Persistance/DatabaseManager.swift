@@ -25,6 +25,9 @@ protocol DatabaseManagerProtocol {
     /// - Parameters:
     ///   - filter: Фильтр
     func load<T: Object>(filter: ((T) -> Bool)?) -> [T]
+    /// Удалить объекты из базы
+    /// - Parameter objects: объекты для удаления
+    func delete<T: Object>(_ objects: [T])
     /// Миграция базы данных
     /// - Parameter schemaVersion: Новая версия базы данных
     func migrate(with schemaVersion: UInt64)
@@ -35,9 +38,10 @@ class DatabaseManager: DatabaseManagerProtocol {
     private lazy var realm: Realm = {
         do {
             let realm = try Realm()
-            print(realm.configuration.fileURL as Any)
+            print("Realm path: \(String(describing: realm.configuration.fileURL))")
             return realm
         } catch {
+            print(error)
             fatalError("Cannot instantiate Realm")
         }
     }()
@@ -65,6 +69,10 @@ class DatabaseManager: DatabaseManagerProtocol {
     }
     
     func save<T: Object>(_ collection: [T], shouldUpdate: Bool) {
+        guard !collection.isEmpty else {
+            return
+        }
+        
         do {
             try realm.write {
                 if shouldUpdate {
@@ -88,6 +96,20 @@ class DatabaseManager: DatabaseManagerProtocol {
             return objects.map { object -> T in
                 return object
             }
+        }
+    }
+    
+    func delete<T: Object>(_ objects: [T]) {
+        guard !objects.isEmpty else {
+            return
+        }
+        
+        do {
+            try realm.write {
+                realm.delete(objects)
+            }
+        } catch {
+            print(error)
         }
     }
 }

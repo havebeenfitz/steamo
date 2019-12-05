@@ -56,6 +56,7 @@ extension LoginViewController: WKNavigationDelegate {
             let user = SteamUser(steamID64: potentialID)
             completion(user)
             dismiss(animated: true, completion: nil)
+            postLoginNotification()
             decisionHandler(.cancel)
         } else if ((url?.absoluteString as NSString?)?.range(of: "steamcommunity.com/id/"))?.location != NSNotFound {
             let urlComponents = url?.absoluteString.components(separatedBy: "/")
@@ -63,6 +64,7 @@ extension LoginViewController: WKNavigationDelegate {
             let user = SteamUser(steamVanityID: potentialVanityID)
             completion(user)
             dismiss(animated: true, completion: nil)
+            postLoginNotification()
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
@@ -71,5 +73,9 @@ extension LoginViewController: WKNavigationDelegate {
 
     func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
         SVProgressHUD.showError(withStatus: "Failed to load URL")
+    }
+    
+    func postLoginNotification() {
+        NotificationCenter.default.post(name: .DidLogin, object: nil)
     }
 }

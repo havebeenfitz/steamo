@@ -51,6 +51,10 @@
 		E46FF16823993DD200272B17 /* MinutesXAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF16723993DD200272B17 /* MinutesXAxisValueFormatter.swift */; };
 		E46FF16A23994BA800272B17 /* Dictionary+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF16923994BA800272B17 /* Dictionary+Add.swift */; };
 		E46FF16C239950A100272B17 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF16B239950A100272B17 /* DatabaseManager.swift */; };
+		E46FF1712399839600272B17 /* SessionSectionViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF1702399839600272B17 /* SessionSectionViewModelRepresentable.swift */; };
+		E46FF173239983FA00272B17 /* TwoWeekSessionsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF172239983FA00272B17 /* TwoWeekSessionsSectionViewModel.swift */; };
+		E46FF1752399842200272B17 /* OlderSessionsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF1742399842200272B17 /* OlderSessionsSectionViewModel.swift */; };
+		E46FF17723998A0B00272B17 /* NoSessionsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF17623998A0B00272B17 /* NoSessionsSectionViewModel.swift */; };
 		E4A9E33E238D8F6700541359 /* Double+Pluralize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */; };
 		E4A9E341238D9AD200541359 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E340238D9AD200541359 /* Friends.swift */; };
 		E4C068AD23955FDB00A3F5F0 /* GameSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068AC23955FDB00A3F5F0 /* GameSchema.swift */; };
@@ -158,6 +162,10 @@
 		E46FF16723993DD200272B17 /* MinutesXAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesXAxisValueFormatter.swift; sourceTree = "<group>"; };
 		E46FF16923994BA800272B17 /* Dictionary+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Add.swift"; sourceTree = "<group>"; };
 		E46FF16B239950A100272B17 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		E46FF1702399839600272B17 /* SessionSectionViewModelRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSectionViewModelRepresentable.swift; sourceTree = "<group>"; };
+		E46FF172239983FA00272B17 /* TwoWeekSessionsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoWeekSessionsSectionViewModel.swift; sourceTree = "<group>"; };
+		E46FF1742399842200272B17 /* OlderSessionsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OlderSessionsSectionViewModel.swift; sourceTree = "<group>"; };
+		E46FF17623998A0B00272B17 /* NoSessionsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionsSectionViewModel.swift; sourceTree = "<group>"; };
 		E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Pluralize.swift"; sourceTree = "<group>"; };
 		E4A9E340238D9AD200541359 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		E4C068AC23955FDB00A3F5F0 /* GameSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSchema.swift; sourceTree = "<group>"; };
@@ -243,8 +251,9 @@
 		E4050374238DB04000EC11A4 /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
-				E4050375238DB05F00EC11A4 /* SessionsViewController.swift */,
+				E46FF16F2399838200272B17 /* Sections */,
 				E4050377238DB06B00EC11A4 /* SessionsViewModel.swift */,
+				E4050375238DB05F00EC11A4 /* SessionsViewController.swift */,
 			);
 			path = Sessions;
 			sourceTree = "<group>";
@@ -368,8 +377,8 @@
 		E4424E17238EFD7F00B5A7BD /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				E4424E18238EFD9000B5A7BD /* SettingsViewController.swift */,
 				E4424E1A238EFDAE00B5A7BD /* SettingsViewModel.swift */,
+				E4424E18238EFD9000B5A7BD /* SettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -430,6 +439,17 @@
 				E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */,
 			);
 			path = Keys;
+			sourceTree = "<group>";
+		};
+		E46FF16F2399838200272B17 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				E46FF1702399839600272B17 /* SessionSectionViewModelRepresentable.swift */,
+				E46FF172239983FA00272B17 /* TwoWeekSessionsSectionViewModel.swift */,
+				E46FF1742399842200272B17 /* OlderSessionsSectionViewModel.swift */,
+				E46FF17623998A0B00272B17 /* NoSessionsSectionViewModel.swift */,
+			);
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		E4C068B023956CC500A3F5F0 /* Cells */ = {
@@ -799,11 +819,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E46FF1752399842200272B17 /* OlderSessionsSectionViewModel.swift in Sources */,
 				E4424E14238EF82F00B5A7BD /* Array+Safe.swift in Sources */,
 				E4C068C72395A2C100A3F5F0 /* NoPlayerAchievementsSectionViewModel.swift in Sources */,
 				E4C068D52396604100A3F5F0 /* MatchDetails.swift in Sources */,
 				E46FF16A23994BA800272B17 /* Dictionary+Add.swift in Sources */,
 				E4D4AAA323971BCB00867281 /* MatchesByDateSectionViewModel.swift in Sources */,
+				E46FF17723998A0B00272B17 /* NoSessionsSectionViewModel.swift in Sources */,
 				E414E23A238B436500A7AB93 /* SteamoNavigationController.swift in Sources */,
 				E4C068D023965D7000A3F5F0 /* SteamAPINetworkAdapter+Dota2.swift in Sources */,
 				E4424E10238EF58E00B5A7BD /* SteamVanity.swift in Sources */,
@@ -820,7 +842,9 @@
 				E4050371238D9D3700EC11A4 /* FriendTableViewCell.swift in Sources */,
 				E414E249238B60F400A7AB93 /* AvatarTableViewCell.swift in Sources */,
 				E4F61646238A828A006D832B /* LoginViewController.swift in Sources */,
+				E46FF173239983FA00272B17 /* TwoWeekSessionsSectionViewModel.swift in Sources */,
 				E414E24B238B624600A7AB93 /* AvatarSectionViewModel.swift in Sources */,
+				E46FF1712399839600272B17 /* SessionSectionViewModelRepresentable.swift in Sources */,
 				E414E24D238B628600A7AB93 /* ProfileSectionViewModelRepresentable.swift in Sources */,
 				E4C068B623956E3900A3F5F0 /* PlayerStatsSectionViewModel.swift in Sources */,
 				E4D4AAAA2397B77800867281 /* DayXAxisValueFormatter.swift in Sources */,
