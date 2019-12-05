@@ -25,7 +25,7 @@ class MatchesByDateSectionViewModel: Dota2StatsSectionViewModelRepresentable {
     
     private var matchDetailsCollection: [MatchDetails]
     private var steamId: String
-    private var data: [DateComponents: MatchResult] = [:]
+    private var data: [Date: MatchResult] = [:]
     
     init(matchDetailsCollection: [MatchDetails],
          steamId: String) {
@@ -34,55 +34,27 @@ class MatchesByDateSectionViewModel: Dota2StatsSectionViewModelRepresentable {
         processData()
     }
     
-    func matchesByDay(_ result: MatchResult) -> [Double: Double] {
+    func matchesBy(_ component: Calendar.Component, result: MatchResult) -> [Double: Double] {
         var chartData: [Double: Double] = [:]
         
         data.filter { $0.value == result }
             .keys
-            .forEach { dateComponent in
-                let dayInYear = dateComponent.calendar?.ordinality(of: .day, in: .year, for: dateComponent.date ?? Date())
-                let dayScale = Double(dayInYear ?? 0)
-                if chartData[dayScale] != nil {
+            .forEach { date in
+                let componentValueInYear = Calendar.autoupdatingCurrent.ordinality(of: component, in: .year, for: date)
+                let componentXAxis = Double(componentValueInYear ?? 0)
+                if chartData[componentXAxis] != nil {
                     switch result {
                     case .won:
-                        chartData[dayScale]! += 1
+                        chartData[componentXAxis]! += 1
                     case .lost:
-                        chartData[dayScale]! -= 1
+                        chartData[componentXAxis]! -= 1
                     }
                 } else {
                     switch result {
                     case .won:
-                        chartData[dayScale] = 1
+                        chartData[componentXAxis] = 1
                     case .lost:
-                        chartData[dayScale] = -1
-                    }
-                }
-        }
-        
-        return chartData
-    }
-    
-    func matchesByHour(_ result: MatchResult) -> [Double: Double] {
-        var chartData: [Double: Double] = [:]
-        
-        data.filter { $0.value == result }
-            .keys
-            .forEach { dateComponent in
-                let hourInYear = dateComponent.calendar?.ordinality(of: .hour, in: .year, for: dateComponent.date ?? Date())
-                let dayScale = Double(hourInYear ?? 0)
-                if chartData[dayScale] != nil {
-                    switch result {
-                    case .won:
-                        chartData[dayScale]! += 1
-                    case .lost:
-                        chartData[dayScale]! -= 1
-                    }
-                } else {
-                    switch result {
-                    case .won:
-                        chartData[dayScale] = 1
-                    case .lost:
-                        chartData[dayScale] = -1
+                        chartData[componentXAxis] = -1
                     }
                 }
         }
@@ -102,13 +74,11 @@ class MatchesByDateSectionViewModel: Dota2StatsSectionViewModelRepresentable {
             let isDireWon = !matchDetails.result.radiantWin
             
             let date = Date(timeIntervalSince1970: matchDetails.result.startTime ?? 0)
-            var dateComponents = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date)
-            dateComponents.calendar = Calendar.current
             
             if (isRadiantPlayer && isRadiantWon) || (isDirePlayer && isDireWon) {
-                data[dateComponents] = .won
+                data[date] = .won
             } else {
-                data[dateComponents] = .lost
+                data[date] = .lost
             }
         }
     }

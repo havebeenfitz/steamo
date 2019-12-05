@@ -11,10 +11,6 @@ import Foundation
 // MARK: - MatchHistory
 struct MatchHistory: Codable {
     let result: MatchHistoryResult
-
-    enum CodingKeys: String, CodingKey {
-        case result = "result"
-    }
 }
 
 // MARK: - Result
@@ -35,7 +31,7 @@ struct MatchHistoryResult: Codable {
 }
 
 // MARK: - Match
-struct Match: Codable {
+struct Match: Codable, Hashable {
     let matchId: Int
     let matchSeqNum: Int
     let startTime: Double
@@ -52,6 +48,14 @@ struct Match: Codable {
         case radiantTeamId = "radiant_team_id"
         case direTeamId = "dire_team_id"
         case players = "players"
+    }
+    
+    static func == (lhs: Match, rhs: Match) -> Bool {
+        return lhs.matchId == rhs.matchId
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.matchId)
     }
 }
 

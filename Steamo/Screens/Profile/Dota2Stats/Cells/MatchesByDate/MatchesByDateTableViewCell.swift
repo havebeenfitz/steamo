@@ -58,8 +58,8 @@ class MatchesByDateTableViewCell: UITableViewCell {
     }
     
     fileprivate func setBarChartData(with viewModel: MatchesByDateSectionViewModel) {
-        let wonByDay = viewModel.matchesByDay(.won)
-        let lostByDay = viewModel.matchesByDay(.lost)
+        let wonByDay = viewModel.matchesBy(.day, result: .won)
+        let lostByDay = viewModel.matchesBy(.day, result: .lost)
         
         var wonEntries: [BarChartDataEntry] = []
         // Сортируем, чтобы нормально зумилось, иначе бары продпадают
@@ -86,6 +86,8 @@ class MatchesByDateTableViewCell: UITableViewCell {
         let data = BarChartData(dataSets: [wonDataSet, lostDataSet])
         
         barChart.xAxis.valueFormatter = daysValueFormatter
+        barChart.xAxis.granularityEnabled = true
+        barChart.xAxis.granularity = 1
         barChart.data = data
         barChart.animate(xAxisDuration: 0.3, yAxisDuration: 0.3, easingOption: .easeOutSine)
         
@@ -93,8 +95,8 @@ class MatchesByDateTableViewCell: UITableViewCell {
     }
     
     fileprivate func setGranularBarChartData(with viewModel: MatchesByDateSectionViewModel) {
-        let wonByHour = viewModel.matchesByHour(.won)
-        let lostByHour = viewModel.matchesByHour(.lost)
+        let wonByHour = viewModel.matchesBy(.hour, result: .won)
+        let lostByHour = viewModel.matchesBy(.hour, result: .lost)
         
         var wonEntries: [BarChartDataEntry] = []
         // Сортируем, чтобы нормально зумилось, иначе бары продпадают
@@ -157,7 +159,7 @@ extension MatchesByDateTableViewCell: ChartViewDelegate {
         
         if xAxisEntryApproximity < 2, scaleX > 1 { // Подменяем дату для барчарта, когда зум достаточно близкий
             setGranularBarChartData(with: viewModel)
-        } else if scaleX < 1, xAxisEntryApproximity >= 2, !isDaysDataSet { // Ставим обратно, если отдаляем
+        } else if scaleX < 1, xAxisEntryApproximity >= 24, !isDaysDataSet { // Ставим обратно, если отдаляем
             setBarChartData(with: viewModel)
         }
     }
