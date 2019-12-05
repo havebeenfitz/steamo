@@ -7,34 +7,30 @@
 //
 
 import UIKit
+import Charts
 
 class PlayerStatTableViewCell: UITableViewCell {
     
-    private let statImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "stats")
+    private let lineChartView: LineChartView = {
+        let lineChartView = LineChartView()
+        lineChartView.leftAxis.enabled = false
+        lineChartView.rightAxis.enabled = false
+        lineChartView.drawGridBackgroundEnabled = false
+        lineChartView.highlightPerTapEnabled = false
+        lineChartView.xAxis.valueFormatter = MinutesXAxisValueFormatter(chart: lineChartView)
+        lineChartView.drawBordersEnabled = false
+        lineChartView.drawMarkers = false
+        
         if #available(iOS 11.0, *) {
-            imageView.tintColor = UIColor(named: "Accent")
+            lineChartView.xAxis.labelTextColor = UIColor(named: "Text") ?? .text
+            lineChartView.leftAxis.labelTextColor = UIColor(named: "Text") ?? .text
+            lineChartView.legend.textColor = UIColor(named: "Text") ?? .text
         } else {
-            imageView.tintColor = .accent
+            lineChartView.xAxis.labelTextColor = .text
+            lineChartView.leftAxis.labelTextColor = .text
+            lineChartView.legend.textColor = .text
         }
-        return imageView
-    }()
-    
-    private let statTitleLabel: SteamoLabel = {
-        let label = SteamoLabel()
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        return label
-    }()
-    
-    private let statValueLabel: SteamoLabel = {
-        let label = SteamoLabel()
-        label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        return label
+        return lineChartView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -51,11 +47,35 @@ class PlayerStatTableViewCell: UITableViewCell {
             return
         }
         
-        let statName = viewModel.statDisplayName(at: index)
-        let statValue = Int(viewModel.stats.playerStats?.stats?[safe: index]?.value ?? 0)
+        setLineChartData(for: viewModel, index: index)
+    }
+    
+    private func setLineChartData(for viewModel: PlayerStatsSectionViewModel, index: Int) {
+        let data = viewModel.lineChartValues(at: index)
+        var lineChartEntries: [ChartDataEntry] = []
         
-        statTitleLabel.text = statName
-        statValueLabel.text = "\(statValue)"
+        for key in data.keys.sorted() {
+            lineChartEntries.append(ChartDataEntry(x: key, y: data[key] ?? 0))
+        }
+        
+        let lineChartDataSet = LineChartDataSet(entries: lineChartEntries)
+        lineChartDataSet.drawCircleHoleEnabled = false
+        lineChartDataSet.circleRadius = 5
+        lineChartDataSet.mode = .horizontalBezier
+        lineChartDataSet.label = viewModel.statDisplayName(at: index)
+        
+        if #available(iOS 11.0, *) {
+            lineChartDataSet.valueTextColor = NSUIColor(named: "Text") ?? .text
+            lineChartDataSet.circleColors = [(NSUIColor(named: "Accent") ?? NSUIColor.accent)]
+            lineChartDataSet.colors = [(NSUIColor(named: "Accent") ?? NSUIColor.accent)]
+        } else {
+            lineChartDataSet.valueTextColor = .text
+            lineChartDataSet.circleColors = [NSUIColor.accent]
+            lineChartDataSet.colors = [NSUIColor.accent]
+        }
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        
+        lineChartView.data = lineChartData
     }
     
     private func setup() {
@@ -65,23 +85,17 @@ class PlayerStatTableViewCell: UITableViewCell {
             contentView.backgroundColor = .background
         }
         
-        contentView.addSubview(statImageView)
-        statImageView.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(20)
-            make.centerY.equalToSuperview()
-            make.height.width.equalTo(20)
+        contentView.addSubview(lineChartView)
+        lineChartView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().inset(40)
+            make.height.equalTo(150).priority(.init(999))
         }
-        
-        contentView.addSubview(statTitleLabel)
-        statTitleLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(20)
-            make.left.equalTo(statImageView.snp.right).offset(20)
-        }
-        
-        contentView.addSubview(statValueLabel)
-        statValueLabel.snp.makeConstraints { make in
-            make.right.top.bottom.equalToSuperview().inset(20)
-            make.left.equalTo(statTitleLabel.snp.right).offset(20)
-        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        lineChartView.data = nil
+        lineChartView.resetZoom()
     }
 }

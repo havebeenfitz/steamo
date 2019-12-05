@@ -10,6 +10,7 @@ import Foundation
 
 class DependencyContainer {
     fileprivate lazy var networkAdapter: SteamAPINetworkAdapterProtocol & Dota2APINetworkAdapterProtocol = SteamAPINetworkAdapter()
+    fileprivate lazy var databaseManager: DatabaseManagerProtocol = DatabaseManager()
     fileprivate lazy var profileRouter: ProfileRouterProtocol = ProfileRouter(container: self)
 }
 

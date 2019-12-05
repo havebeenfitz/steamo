@@ -148,6 +148,4 @@ extension Dota2StatsViewController: UITableViewDelegate, UITableViewDataSource {
         assertionFailure("NewCell")
         return UITableViewCell()
     }
-    
-    
 }
