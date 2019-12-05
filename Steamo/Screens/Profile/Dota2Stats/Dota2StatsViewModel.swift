@@ -9,10 +9,16 @@
 import Foundation
 
 class Dota2StatsViewModel {
+    /// Массив вьюмоделей секций
     var sectionViewModels: [Dota2StatsSectionViewModelRepresentable] = []
-    
+    /// История Матчей
     var matchHistory: MatchHistory?
+    /// Все матчи игрока. Нужны, чтобы забрать id и передать их в эндпоинт детализации
+    ///
+    /// Маленький хак. Т.к. пэйджинг реализован от последнего матча, мы получаем один и тот же матч на следующией странице.
+    /// Последний == первый. Сет позволяет исключить дубликаты
     var matches: Set<Match> = Set()
+    /// Массив детализаций по матчу
     var matchDetailsCollection: [MatchDetails] = []
     
     private var resultsRemaining: Int = 1
@@ -118,6 +124,7 @@ class Dota2StatsViewModel {
         }
     }
     
+    /// Отменить загрузку при выходе с экрана
     func cancelRequest() {
         loadDataWorkItem?.cancel()
     }
