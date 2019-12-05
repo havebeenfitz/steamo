@@ -48,7 +48,7 @@ class DatabaseManager: DatabaseManagerProtocol {
     
     func migrate(with schemaVersion: UInt64) {
         let config = Realm.Configuration(schemaVersion: schemaVersion, migrationBlock: { migration, _ in
-            print("Succsessful migration  to \(migration.newSchema)")
+            print("Successful migration to \(migration.newSchema)")
         }, deleteRealmIfMigrationNeeded: false)
         
         Realm.Configuration.defaultConfiguration = config

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol ReusableView: UIView {
+    /// Подготовить к переиспользованию
     func reuse()
 }
 

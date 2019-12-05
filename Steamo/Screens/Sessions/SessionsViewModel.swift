@@ -34,6 +34,8 @@ class SessionsViewModel: NSObject {
     ///   - completion: блок по завершению запроса
     func load(force: Bool, completion: @escaping ((Swift.Result<Void, SteamoError>) -> Void)) {
         guard let steamId = steamId else {
+            sectionViewModels = [NoSessionsSectionViewModel()]
+            completion(.failure(.noData))
             return
         }
         
@@ -88,6 +90,11 @@ class SessionsViewModel: NSObject {
     }
     
     private func appendSections(with games: [Game]) {
+        guard !games.isEmpty else {
+            sectionViewModels.append(NoSessionsSectionViewModel())
+            return
+        }
+        
         let twoWeeksSessions = games.filter { !$0.isOlderThan2Weeks }
         let olderSessions = games.filter { $0.isOlderThan2Weeks }
             .map { game -> Game in

@@ -30,6 +30,7 @@ class SessionsViewController: UIViewController {
         }
 
         tableView.register(class: TableCellContainer<GameView>.self)
+        tableView.register(class: UITableViewCell.self)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -114,12 +115,29 @@ extension SessionsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: TableCellContainer<GameView> = tableView.dequeue(indexPath: indexPath) else {
-            return UITableViewCell()
+        guard let sectionViewModel = viewModel.sectionViewModels[safe: indexPath.section] else {
+            let cell = UITableViewCell()
+            cell.backgroundColor = .clear
+            return cell
         }
-        let game = viewModel.sectionViewModels[indexPath.section].games[indexPath.row]
-        cell.containedView.configure(with: game)
-
-        return cell
+        
+        switch sectionViewModel.type {
+        case .inTwoWeeks, .older:
+            if let cell: TableCellContainer<GameView> = tableView.dequeue(indexPath: indexPath) {
+                let game = sectionViewModel.games[indexPath.row]
+                cell.containedView.configure(with: game)
+                return cell
+            }
+        case .nothing:
+            if let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.accessoryType = .detailButton
+                cell.textLabel?.text = "No recent sessions to display"
+                cell.backgroundColor = .clear
+                return cell
+            }
+        }
+        
+        assertionFailure("New cell")
+        return UITableViewCell()
     }
 }

@@ -47,7 +47,6 @@
 		E4424E1B238EFDAE00B5A7BD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4424E1A238EFDAE00B5A7BD /* SettingsViewModel.swift */; };
 		E4424E1D2390450400B5A7BD /* ProfileShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4424E1C2390450400B5A7BD /* ProfileShimmeringView.swift */; };
 		E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */; };
-		E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */; };
 		E46FF16823993DD200272B17 /* MinutesXAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF16723993DD200272B17 /* MinutesXAxisValueFormatter.swift */; };
 		E46FF16A23994BA800272B17 /* Dictionary+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF16923994BA800272B17 /* Dictionary+Add.swift */; };
 		E46FF16C239950A100272B17 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF16B239950A100272B17 /* DatabaseManager.swift */; };
@@ -158,7 +157,6 @@
 		E4424E1A238EFDAE00B5A7BD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E4424E1C2390450400B5A7BD /* ProfileShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileShimmeringView.swift; sourceTree = "<group>"; };
 		E4687507238AF1ED00D7083E /* AuthRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestBuilder.swift; sourceTree = "<group>"; };
-		E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamoUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		E46FF16723993DD200272B17 /* MinutesXAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesXAxisValueFormatter.swift; sourceTree = "<group>"; };
 		E46FF16923994BA800272B17 /* Dictionary+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Add.swift"; sourceTree = "<group>"; };
 		E46FF16B239950A100272B17 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -298,7 +296,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E414E247238B60E600A7AB93 /* Cells */ = {
+		E414E247238B60E600A7AB93 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
 				E414E24C238B628600A7AB93 /* ProfileSectionViewModelRepresentable.swift */,
@@ -306,7 +304,7 @@
 				E45559AD238D9C97000A5AC8 /* Games */,
 				E45559AE238D9CA8000A5AC8 /* Friends */,
 			);
-			path = Cells;
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		E434978823859F9A0047B750 = {
@@ -377,6 +375,7 @@
 		E4424E17238EFD7F00B5A7BD /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E4AE2B532399B1C400CDD260 /* Cells */,
 				E4424E1A238EFDAE00B5A7BD /* SettingsViewModel.swift */,
 				E4424E18238EFD9000B5A7BD /* SettingsViewController.swift */,
 			);
@@ -427,7 +426,7 @@
 				E4D4AAA82397B76400867281 /* Charts */,
 				E4C068E12396C4F700A3F5F0 /* DI */,
 				E414E231238B3E6800A7AB93 /* Network */,
-				E4C068D62396786B00A3F5F0 /* Persistance */,
+				E4C068D62396786B00A3F5F0 /* Persistence */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -436,7 +435,6 @@
 			isa = PBXGroup;
 			children = (
 				E4F61647238A84CE006D832B /* API.swift */,
-				E468750A238B245700D7083E /* SteamoUserDefaultsKeys.swift */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
@@ -452,7 +450,14 @@
 			path = Sections;
 			sourceTree = "<group>";
 		};
-		E4C068B023956CC500A3F5F0 /* Cells */ = {
+		E4AE2B532399B1C400CDD260 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E4C068B023956CC500A3F5F0 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
 				E4C068B123956CD900A3F5F0 /* StatsSectionViewModelRepresentable.swift */,
@@ -460,7 +465,7 @@
 				E4C068B423956CE300A3F5F0 /* Achievements */,
 				E4C068BF23959C5300A3F5F0 /* Error */,
 			);
-			path = Cells;
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		E4C068B323956CDE00A3F5F0 /* Stats */ = {
@@ -495,7 +500,7 @@
 		E4C068CA23965C0700A3F5F0 /* Dota2Stats */ = {
 			isa = PBXGroup;
 			children = (
-				E4C068D72396821C00A3F5F0 /* Cells */,
+				E4C068D72396821C00A3F5F0 /* Sections */,
 				E4C068CD23965C6200A3F5F0 /* Dota2StatsViewModel.swift */,
 				E4C068CB23965C2100A3F5F0 /* Dota2StatsViewController.swift */,
 			);
@@ -511,15 +516,15 @@
 			path = Dota2;
 			sourceTree = "<group>";
 		};
-		E4C068D62396786B00A3F5F0 /* Persistance */ = {
+		E4C068D62396786B00A3F5F0 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
 				E46FF16B239950A100272B17 /* DatabaseManager.swift */,
 			);
-			path = Persistance;
+			path = Persistence;
 			sourceTree = "<group>";
 		};
-		E4C068D72396821C00A3F5F0 /* Cells */ = {
+		E4C068D72396821C00A3F5F0 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
 				E4C068D82396828C00A3F5F0 /* Dota2StatsSectionViewModelRepresentable.swift */,
@@ -527,7 +532,7 @@
 				E4D4AA9F23971B9300867281 /* MatchesByDate */,
 				E4D4AA9C23970DFB00867281 /* Error */,
 			);
-			path = Cells;
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		E4C068DA2396830E00A3F5F0 /* WinRate */ = {
@@ -587,7 +592,7 @@
 		E4EA79D923953266006C5890 /* RootProfile */ = {
 			isa = PBXGroup;
 			children = (
-				E414E247238B60E600A7AB93 /* Cells */,
+				E414E247238B60E600A7AB93 /* Sections */,
 				E414E22F238B3D9300A7AB93 /* ProfileViewModel.swift */,
 				E4F6164B238A89E7006D832B /* ProfileViewController.swift */,
 			);
@@ -597,7 +602,7 @@
 		E4EA79DA23953274006C5890 /* GameStats */ = {
 			isa = PBXGroup;
 			children = (
-				E4C068B023956CC500A3F5F0 /* Cells */,
+				E4C068B023956CC500A3F5F0 /* Sections */,
 				E4EA79DD2395328D006C5890 /* GameStatsViewModel.swift */,
 				E4EA79DB23953282006C5890 /* GameStatsViewController.swift */,
 			);
@@ -887,7 +892,6 @@
 				E4D4AA982397044700867281 /* NoFriendsSectionViewModel.swift in Sources */,
 				E4D4AA9E23970E1800867281 /* Dota2ErrorSectionViewModel.swift in Sources */,
 				E414E233238B3E7800A7AB93 /* SteamAPINetworkAdapter.swift in Sources */,
-				E468750B238B245700D7083E /* SteamoUserDefaultsKeys.swift in Sources */,
 				E4424E0E238EF54200B5A7BD /* String+SteamId.swift in Sources */,
 				E4C068C52395A28600A3F5F0 /* NoPlayerStatsSectionViewModel.swift in Sources */,
 				E4C068CC23965C2100A3F5F0 /* Dota2StatsViewController.swift in Sources */,
