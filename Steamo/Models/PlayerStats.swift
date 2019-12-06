@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import Realm
+import RealmSwift
 
 // MARK: - PlayerStats
-struct PlayerStats: Codable {
+class PlayerStats: Codable {
     let playerStats: Stats?
 
     enum CodingKeys: String, CodingKey {
@@ -18,7 +20,7 @@ struct PlayerStats: Codable {
 }
 
 // MARK: - Playerstats
-struct Stats: Codable {
+class Stats: Codable {
     let steamId: String?
     let gameName: String?
     let stats: [PlayerStat]?
@@ -26,20 +28,75 @@ struct Stats: Codable {
 
     enum CodingKeys: String, CodingKey {
         case steamId = "steamID"
-        case gameName = "gameName"
-        case stats = "stats"
-        case achievements = "achievements"
+        case gameName
+        case stats
+        case achievements
     }
 }
 
 // MARK: - Achievement
-struct PlayerAchievement: Codable, Hashable {
+class PlayerAchievement: Codable, Hashable {
     let name: String
     let achieved: Int
+    
+    static func == (lhs: PlayerAchievement, rhs: PlayerAchievement) -> Bool {
+        return lhs.name == rhs.name && lhs.achieved == rhs.achieved
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name.hashValue + achieved)
+    }
 }
 
 // MARK: - Stat
-struct PlayerStat: Codable {
-    let name: String
-    let value: Double
+class PlayerStat: Object, Codable {
+    @objc dynamic var uuid: String? = UUID().uuidString
+    @objc dynamic var ownerSteamId: String? = ""
+    var gameId: RealmOptional<Int> = RealmOptional()
+    var createdAt: RealmOptional<TimeInterval> = RealmOptional()
+    @objc dynamic var name: String = ""
+    @objc dynamic var value: Double = 0
+    @objc dynamic var displayName: String? = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case value
+    }
+    
+    override class func primaryKey() -> String? {
+        return "uuid"
+    }
+    
+    required init() {
+        super.init()
+    }
+    
+    convenience init(gameId: Int, createdAt: TimeInterval, ownerSteamId: String, displayName: String, stat: PlayerStat) {
+        self.init()
+        self.gameId.value = gameId
+        self.createdAt.value = createdAt
+        self.ownerSteamId = ownerSteamId
+        self.uuid = stat.uuid
+        self.name = stat.name
+        self.value = stat.value
+        self.displayName = displayName
+    }
+    
+    convenience init(name: String, value: Double) {
+        self.init()
+        self.uuid = UUID().uuidString
+        self.name = name
+        self.value = value
+    }
+    
+    convenience required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let name = try container.decode(String.self, forKey: .name)
+        let value = try container.decode(Double.self, forKey: .value)
+        self.init(name: name, value: value)
+    }
+    
+    
 }
+
+

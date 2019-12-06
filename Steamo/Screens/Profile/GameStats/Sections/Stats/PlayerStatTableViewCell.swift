@@ -60,7 +60,7 @@ class PlayerStatTableViewCell: UITableViewCell {
         
         let lineChartDataSet = LineChartDataSet(entries: lineChartEntries)
         lineChartDataSet.drawCircleHoleEnabled = false
-        lineChartDataSet.circleRadius = 5
+        lineChartDataSet.circleRadius = 3
         lineChartDataSet.mode = .horizontalBezier
         lineChartDataSet.label = viewModel.statDisplayName(at: index)
         
@@ -95,7 +95,7 @@ class PlayerStatTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        lineChartView.data = nil
-        lineChartView.resetZoom()
+//        lineChartView.data = nil
+//        lineChartView.resetZoom()
     }
 }

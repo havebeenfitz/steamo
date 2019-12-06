@@ -28,7 +28,7 @@ extension DependencyContainer: ViewModelFactory {
     }
     
     func makeAnyGameStatsViewModel(gameId: Int, steamId: String) -> GameStatsViewModel {
-        return GameStatsViewModel(networkAdapter: networkAdapter, gameId: gameId, steamId: steamId)
+        return GameStatsViewModel(databaseManager: databaseManager, networkAdapter: networkAdapter, gameId: gameId, steamId: steamId)
     }
     
     func makeDota2StatsViewModel(steamId: String) -> Dota2StatsViewModel {

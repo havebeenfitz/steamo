@@ -14,55 +14,57 @@ class PlayerStatsSectionViewModel: StatsSectionViewModelRepresentable {
     }
     
     var rowCount: Int {
-        return stats.playerStats?.stats?.count ?? 0
+        return stats.count
     }
     
     var sectionTitle: String {
         return "Stats"
     }
     
-    private var values: [Double: Double] = [487700: 500, 487720: 300]
+    /// [name: [x: y]]
+    private var values: [String: [Double: Double]] = [:]
+    private var stats: [PlayerStat] = []
+    private let ownerSteamId: String
+    private let gameId: Int
+    private let databaseManager: DatabaseManagerProtocol
     
-    private var stats: PlayerStats
-    private var gameSchema: GameSchema?
-    
-    init(stats: PlayerStats, gameSchema: GameSchema?) {
-        self.stats = stats
-        self.gameSchema = gameSchema
+    init(ownerSteamId: String, gameId: Int, databaseManager: DatabaseManagerProtocol) {
+        self.ownerSteamId = ownerSteamId
+        self.gameId = gameId
+        self.databaseManager = databaseManager
         loadValuesFromDatabase()
     }
     
     func statDisplayName(at index: Int) -> String {
-        let allStats = gameSchema?.game.availableGameStats?.stats
-        let playerStat = allStats?.first(where: { $0.name == stats.playerStats?.stats?[safe: index]?.name })
-        
-        let isStatNameAvailable = !(playerStat?.displayName?.isEmpty ?? true)
-        
-        return (isStatNameAvailable ? playerStat?.displayName : playerStat?.name) ?? "No stat name"
+        if let statName = stats[index].displayName, !statName.isEmpty {
+            return statName
+        }
+        return stats[index].name
     }
     
     func lineChartValues(at index: Int) -> [Double: Double] {
-        var newValues: [Double: Double] = [:]
-        
-        let date = Date()
-        let minuteInYear = Calendar.autoupdatingCurrent.ordinality(of: .minute, in: .year, for: date)
-        let minuteInYearDbl = Double(minuteInYear ?? 0)
-        
-        let date1 = Date().addingTimeInterval(500)
-        let minuteInYear1 = Calendar.autoupdatingCurrent.ordinality(of: .minute, in: .year, for: date1)
-        let minuteInYearDbl1 = Double(minuteInYear1 ?? 0)
-        
-        let date2 = Date().addingTimeInterval(1000)
-        let minuteInYear2 = Calendar.autoupdatingCurrent.ordinality(of: .minute, in: .year, for: date2)
-        let minuteInYearDbl2 = Double(minuteInYear2 ?? 0)
-        
-        newValues[minuteInYearDbl] = stats.playerStats?.stats?[safe: index]?.value
-        newValues[minuteInYearDbl1] = 1000
-        newValues[minuteInYearDbl2] = 2500
-        return values + newValues
+        let name = stats[index].name
+        return values[name] ?? [:]
     }
     
     private func loadValuesFromDatabase() {
+        let stats: [PlayerStat] = databaseManager.load(filter: { $0.gameId.value == self.gameId && $0.ownerSteamId == self.ownerSteamId })
+        values = stats.reduce(into: [String: [Double: Double]]()) { dict, stat in
+            let date = Date(timeIntervalSince1970: stat.createdAt.value ?? 0)
+            let minuteInYear = Calendar.autoupdatingCurrent.ordinality(of: .minute, in: .year, for: date)
+            if dict[stat.name] != nil {
+                dict[stat.name]! + [Double(minuteInYear ?? 0): stat.value]
+            } else {
+                dict[stat.name] = [Double(minuteInYear ?? 0): stat.value]
+            }
+        }
         
+        // Избавляемся от дубликатов
+        self.stats = stats.reduce(into: [] , { result, stat in
+            let containsStat = result.contains(where: { $0.name == stat.name })
+            if !containsStat {
+                result.append(stat)
+            }
+        })
     }
 }

@@ -9,6 +9,7 @@
 import Foundation
 
 extension Dictionary {
+    @discardableResult
     static func + (lhs: inout Dictionary, rhs: Dictionary) -> Dictionary {
         for key in rhs.keys {
             lhs[key] = rhs[key]

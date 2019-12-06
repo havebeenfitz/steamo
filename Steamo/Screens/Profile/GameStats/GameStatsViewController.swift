@@ -80,7 +80,7 @@ class GameStatsViewController: UIViewController {
     
     private func loadData() {
         SVProgressHUD.show(withStatus: "Fetching stats")
-        viewModel.load { [weak self] _ in
+        viewModel.load(force: false) { [weak self] _ in
             SVProgressHUD.dismiss()
             self?.reloadTableViewOnMain()
         }
