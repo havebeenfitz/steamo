@@ -133,6 +133,8 @@ class MatchesByDateTableViewCell: UITableViewCell {
             contentView.backgroundColor = .background
         }
         
+        selectionStyle = .none
+        
         contentView.addSubview(barChart)
         barChart.snp.makeConstraints { make in
             make.left.right.equalToSuperview()

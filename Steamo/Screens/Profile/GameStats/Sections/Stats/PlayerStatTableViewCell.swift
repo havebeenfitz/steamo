@@ -74,7 +74,7 @@ class PlayerStatTableViewCell: UITableViewCell {
             lineChartDataSet.colors = [NSUIColor.accent]
         }
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
-        
+    
         lineChartView.data = lineChartData
     }
     
@@ -84,6 +84,8 @@ class PlayerStatTableViewCell: UITableViewCell {
         } else {
             contentView.backgroundColor = .background
         }
+        
+        selectionStyle = .none
         
         contentView.addSubview(lineChartView)
         lineChartView.snp.makeConstraints { make in
@@ -95,7 +97,7 @@ class PlayerStatTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        lineChartView.data = nil
-//        lineChartView.resetZoom()
+        lineChartView.data = nil
+        lineChartView.resetZoom()
     }
 }

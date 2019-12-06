@@ -51,7 +51,7 @@ class GameView: UIView, ReusableView {
         label.font = UIFont.systemFont(ofSize: 14)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
-        label.numberOfLines = 0
+        label.numberOfLines = 1
 
         return label
     }()
@@ -62,7 +62,7 @@ class GameView: UIView, ReusableView {
         label.font = UIFont.systemFont(ofSize: 14)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
-        label.numberOfLines = 0
+        label.numberOfLines = 1
 
         return label
     }()

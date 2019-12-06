@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
         let tableView = UITableView()
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
+        tableView.delaysContentTouches = false
         tableView.alwaysBounceVertical = false
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension

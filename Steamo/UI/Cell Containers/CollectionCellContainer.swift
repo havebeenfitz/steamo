@@ -10,6 +10,12 @@ import UIKit
 
 class CollectionCellContainer<View: ReusableView>: UICollectionViewCell {
     public private(set) lazy var containedView: View = View(frame: .zero)
+    
+    override var isHighlighted: Bool {
+        didSet {
+            scale(isHighlighted)
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +29,16 @@ class CollectionCellContainer<View: ReusableView>: UICollectionViewCell {
 
     private func setup() {
         contentView.addSubview(containedView)
-        containedView.snp.makeConstraints { maker in
-            maker.edges.equalToSuperview()
+        containedView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func scale(_ isHighlited: Bool) {
+        if isHighlited {
+            transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
+        } else {
+            transform = .identity
         }
     }
     

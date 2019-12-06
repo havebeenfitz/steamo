@@ -68,7 +68,7 @@ class SessionsViewController: UIViewController {
     }
 
     private func setup() {
-        title = "Sessions"
+        title = "My sessions"
         if #available(iOS 11.0, *) {
             view.backgroundColor = UIColor(named: "Background")
         } else {

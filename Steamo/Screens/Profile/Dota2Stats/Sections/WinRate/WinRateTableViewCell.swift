@@ -57,6 +57,8 @@ class WinRateTableViewCell: UITableViewCell {
             contentView.backgroundColor = .background
         }
         
+        selectionStyle = .none
+        
         contentView.addSubview(pieChartView)
         pieChartView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(20)

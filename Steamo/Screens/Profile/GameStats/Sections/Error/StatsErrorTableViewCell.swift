@@ -68,6 +68,8 @@ class StatsErrorTableViewCell: UITableViewCell {
             contentView.backgroundColor = .background
         }
         
+        selectionStyle = .none
+        
         let stackView = UIStackView(arrangedSubviews: [errorImageView, errorLabel])
         stackView.axis = .vertical
         stackView.spacing = 20

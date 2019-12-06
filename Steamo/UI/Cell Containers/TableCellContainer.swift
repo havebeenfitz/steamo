@@ -22,6 +22,8 @@ class TableCellContainer<View: ReusableView>: UITableViewCell {
 
     private func setup() {
         backgroundColor = .clear
+        
+        selectionStyle = .none
 
         contentView.addSubview(containedView)
         containedView.snp.makeConstraints { maker in
