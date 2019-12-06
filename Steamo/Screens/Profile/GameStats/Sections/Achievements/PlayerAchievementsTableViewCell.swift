@@ -44,7 +44,7 @@ class PlayerAchievementsTableViewCell: UITableViewCell {
         }
         
         if let url = URL(string: viewModel.achievementLogoPath(at: index)) {
-            achievementLogoImageView.kf.setImage(with: url)
+            achievementLogoImageView.kf.setImage(with: url, placeholder: UIImage(named: "achPlaceholder"), options: [.backgroundDecode])
         }
         
         achievementTitleLabel.text = viewModel.achievementDisplayName(at: index)

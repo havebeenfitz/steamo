@@ -14,31 +14,37 @@ class PlayerAchievementsSectionViewModel: StatsSectionViewModelRepresentable {
     }
     
     var rowCount: Int {
-        return gameSchema?.game.availableGameStats?.achievements?.count ?? 0
+        return achievementSchemas.count
     }
     
     var sectionTitle: String {
         return "Achievements"
     }
     
-    var stats: PlayerStats
-    var gameSchema: GameSchema?
+    private var ownerSteamId: String
+    private var gameId: Int
+    private var achievementSchemas: [AchievementSchema] = []
+    private var playerAchievements: [PlayerAchievement] = []
+    private var databaseManager: DatabaseManagerProtocol
     
-    init(stats: PlayerStats, gameSchema: GameSchema?) {
-        self.stats = stats
-        self.gameSchema = gameSchema
+    
+    init(ownerSteamId: String, gameId: Int, databaseManager: DatabaseManagerProtocol) {
+        self.ownerSteamId = ownerSteamId
+        self.gameId = gameId
+        self.databaseManager = databaseManager
+        updateFromDatabase()
     }
     
     /// Найти название ачивки по схеме игры
     /// - Parameter index: индекс
     func achievementDisplayName(at index: Int) -> String {
-        let schemeAch = gameSchema?.game.availableGameStats?.achievements?[safe: index]
-        return schemeAch?.displayName ?? schemeAch?.name ?? "No achievemnt name"
+        let achScheme = achievementSchemas[safe: index]
+        return achScheme?.displayName ?? achScheme?.name ?? "No achievemnt name"
     }
     
     func achievementDescription(at index: Int) -> String {
-        let schemeAch = gameSchema?.game.availableGameStats?.achievements?[safe: index]
-        return schemeAch?.description ?? ""
+        let achScheme = achievementSchemas[safe: index]
+        return achScheme?.descriptionValue ?? ""
     }
     
     /// Найти картинку ачивки по схеме игры
@@ -46,13 +52,26 @@ class PlayerAchievementsSectionViewModel: StatsSectionViewModelRepresentable {
     ///
     /// - Parameter index: индекс
     func achievementLogoPath(at index: Int) -> String {
-        let playerAchievements = stats.playerStats?.achievements ?? []
-        let allAchievements = gameSchema?.game.availableGameStats?.achievements
-        
-        let schemeAch = allAchievements?[safe: index]
-    
+        let schemeAch = achievementSchemas[safe: index]
         let matchedAch = playerAchievements.first(where: { $0.name == schemeAch?.name })
         
         return (matchedAch?.achieved == 1 ? schemeAch?.icon : schemeAch?.iconGray) ?? ""
+    }
+    
+    private func updateFromDatabase() {
+        let achSchemas: [AchievementSchema] = databaseManager.load(filter: { $0.gameId.value == self.gameId })
+        self.achievementSchemas = achSchemas
+        
+        let playerAchievements: [PlayerAchievement] = databaseManager.load(filter: { $0.gameId.value == self.gameId && $0.ownerSteamId == self.ownerSteamId })
+        
+        let strippedPlayerAches: [PlayerAchievement] = playerAchievements.reduce(into: []) { result, ach in
+            if result.contains(where: { $0.name == ach.name }) && ach.achieved == 1 {
+                return
+            } else {
+                result.append(ach)
+            }
+        }
+        
+        self.playerAchievements = strippedPlayerAches
     }
 }

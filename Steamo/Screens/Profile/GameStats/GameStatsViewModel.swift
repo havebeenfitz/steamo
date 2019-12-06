@@ -80,25 +80,25 @@ class GameStatsViewModel {
             let dbStatSchemas = statSchemas.map { statSchema -> StatSchema in
                 return StatSchema(gameId: self.gameId, stat: statSchema)
             }
-            self.databaseManager.save(dbStatSchemas, shouldUpdate: true)
+            databaseManager.save(dbStatSchemas, shouldUpdate: true)
+        }
+        
+        if let achievementSchemas: [AchievementSchema] = schema.game.availableGameStats?.achievements {
+            let dbAchSchemas = achievementSchemas.map { achSchema  -> AchievementSchema in
+                return AchievementSchema(gameId: self.gameId, achievementSchema: achSchema)
+            }
+            databaseManager.save(dbAchSchemas, shouldUpdate: true)
         }
     }
     
     /// Добавить новые секции, если есть или показать заглушку
     /// - Parameter stats: статистика и ачивки
     private func handleNew(_ stats: PlayerStats) {
-        if let playerStats = stats.playerStats?.stats {
-            let dbPlayerStats = playerStats.map { stat -> PlayerStat in
-                let statSchemas: [StatSchema] = databaseManager.load(filter: { $0.gameId.value == self.gameId })
-                let displayName: String = statSchemas.first(where: { $0.name == stat.name })?.displayName ?? stat.name
-                let createdAt = Date().timeIntervalSince1970
-                return PlayerStat(gameId: self.gameId, createdAt: createdAt, ownerSteamId: self.steamId, displayName: displayName, stat: stat)
-            }
-            databaseManager.save(dbPlayerStats, shouldUpdate: true)
-        }
+        savePlayerStats(stats)
+        savePlayerAchievements(stats)
         
         let playerStatsSectionViewModel = PlayerStatsSectionViewModel(ownerSteamId: steamId, gameId: gameId, databaseManager: databaseManager)
-        let playerAchievementsSectionViewModel = PlayerAchievementsSectionViewModel(stats: stats, gameSchema: self.gameSchema)
+        let playerAchievementsSectionViewModel = PlayerAchievementsSectionViewModel(ownerSteamId: steamId, gameId: gameId, databaseManager: databaseManager)
        
         let isPlayerStatsAvailable = !(stats.playerStats?.stats?.isEmpty ?? true)
         let isPlayerAchievementsAvaliable = !(stats.playerStats?.achievements?.isEmpty ?? true)
@@ -118,6 +118,27 @@ class GameStatsViewModel {
             sectionViewModels.append(playerAchievementsSectionViewModel)
         } else {
             sectionViewModels.append(NoPlayerAchievementsSectionViewModel())
+        }
+    }
+    
+    private func savePlayerStats(_ stats: PlayerStats) {
+        if let playerStats = stats.playerStats?.stats {
+            let dbPlayerStats = playerStats.map { stat -> PlayerStat in
+                let statSchemas: [StatSchema] = databaseManager.load(filter: { $0.gameId.value == self.gameId })
+                let displayName: String = statSchemas.first(where: { $0.name == stat.name })?.displayName ?? stat.name
+                let createdAt = Date().timeIntervalSince1970
+                return PlayerStat(gameId: self.gameId, createdAt: createdAt, ownerSteamId: self.steamId, displayName: displayName, stat: stat)
+            }
+            databaseManager.save(dbPlayerStats, shouldUpdate: true)
+        }
+    }
+    
+    private func savePlayerAchievements(_ stats: PlayerStats) {
+        if let playerAchievements = stats.playerStats?.achievements {
+            let dbPlayerAchievements = playerAchievements.map { ach -> PlayerAchievement in
+                return PlayerAchievement(gameId: self.gameId, ownerSteamId: self.steamId, achievement: ach)
+            }
+            databaseManager.save(dbPlayerAchievements, shouldUpdate: true)
         }
     }
     

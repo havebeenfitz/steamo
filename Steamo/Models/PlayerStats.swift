@@ -35,17 +35,49 @@ class Stats: Codable {
 }
 
 // MARK: - Achievement
-class PlayerAchievement: Codable, Hashable {
-    let name: String
-    let achieved: Int
-    
-    static func == (lhs: PlayerAchievement, rhs: PlayerAchievement) -> Bool {
-        return lhs.name == rhs.name && lhs.achieved == rhs.achieved
+class PlayerAchievement: Object, Codable {
+    @objc dynamic var uuid: String? = UUID().uuidString
+    @objc dynamic var ownerSteamId: String? = ""
+    var gameId: RealmOptional<Int> = RealmOptional()
+    @objc dynamic var name: String = ""
+    @objc dynamic var achieved: Int = 0
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case achieved
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name.hashValue + achieved)
+    override class func primaryKey() -> String? {
+        return "uuid"
     }
+    
+    required init() {
+        super.init()
+    }
+    
+    convenience init(gameId: Int, ownerSteamId: String, achievement: PlayerAchievement) {
+        self.init()
+        self.gameId.value = gameId
+        self.ownerSteamId = ownerSteamId
+        self.uuid = achievement.uuid
+        self.name = achievement.name
+        self.achieved = achievement.achieved
+    }
+    
+    convenience init(name: String, achieved: Int) {
+        self.init()
+        self.uuid = UUID().uuidString
+        self.name = name
+        self.achieved = achieved
+    }
+    
+    convenience required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let name = try container.decode(String.self, forKey: .name)
+        let achieved = try container.decode(Int.self, forKey: .achieved)
+        self.init(name: name, achieved: achieved)
+    }
+    
 }
 
 // MARK: - Stat
@@ -95,8 +127,6 @@ class PlayerStat: Object, Codable {
         let value = try container.decode(Double.self, forKey: .value)
         self.init(name: name, value: value)
     }
-    
-    
 }
 
 
