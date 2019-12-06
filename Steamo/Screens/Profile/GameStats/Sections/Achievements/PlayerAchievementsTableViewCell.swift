@@ -57,6 +57,8 @@ class PlayerAchievementsTableViewCell: UITableViewCell {
         } else {
             contentView.backgroundColor = .background
         }
+        selectionStyle = .none
+        backgroundColor = .clear
         
         contentView.addSubview(achievementLogoImageView)
         achievementLogoImageView.snp.makeConstraints { make in

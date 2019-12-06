@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
         tableView.register(class: AvatarTableViewCell.self)
         tableView.register(class: OwnedGamesTableViewCell.self)
         tableView.register(class: FriendTableViewCell.self)
-        tableView.register(class: UITableViewCell.self)
+        tableView.register(class: DefaultTableViewCell.self)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -85,7 +85,8 @@ class ProfileViewController: UIViewController {
             button.backgroundColor = .accent
             button.titleLabel?.textColor = .background
         }
-        button.setTitle("Sing in", for: .normal)
+        button.setTitle("SIGN IN", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .semibold)
         button.addTarget(nil, action: #selector(loginButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -296,15 +297,13 @@ extension ProfileViewController: UITableViewDataSource {
                 return cell
             }
         case .noVisibleGames:
-            if let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) {
+            if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.textLabel?.text = "No visible games"
-                cell.backgroundColor = .clear
                 return cell
             }
         case .noVisibleFriends:
-            if let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) {
+            if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.textLabel?.text = "No visible friends"
-                cell.backgroundColor = .clear
                 return cell
             }
         }

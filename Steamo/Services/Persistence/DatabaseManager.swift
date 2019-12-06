@@ -40,7 +40,7 @@ class DatabaseManager: DatabaseManagerProtocol {
     private lazy var realm: Realm = {
         do {
             let realm = try Realm()
-            print("Realm path: \(String(describing: realm.configuration.fileURL))")
+            print("Realm path: \(realm.configuration.fileURL?.absoluteString ?? "")")
             return realm
         } catch {
             print(error)

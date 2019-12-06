@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController {
         } else {
             tableView.backgroundColor = .background
         }
-        tableView.register(class: UITableViewCell.self)
+        tableView.register(class: DefaultTableViewCell.self)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -109,11 +109,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) else {
+        guard let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) else {
             return UITableViewCell()
         }
-        cell.backgroundColor = .clear
-        cell.selectionStyle = .none
+
         switch indexPath.section {
         case 0:
             let button = SteamoButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))

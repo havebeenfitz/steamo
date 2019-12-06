@@ -67,7 +67,7 @@ class StatsErrorTableViewCell: UITableViewCell {
         } else {
             contentView.backgroundColor = .background
         }
-        
+        backgroundColor = .clear
         selectionStyle = .none
         
         let stackView = UIStackView(arrangedSubviews: [errorImageView, errorLabel])

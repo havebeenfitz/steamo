@@ -10,9 +10,7 @@ import Foundation
 
 extension Int {
     func steamFormatted() -> String {
-        if self == 0 || self == 1 {
-            return "0 m"
-        } else if self > 1, self < 120 {
+        if self >= 0, self < 120 {
             return "\(self) m"
         } else {
             return roundedHours()

@@ -132,7 +132,7 @@ class MatchesByDateTableViewCell: UITableViewCell {
         } else {
             contentView.backgroundColor = .background
         }
-        
+        backgroundColor = .clear
         selectionStyle = .none
         
         contentView.addSubview(barChart)

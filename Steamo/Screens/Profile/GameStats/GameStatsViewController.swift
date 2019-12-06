@@ -35,7 +35,7 @@ class GameStatsViewController: UIViewController {
         tableView.register(class: PlayerStatTableViewCell.self)
         tableView.register(class: PlayerAchievementsTableViewCell.self)
         tableView.register(class: StatsErrorTableViewCell.self)
-        tableView.register(class: UITableViewCell.self)
+        tableView.register(class: DefaultTableViewCell.self)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -138,14 +138,12 @@ extension GameStatsViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         case .noPlayerStats:
-            if let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.backgroundColor = .clear
+            if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.textLabel?.text = "No visible player stats"
                 return cell
             }
         case .noPlayerAchievements:
-            if let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.backgroundColor = .clear
+            if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.textLabel?.text = "No visible player achievements"
                 return cell
             }

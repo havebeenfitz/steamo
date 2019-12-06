@@ -68,7 +68,7 @@ class FriendTableViewCell: UITableViewCell {
         let player = viewModel.profiles.response.players[index]
         let url = URL(string: player.avatarFull)
 
-        avatarImageView.kf.setImage(with: url)
+        avatarImageView.kf.setImage(with: url, placeholder: UIImage(named: "achPlaceholder"), options: [.backgroundDecode])
         nameLabel.text = player.personaName
 
         switch player.onlineStatus {

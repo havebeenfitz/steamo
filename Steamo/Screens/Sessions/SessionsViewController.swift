@@ -30,7 +30,7 @@ class SessionsViewController: UIViewController {
         }
 
         tableView.register(class: TableCellContainer<GameView>.self)
-        tableView.register(class: UITableViewCell.self)
+        tableView.register(class: DefaultTableViewCell.self)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -134,10 +134,8 @@ extension SessionsViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         case .nothing:
-            if let cell: UITableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.accessoryType = .detailButton
+            if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
                 cell.textLabel?.text = "No recent sessions to display"
-                cell.backgroundColor = .clear
                 return cell
             }
         }
