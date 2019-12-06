@@ -13,6 +13,6 @@ protocol ViewControllerFactory {
     func makeProfileVC(state: ProfileViewModel.State) -> ProfileViewController
     func makeSessionsVC() -> SessionsViewController
     func makeSettingsVC() -> SettingsViewController
-    func makeAnyGameStatsVC(gameId: Int, steamId: String) -> GameStatsViewController
+    func makeAnyGameStatsVC(gameId: Int, gameName: String, steamId: String) -> GameStatsViewController
     func makeDota2StatsVC(steamId: String) -> Dota2StatsViewController
 }

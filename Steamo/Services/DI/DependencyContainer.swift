@@ -27,8 +27,12 @@ extension DependencyContainer: ViewModelFactory {
         return SettingsViewModel(databaseManager: databaseManager)
     }
     
-    func makeAnyGameStatsViewModel(gameId: Int, steamId: String) -> GameStatsViewModel {
-        return GameStatsViewModel(databaseManager: databaseManager, networkAdapter: networkAdapter, gameId: gameId, steamId: steamId)
+    func makeAnyGameStatsViewModel(gameId: Int, gameName: String, steamId: String) -> GameStatsViewModel {
+        return GameStatsViewModel(databaseManager: databaseManager,
+                                  networkAdapter: networkAdapter,
+                                  gameId: gameId,
+                                  gameName: gameName,
+                                  steamId: steamId)
     }
     
     func makeDota2StatsViewModel(steamId: String) -> Dota2StatsViewModel {
@@ -58,8 +62,8 @@ extension DependencyContainer: ViewControllerFactory {
         return SettingsViewController(viewModel: viewModel)
     }
     
-    func makeAnyGameStatsVC(gameId: Int, steamId: String) -> GameStatsViewController {
-        let viewModel = makeAnyGameStatsViewModel(gameId: gameId, steamId: steamId)
+    func makeAnyGameStatsVC(gameId: Int, gameName: String, steamId: String) -> GameStatsViewController {
+        let viewModel = makeAnyGameStatsViewModel(gameId: gameId, gameName: gameName, steamId: steamId)
         return GameStatsViewController(viewModel: viewModel)
     }
     

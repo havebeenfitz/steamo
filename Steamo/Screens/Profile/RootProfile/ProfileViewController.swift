@@ -317,6 +317,6 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: OwnedGamesCollectionViewCellDelegate {
     func cellDidTap(_ cell: UICollectionViewCell, with game: Game?) {
         guard let game = game, let steamId = viewModel.currentSteamId else { return }
-        router.routeToGameStats(from: self, steamId: steamId, gameId: game.appId)
+        router.routeToGameStats(from: self, steamId: steamId, gameId: game.appId, gameName: game.name)
     }
 }

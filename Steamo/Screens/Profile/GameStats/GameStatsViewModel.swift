@@ -16,6 +16,7 @@ class GameStatsViewModel {
     private let networkAdapter: SteamAPINetworkAdapterProtocol
     
     private let gameId: Int
+    private let gameName: String
     private let steamId: String
     
     private var gameSchema: GameSchema? = nil
@@ -24,11 +25,17 @@ class GameStatsViewModel {
     init(databaseManager: DatabaseManagerProtocol,
          networkAdapter: SteamAPINetworkAdapterProtocol,
          gameId: Int,
+         gameName: String,
          steamId: String) {
         self.databaseManager = databaseManager
         self.networkAdapter = networkAdapter
         self.gameId = gameId
+        self.gameName = gameName
         self.steamId = steamId
+    }
+    
+    func screenTitle() -> String {
+        return gameName
     }
     
     /// Загрузить данные, добавить секции

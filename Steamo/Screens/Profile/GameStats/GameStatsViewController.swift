@@ -67,6 +67,7 @@ class GameStatsViewController: UIViewController {
         } else {
             view.backgroundColor = .background
         }
+        title = viewModel.screenTitle()
     }
     
     private func addConstraints() {

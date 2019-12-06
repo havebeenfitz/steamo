@@ -24,7 +24,8 @@ protocol ProfileRouterProtocol {
     ///   - vc: контроллер, с которого пушим
     ///   - steamId: стим айди игрока
     ///   - gameId: идентификатор игры
-    func routeToGameStats(from vc: UIViewController, steamId: String, gameId: Int)
+    ///   - gameName: название игры
+    func routeToGameStats(from vc: UIViewController, steamId: String, gameId: Int, gameName: String)
     
     /// Перейти на детальную статистику по доте
     /// - Parameters:
@@ -67,8 +68,8 @@ class ProfileRouter: ProfileRouterProtocol {
         vc.navigationController?.pushViewController(friendProfileVC, animated: true)
     }
     
-    func routeToGameStats(from vc: UIViewController, steamId: String, gameId: Int) {
-        guard let gameStatsVC = container?.makeAnyGameStatsVC(gameId: gameId, steamId: steamId) else {
+    func routeToGameStats(from vc: UIViewController, steamId: String, gameId: Int, gameName: String) {
+        guard let gameStatsVC = container?.makeAnyGameStatsVC(gameId: gameId, gameName: gameName, steamId: steamId) else {
             return
         }
         vc.navigationController?.pushViewController(gameStatsVC, animated: true)

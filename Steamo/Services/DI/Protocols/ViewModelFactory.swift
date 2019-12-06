@@ -13,6 +13,6 @@ protocol ViewModelFactory {
     func makeSessionsViewModel() -> SessionsViewModel
     func makeSettingsViewModel() -> SettingsViewModel
     
-    func makeAnyGameStatsViewModel(gameId: Int, steamId: String) -> GameStatsViewModel
+    func makeAnyGameStatsViewModel(gameId: Int, gameName: String, steamId: String) -> GameStatsViewModel
     func makeDota2StatsViewModel(steamId: String) -> Dota2StatsViewModel
 }
