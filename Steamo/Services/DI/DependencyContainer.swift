@@ -24,7 +24,7 @@ extension DependencyContainer: ViewModelFactory {
     }
     
     func makeSettingsViewModel() -> SettingsViewModel {
-        return SettingsViewModel()
+        return SettingsViewModel(databaseManager: databaseManager)
     }
     
     func makeAnyGameStatsViewModel(gameId: Int, steamId: String) -> GameStatsViewModel {

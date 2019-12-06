@@ -62,6 +62,12 @@ class SessionsViewModel: NSObject {
         self.games = []
     }
     
+    func softClear() {
+        self.sectionViewModels = []
+        self.games = []
+        sectionViewModels.append(NoSessionsSectionViewModel())
+    }
+    
     private func loadFromInternet(for steamId: String, completion: @escaping ((Swift.Result<Void, SteamoError>) -> Void)) {
         networkAdapter.recentlyPlayedGames(steamId: steamId) { [weak self] result in
             switch result {

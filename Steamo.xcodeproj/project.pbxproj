@@ -291,7 +291,6 @@
 				E4C068AE239561D500A3F5F0 /* PlayerStats.swift */,
 				E4424E0F238EF58E00B5A7BD /* SteamVanity.swift */,
 				E4424E11238EF5DD00B5A7BD /* SteamUser.swift */,
-				E414E236238B400000A7AB93 /* Colors.xcassets */,
 				E414E23F238B55C400A7AB93 /* SteamoError.swift */,
 			);
 			path = Models;
@@ -340,6 +339,7 @@
 				E414E23D238B55A800A7AB93 /* Models */,
 				E4F6164D238A8AA7006D832B /* Extensions */,
 				E434979D23859F9C0047B750 /* Assets.xcassets */,
+				E414E236238B400000A7AB93 /* Colors.xcassets */,
 				E434979F23859F9C0047B750 /* LaunchScreen.storyboard */,
 				E43497A223859F9C0047B750 /* Info.plist */,
 			);

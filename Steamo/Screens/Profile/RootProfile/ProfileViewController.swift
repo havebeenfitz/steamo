@@ -176,6 +176,10 @@ class ProfileViewController: UIViewController {
             self.viewModel.erase()
             self.toggleUI()
         }
+        
+        NotificationCenter.default.addObserver(forName: .WillEraseAllData, object: nil, queue: .main) { _ in
+            self.navigationController?.popToRootViewController(animated: false)
+        }
     }
 
     // MARK: Toggle UI

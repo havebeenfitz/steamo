@@ -92,6 +92,11 @@ class SessionsViewController: UIViewController {
             self.viewModel.erase()
             self.tableView.reloadData()
         }
+        
+        NotificationCenter.default.addObserver(forName: .DidEraseAllData, object: nil, queue: .main) { _ in
+            self.viewModel.softClear()
+            self.tableView.reloadData()
+        }
     }
 }
 

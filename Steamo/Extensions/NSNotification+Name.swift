@@ -20,4 +20,12 @@ extension NSNotification.Name {
     static var DidLogout: Notification.Name {
         return Notification.Name("DidLogout")
     }
+    
+    static var WillEraseAllData: Notification.Name {
+        return Notification.Name("WillEraseAllData")
+    }
+    
+    static var DidEraseAllData: Notification.Name {
+        return Notification.Name("DidEraseAllData")
+    }
 }

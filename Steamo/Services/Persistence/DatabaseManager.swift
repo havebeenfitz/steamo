@@ -28,6 +28,8 @@ protocol DatabaseManagerProtocol {
     /// Удалить объекты из базы
     /// - Parameter objects: объекты для удаления
     func delete<T: Object>(_ objects: [T])
+    /// Удалить базу
+    func eraseAll()
     /// Миграция базы данных
     /// - Parameter schemaVersion: Новая версия базы данных
     func migrate(with schemaVersion: UInt64)
@@ -107,6 +109,16 @@ class DatabaseManager: DatabaseManagerProtocol {
         do {
             try realm.write {
                 realm.delete(objects)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func eraseAll() {
+        do {
+            try realm.write {
+                realm.deleteAll()
             }
         } catch {
             print(error)
