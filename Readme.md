@@ -1,4 +1,4 @@
-# STEAMO (Steam Client iOS app)
+# STEAMO (Steam WEB API iOS app)
 
 # Архитектурное решение
 **MVVM + Routers**
@@ -55,5 +55,9 @@
 6. Переход на профиль друга и просмотр его статистики. Статистика друга также хранится в базе
 7. Тема по умолчанию - темная. Для iOS 13 реализована поддержка светлой темы на системном уровне. Т.е. если у юзера светлая системная тема - приложение будет белое
 
-Минимальная версия iOS – 10
+Минимальная версия iOS – 10. 
 Проект собирается под XCode 11.2.1
+
+
+![profile](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/01_profile.png)![game_stats](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/02_game_stats.png)![dota_stats](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/03_dota2_stats.png)![sessions](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/04_my_sessions.png)
+
