@@ -48,6 +48,8 @@ class MatchesByDateTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Configure
+    
     func configure(with viewModel: Dota2StatsSectionViewModelRepresentable) {
         guard let viewModel = viewModel as? MatchesByDateSectionViewModel else {
             return
@@ -143,12 +145,16 @@ class MatchesByDateTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: Reuse
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         barChart.data = nil
         isDaysDataSet = false
     }
 }
+
+// MARK:- ChartViewDelegate
 
 extension MatchesByDateTableViewCell: ChartViewDelegate {
 
@@ -158,11 +164,17 @@ extension MatchesByDateTableViewCell: ChartViewDelegate {
         }
         // Абсолютное расстояние между двумя крайними точками на графике
         let xAxisEntryApproximity = abs(((barChartView.xAxis.entries.first ?? 0) - (barChartView.xAxis.entries.last ?? 0)))
+        // Центральная точка, конвертим ее в новую центральную точку после зума
+        let centerX = ((barChartView.xAxis.entries.first ?? 0) + (barChartView.xAxis.entries.last ?? 0)) / 2
         
         if xAxisEntryApproximity < 2, scaleX > 1 { // Подменяем дату для барчарта, когда зум достаточно близкий
             setGranularBarChartData(with: viewModel)
+            barChartView.moveViewToX((centerX - 1) * 24)
+            barChartView.notifyDataSetChanged()
         } else if scaleX < 1, xAxisEntryApproximity >= 24, !isDaysDataSet { // Ставим обратно, если отдаляем
             setBarChartData(with: viewModel)
+            barChartView.moveViewToX(centerX / 24 - 0.5)
+            barChartView.notifyDataSetChanged()
         }
     }
 }
