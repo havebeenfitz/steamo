@@ -43,7 +43,7 @@ class HoursXAxisValueFormatter: NSObject, IAxisValueFormatter {
     }
     
     private func dayInYear(for hour: Double) -> Int {
-        return Int(hour / 24.0)
+        return Int(hour / 24.0) + 1
     }
     
     private func hourInDay(for value: Double) -> Int {

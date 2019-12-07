@@ -76,7 +76,7 @@ class Dota2StatsViewModel {
         loadDataWorkItem = DispatchWorkItem(qos: .utility) {
             guard !self.matchIds.isEmpty else {
                 self.sectionViewModels.append(Dota2ErrorSectionViewModel())
-                completion(.failure(SteamoError.noData))
+                completion(.failure(.noData))
                 return
             }
             
@@ -146,6 +146,11 @@ class Dota2StatsViewModel {
     }
     
     private func appendSections() {
+        // Для кнопки рефреш сбрасываем состояние
+        resultsRemaining = 1
+        lastMatchId = nil
+        sectionViewModels = []
+        
         let winRateSection = WinRateSectionViewModel(databaseManager: databaseManager,
                                                      steamId: steamId)
         let matchesByDateSection = MatchesByDateSectionViewModel(databaseManager: databaseManager,

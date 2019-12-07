@@ -15,8 +15,6 @@ class Dota2StatsViewController: UIViewController {
     
     private let viewModel: Dota2StatsViewModel
     
-    private let refreshControl = UIRefreshControl()
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.tableFooterView = UIView()
@@ -26,10 +24,8 @@ class Dota2StatsViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         if #available(iOS 11.0, *) {
             tableView.backgroundColor = UIColor(named: "Background")
-            refreshControl.tintColor = UIColor(named: "Accent")
         } else {
             tableView.backgroundColor = .background
-            refreshControl.tintColor = .accent
         }
         
         tableView.register(class: WinRateTableViewCell.self)
@@ -38,8 +34,6 @@ class Dota2StatsViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
         return tableView
     }()
@@ -78,13 +72,15 @@ class Dota2StatsViewController: UIViewController {
         
         title = "Dota2 Stats"
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(loadData))
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
     
-    private func loadData() {
+    @objc private func loadData() {
         SVProgressHUD.show(withStatus: "Fetching match history")
         viewModel.fetch(progress: { progress in
             SVProgressHUD.showProgress(progress, status: "Fetching new matches\nThis might take a while")
@@ -98,10 +94,6 @@ class Dota2StatsViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             self.tableView.reloadData()
         }
-    }
-    
-    @objc private func refresh() {
-        
     }
 }
 

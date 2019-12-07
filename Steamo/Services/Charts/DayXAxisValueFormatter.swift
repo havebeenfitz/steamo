@@ -30,7 +30,7 @@ class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
         
         if let chart = chart,
             chart.visibleXRange > 30 * 6 {
-            return monthName + yearName
+            return monthName + " " + yearName
         } else {
             let dayOfMonth = determineDayOfMonth(forDays: days, month: month + 12 * (year - 2019))
  
