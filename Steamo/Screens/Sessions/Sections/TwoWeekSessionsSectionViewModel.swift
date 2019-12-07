@@ -22,7 +22,7 @@ class TwoWeekSessionsSectionViewModel: SessionSectionViewModelRepresentable {
     }
     
     var sectionTitle: String {
-        return "Last two weeks"
+        return "Last 2 weeks"
     }
     
     var games: [Game]

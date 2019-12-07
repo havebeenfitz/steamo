@@ -29,7 +29,6 @@ class GamesResponse: Codable {
 class Game: Object, Codable {
     @objc dynamic var uuid: String? = UUID().uuidString
     @objc dynamic var ownerSteamId: String? = ""
-    var createdAt: RealmOptional<TimeInterval> = RealmOptional()
     @objc dynamic var appId: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var playtimeForever: Int = 0
@@ -58,7 +57,6 @@ class Game: Object, Codable {
         self.init()
         self.uuid = game.uuid
         self.ownerSteamId = game.ownerSteamId
-        self.createdAt.value = game.createdAt.value
         self.appId = game.appId
         self.name = game.name
         self.playtimeForever = game.playtimeForever
@@ -67,17 +65,16 @@ class Game: Object, Codable {
         self.playtime2Weeks.value = playtime2Weeks
     }
     
-    convenience init(ownerSteamId: String, createdAt: TimeInterval, game: Game) {
+    convenience init(ownerSteamId: String, playtimeForever: Int, playtime2Weeks: Int?, game: Game) {
         self.init()
         self.uuid = game.uuid
         self.ownerSteamId = ownerSteamId
-        self.createdAt.value = createdAt
         self.appId = game.appId
         self.name = game.name
-        self.playtimeForever = game.playtimeForever
+        self.playtimeForever = playtimeForever
+        self.playtime2Weeks.value = playtime2Weeks
         self.imgIconUrl = game.imgIconUrl
         self.imgLogoUrl = game.imgLogoUrl
-        self.playtime2Weeks.value = game.playtime2Weeks.value
     }
     
     convenience init(appId: Int, name: String, playtimeForever: Int, playtime2Weeks: Int?, imgIconUrl: String, imgLogoUrl: String) {
@@ -110,10 +107,5 @@ extension Game {
 
     var calculatedImageIconUrl: URL? {
         return URL(string: "http://media.steampowered.com/steamcommunity/public/images/apps/\(appId)/\(imgLogoUrl).jpg")
-    }
-    
-    var isOlderThan2Weeks: Bool {
-        let twoWeeksInSeconds: Double = 2 * 604800
-        return (self.createdAt.value ?? 0) < (Date().timeIntervalSince1970 - twoWeeksInSeconds)
     }
 }

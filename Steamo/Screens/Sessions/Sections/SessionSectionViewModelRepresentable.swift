@@ -11,7 +11,8 @@ import Foundation
 enum SesstionSectionViewModelType {
     case inTwoWeeks
     case older
-    case nothing
+    case nothingInTwoWeeks
+    case nothingAtAll
 }
 
 protocol SessionSectionViewModelRepresentable {

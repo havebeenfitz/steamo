@@ -1,20 +1,20 @@
 //
-//  NoSessionsSectionViewModel.swift
+//  NoRecentSessionsSectionViewModel.swift
 //  Steamo
 //
-//  Created by Max Kraev on 05.12.2019.
+//  Created by Max Kraev on 07.12.2019.
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
 import Foundation
 
-class NoSessionsSectionViewModel: SessionSectionViewModelRepresentable {
+class NoRecentSessionsSectionViewModel: SessionSectionViewModelRepresentable {
     var index: Int {
         return 0
     }
     
     var type: SesstionSectionViewModelType {
-        return .nothingAtAll
+        return .nothingInTwoWeeks
     }
     
     var rowCount: Int {
@@ -22,8 +22,9 @@ class NoSessionsSectionViewModel: SessionSectionViewModelRepresentable {
     }
     
     var sectionTitle: String {
-        return ""
+        return "Last two weeks"
     }
     
-    var games: [Game] = []    
+    var games: [Game] = []
 }
+

@@ -51,7 +51,7 @@ class SessionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObservers()
-        viewModel.load(force: false) { [weak self] _ in
+        viewModel.load() { [weak self] _ in
             self?.tableView.reloadData()
         }
     }
@@ -61,7 +61,7 @@ class SessionsViewController: UIViewController {
     }
 
     @objc private func refresh() {
-        viewModel.load(force: true) { [weak self] _ in
+        viewModel.load() { [weak self] _ in
             self?.refreshControl.endRefreshing()
             self?.tableView.reloadData()
         }
@@ -83,18 +83,18 @@ class SessionsViewController: UIViewController {
     
     private func addObservers() {
         NotificationCenter.default.addObserver(forName: .DidLogin, object: nil, queue: .main) { _ in
-            self.viewModel.load(force: false) { [weak self] _ in
+            self.viewModel.load() { [weak self] _ in
                 self?.tableView.reloadData()
             }
         }
         
         NotificationCenter.default.addObserver(forName: .WillLogout, object: nil, queue: .main) { _ in
-            self.viewModel.erase()
+            self.viewModel.сlear()
             self.tableView.reloadData()
         }
         
         NotificationCenter.default.addObserver(forName: .DidEraseAllData, object: nil, queue: .main) { _ in
-            self.viewModel.softClear()
+            self.viewModel.сlear()
             self.tableView.reloadData()
         }
     }
@@ -133,9 +133,14 @@ extension SessionsViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.containedView.configure(with: game)
                 return cell
             }
-        case .nothing:
+        case .nothingInTwoWeeks:
             if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.textLabel?.text = "No recent sessions to display"
+                cell.textLabel?.text = "It seems like you didn't play in 2 weeks"
+                return cell
+            }
+        case .nothingAtAll:
+            if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
+                cell.textLabel?.text = "No sessions to display"
                 return cell
             }
         }
