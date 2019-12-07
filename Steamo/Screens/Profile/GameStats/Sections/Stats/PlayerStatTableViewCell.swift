@@ -66,7 +66,7 @@ class PlayerStatTableViewCell: UITableViewCell {
         lineChartDataSet.circleRadius = 3
         lineChartDataSet.mode = .stepped
         lineChartDataSet.label = viewModel.statDisplayName(at: index)
-        lineChartDataSet.drawValuesEnabled = false
+        lineChartDataSet.drawValuesEnabled = true
         
         if #available(iOS 11.0, *) {
             lineChartDataSet.valueTextColor = NSUIColor(named: "Text") ?? .text
