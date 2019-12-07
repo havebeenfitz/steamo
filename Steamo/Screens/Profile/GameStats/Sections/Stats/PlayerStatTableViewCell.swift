@@ -13,13 +13,16 @@ class PlayerStatTableViewCell: UITableViewCell {
     
     private let lineChartView: LineChartView = {
         let lineChartView = LineChartView()
-        lineChartView.leftAxis.enabled = false
+        lineChartView.leftAxis.enabled = true
+        lineChartView.leftAxis.axisMinimum = 0
         lineChartView.rightAxis.enabled = false
         lineChartView.drawGridBackgroundEnabled = false
         lineChartView.highlightPerTapEnabled = false
         lineChartView.xAxis.valueFormatter = MinutesXAxisValueFormatter(chart: lineChartView)
         lineChartView.drawBordersEnabled = false
         lineChartView.drawMarkers = false
+        lineChartView.scaleXEnabled = false
+        lineChartView.scaleYEnabled = false
         
         if #available(iOS 11.0, *) {
             lineChartView.xAxis.labelTextColor = UIColor(named: "Text") ?? .text
@@ -61,8 +64,9 @@ class PlayerStatTableViewCell: UITableViewCell {
         let lineChartDataSet = LineChartDataSet(entries: lineChartEntries)
         lineChartDataSet.drawCircleHoleEnabled = false
         lineChartDataSet.circleRadius = 3
-        lineChartDataSet.mode = .horizontalBezier
+        lineChartDataSet.mode = .stepped
         lineChartDataSet.label = viewModel.statDisplayName(at: index)
+        lineChartDataSet.drawValuesEnabled = false
         
         if #available(iOS 11.0, *) {
             lineChartDataSet.valueTextColor = NSUIColor(named: "Text") ?? .text
@@ -76,6 +80,11 @@ class PlayerStatTableViewCell: UITableViewCell {
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
     
         lineChartView.data = lineChartData
+        // Показываем последние n точек
+        lineChartView.setVisibleXRangeMaximum(50)
+        if let lastEntry = lineChartEntries.last {
+            self.lineChartView.moveViewToX(lastEntry.x)
+        }
     }
     
     private func setup() {
@@ -93,11 +102,5 @@ class PlayerStatTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(40)
             make.height.equalTo(150).priority(.init(999))
         }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        lineChartView.data = nil
-        lineChartView.resetZoom()
     }
 }
