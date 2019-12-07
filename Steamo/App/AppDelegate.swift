@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let container = DependencyContainer()
         
         // Миграция для реалма, если нужна
-        container.databaseManager.migrate(with: 3)
+        container.databaseManager.migrate(with: 4)
 
         if #available(iOS 13.0, *) {} else {
             window = UIWindow(frame: UIScreen.main.bounds)

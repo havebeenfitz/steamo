@@ -36,7 +36,7 @@ extension DependencyContainer: ViewModelFactory {
     }
     
     func makeDota2StatsViewModel(steamId: String) -> Dota2StatsViewModel {
-        return Dota2StatsViewModel(networkAdapter: networkAdapter, steamId: steamId)
+        return Dota2StatsViewModel(databaseManager: databaseManager, networkAdapter: networkAdapter, steamId: steamId)
     }
     
     

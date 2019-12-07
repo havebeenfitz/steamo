@@ -37,16 +37,16 @@ protocol DatabaseManagerProtocol {
 
 class DatabaseManager: DatabaseManagerProtocol {
     
-    private lazy var realm: Realm = {
+    /// Для доступа с разных потоков нужен новый инстанст реалма, поэтому свойство вычисляемое
+    private var realm: Realm {
         do {
             let realm = try Realm()
-            print("Realm path: \(realm.configuration.fileURL?.absoluteString ?? "")")
             return realm
         } catch {
             print(error)
             fatalError("Cannot instantiate Realm")
         }
-    }()
+    }
     
     func migrate(with schemaVersion: UInt64) {
         let config = Realm.Configuration(schemaVersion: schemaVersion, migrationBlock: { migration, _ in
@@ -54,6 +54,7 @@ class DatabaseManager: DatabaseManagerProtocol {
         }, deleteRealmIfMigrationNeeded: false)
         
         Realm.Configuration.defaultConfiguration = config
+        print("Realm path: \(realm.configuration.fileURL?.absoluteString ?? "")")
     }
     
     func save<T: Object>(_ object: T, shouldUpdate: Bool) {

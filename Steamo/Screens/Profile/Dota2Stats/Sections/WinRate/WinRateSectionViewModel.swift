@@ -23,18 +23,18 @@ class WinRateSectionViewModel: Dota2StatsSectionViewModelRepresentable {
         let wonMatches = Double(result[.won]?.count ?? 0)
         let totalMatches = Double((result[.won]?.count ?? 0) + (result[.lost]?.count ?? 0))
         let winRate = wonMatches / totalMatches
-        return "Win Rate \((winRate * 1000).rounded() / 10)%"
+        return "Win Rate \((winRate * 1000).rounded() / 10)%, \(Int(totalMatches)) matches total"
     }
     
-    var matchDetailsCollection: [MatchDetails]
-    
+    private let databaseManager: DatabaseManagerProtocol
+
     var steamId: String
     
     var result: [MatchResult: [Int]] = [.won: [], .lost: []]
     
-    init(matchDetailsCollection: [MatchDetails],
+    init(databaseManager: DatabaseManagerProtocol,
          steamId: String) {
-        self.matchDetailsCollection = matchDetailsCollection
+        self.databaseManager = databaseManager
         self.steamId = steamId
     }
     
@@ -46,18 +46,21 @@ class WinRateSectionViewModel: Dota2StatsSectionViewModelRepresentable {
         
         let steamId32 = String.convertSteamID64(toSteamID32: steamId)
         
-        matchDetailsCollection.forEach { matchDetails in
-            let currentPlayer = matchDetails.result.players.first(where: { "\($0.accountId)" == steamId32 })
+        let matches: [Dota2MatchResult] = databaseManager.load(filter: { $0.ownerSteamId == self.steamId })
+        
+        matches.forEach { match in
+            let currentPlayer = match.players.first(where: { "\($0.accountId)" == steamId32 })
+            
             let isRadiantPlayer = currentPlayer?.playerSlot.bits.first == .zero
-            let isRadiantWon = matchDetails.result.radiantWin
+            let isRadiantWon = match.radiantWin
             
             let isDirePlayer = currentPlayer?.playerSlot.bits.first == .one
-            let isDireWon = !matchDetails.result.radiantWin
+            let isDireWon = !match.radiantWin
             
             if (isRadiantPlayer && isRadiantWon) || (isDirePlayer && isDireWon) {
-                result[MatchResult.won]?.append(matchDetails.result.matchId)
+                result[MatchResult.won]?.append(match.matchId)
             } else {
-                result[MatchResult.lost]?.append(matchDetails.result.matchId)
+                result[MatchResult.lost]?.append(match.matchId)
             }
         }
         

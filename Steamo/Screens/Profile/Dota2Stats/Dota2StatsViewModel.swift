@@ -13,11 +13,11 @@ class Dota2StatsViewModel {
     var sectionViewModels: [Dota2StatsSectionViewModelRepresentable] = []
     /// История Матчей
     var matchHistory: MatchHistory?
-    /// Все матчи игрока. Нужны, чтобы забрать id и передать их в эндпоинт детализации
+    /// Id матчей игрока
     ///
     /// Маленький хак. Т.к. пэйджинг реализован от последнего матча, мы получаем один и тот же матч на следующией странице.
     /// Последний == первый. Сет позволяет исключить дубликаты
-    var matches: Set<Match> = Set()
+    var matchIds: Set<Int> = Set()
     /// Массив детализаций по матчу
     var matchDetailsCollection: [MatchDetails] = []
     
@@ -25,10 +25,12 @@ class Dota2StatsViewModel {
     private var lastMatchId: Int?
     private var loadDataWorkItem: DispatchWorkItem?
     
+    private let databaseManager: DatabaseManagerProtocol
     private let networkAdapter: Dota2APINetworkAdapterProtocol
     private let steamId: String
     
-    init(networkAdapter: Dota2APINetworkAdapterProtocol, steamId: String) {
+    init(databaseManager: DatabaseManagerProtocol, networkAdapter: Dota2APINetworkAdapterProtocol, steamId: String) {
+        self.databaseManager = databaseManager
         self.networkAdapter = networkAdapter
         self.steamId = steamId
     }
@@ -55,7 +57,7 @@ class Dota2StatsViewModel {
                     case let .success(matchHistory):
                         self?.matchHistory = matchHistory
                         for match in matchHistory.result.matches ?? [] {
-                            self?.matches.insert(match)
+                            self?.matchIds.insert(match.matchId)
                         }
                         self?.resultsRemaining = matchHistory.result.resultsRemaining ?? 0
                         self?.lastMatchId = matchHistory.result.matches?.last?.matchId
@@ -72,19 +74,30 @@ class Dota2StatsViewModel {
         
         
         loadDataWorkItem = DispatchWorkItem(qos: .utility) {
-            guard !self.matches.isEmpty else {
+            guard !self.matchIds.isEmpty else {
                 self.sectionViewModels.append(Dota2ErrorSectionViewModel())
                 completion(.failure(SteamoError.noData))
                 return
             }
             
-            // Тут мы немного рискуем, но сервер вроде переваривает по 5 запросов за раз
-            let semaphore = DispatchSemaphore(value: 5)
+            let matches: [Dota2MatchResult] = self.databaseManager.load(filter: { $0.ownerSteamId == self.steamId })
+            let existingMatchIds: Set<Int> = Set(matches.map { $0.matchId })
             
-            for (index, match) in self.matches.enumerated() {
+            let missingMatchIds = self.matchIds.subtracting(existingMatchIds)
+            
+            if missingMatchIds.isEmpty {
+                self.appendSections()
+                completion(.success(()))
+                return
+            }
+            
+            // Тут мы немного рискуем, но сервер вроде переваривает по 10 запросов за раз
+            let semaphore = DispatchSemaphore(value: 10)
+            
+            for (index, matchId) in missingMatchIds.enumerated() {
                 if self.loadDataWorkItem?.isCancelled ?? false { break }
                 semaphore.wait()
-                self.networkAdapter.matchDetails(for: match.matchId) { [weak self] result in
+                self.networkAdapter.matchDetails(for: matchId) { [weak self] result in
                     guard let self = self else {
                         completion(.failure(.noData))
                         semaphore.signal()
@@ -94,20 +107,16 @@ class Dota2StatsViewModel {
                     case let .success(matchDetails):
                         self.matchDetailsCollection.append(matchDetails)
                         if !(self.loadDataWorkItem?.isCancelled ?? false) {
-                            progress(Float(self.matchDetailsCollection.count) / Float(self.matches.count))
+                            progress(Float(self.matchDetailsCollection.count) / Float(missingMatchIds.count))
                         }
-                        if index == self.matches.count - 1 {
-                            let winRateSection = WinRateSectionViewModel(matchDetailsCollection: self.matchDetailsCollection,
-                                                                             steamId: self.steamId)
-                            let matchesByDateSection = MatchesByDateSectionViewModel(matchDetailsCollection: self.matchDetailsCollection,
-                                                                                  steamId: self.steamId)
-                            self.sectionViewModels.append(winRateSection)
-                            self.sectionViewModels.append(matchesByDateSection)
+                        if index == missingMatchIds.count - 1 {
+                            self.saveToDB(self.matchDetailsCollection)
+                            self.appendSections()
                             completion(.success(()))
                         }
                         semaphore.signal()
                     case .failure(_):
-                        if index == self.matches.count - 1 && self.matchDetailsCollection.isEmpty {
+                        if index == missingMatchIds.count - 1 && self.matchDetailsCollection.isEmpty {
                             completion(.failure(.noData))
                         } else {
                             semaphore.signal()
@@ -127,5 +136,21 @@ class Dota2StatsViewModel {
     /// Отменить загрузку при выходе с экрана
     func cancelRequest() {
         loadDataWorkItem?.cancel()
+    }
+    
+    private func saveToDB(_ matchDetails: [MatchDetails]) {
+        let matchResults = matchDetails.map { detail -> Dota2MatchResult in
+            return Dota2MatchResult(ownerSteamId: steamId, matchResult: detail.result)
+        }
+        databaseManager.save(matchResults, shouldUpdate: true)
+    }
+    
+    private func appendSections() {
+        let winRateSection = WinRateSectionViewModel(databaseManager: databaseManager,
+                                                     steamId: steamId)
+        let matchesByDateSection = MatchesByDateSectionViewModel(databaseManager: databaseManager,
+                                                                 steamId: steamId)
+        self.sectionViewModels.append(winRateSection)
+        self.sectionViewModels.append(matchesByDateSection)
     }
 }

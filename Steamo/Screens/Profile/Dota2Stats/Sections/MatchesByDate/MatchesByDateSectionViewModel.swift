@@ -23,13 +23,13 @@ class MatchesByDateSectionViewModel: Dota2StatsSectionViewModelRepresentable {
         return "Matches by Date"
     }
     
-    private var matchDetailsCollection: [MatchDetails]
+    private let databaseManager: DatabaseManagerProtocol
     private var steamId: String
     private var data: [Date: MatchResult] = [:]
     
-    init(matchDetailsCollection: [MatchDetails],
+    init(databaseManager: DatabaseManagerProtocol,
          steamId: String) {
-        self.matchDetailsCollection = matchDetailsCollection
+        self.databaseManager = databaseManager
         self.steamId = steamId
         processData()
     }
@@ -64,16 +64,17 @@ class MatchesByDateSectionViewModel: Dota2StatsSectionViewModelRepresentable {
     
     private func processData() {
         let steamId32 = String.convertSteamID64(toSteamID32: steamId)
+        let matches: [Dota2MatchResult] = databaseManager.load(filter: { $0.ownerSteamId == self.steamId })
         
-        matchDetailsCollection.forEach { matchDetails in
-            let currentPlayer = matchDetails.result.players.first(where: { "\($0.accountId)" == steamId32 })
+        matches.forEach { match in
+            let currentPlayer = match.players.first(where: { "\($0.accountId)" == steamId32 })
             let isRadiantPlayer = currentPlayer?.playerSlot.bits.first == .zero
-            let isRadiantWon = matchDetails.result.radiantWin
+            let isRadiantWon = match.radiantWin
             
             let isDirePlayer = currentPlayer?.playerSlot.bits.first == .one
-            let isDireWon = !matchDetails.result.radiantWin
+            let isDireWon = !match.radiantWin
             
-            let date = Date(timeIntervalSince1970: matchDetails.result.startTime ?? 0)
+            let date = Date(timeIntervalSince1970: match.startTime.value ?? 0)
             
             if (isRadiantPlayer && isRadiantWon) || (isDirePlayer && isDireWon) {
                 data[date] = .won
