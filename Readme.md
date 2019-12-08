@@ -1,5 +1,6 @@
 # STEAMO  ![](https://github.com/havebeenfitz/steamo/blob/develop/Steamo/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29%401x.png)
 ### Steam WEB API iOS App
+![](https://img.shields.io/badge/v-1.0-blue)
 
 # Архитектурное решение
 **MVVM + Routers**
