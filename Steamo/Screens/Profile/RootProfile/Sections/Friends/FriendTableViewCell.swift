@@ -97,13 +97,7 @@ class FriendTableViewCell: UITableViewCell {
     }
 
     private func setup() {
-        if #available(iOS 11.0, *) {
-            backgroundColor = UIColor(named: "Background")
-        } else {
-            backgroundColor = .background
-        }
-        
-        selectionStyle = .blue
+        selectionStyle = .gray
         
         contentView.addSubview(avatarImageView)
         avatarImageView.snp.makeConstraints { make in

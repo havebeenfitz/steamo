@@ -14,23 +14,13 @@ class SessionsViewController: UIViewController {
 
     private var refreshControl = UIRefreshControl()
 
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.tableFooterView = UIView()
-        tableView.separatorColor = .clear
+    private lazy var tableView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        let tableView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        tableView.backgroundColor = .systemBackground
         tableView.alwaysBounceVertical = false
-        tableView.estimatedRowHeight = 150
-        tableView.rowHeight = UITableView.automaticDimension
-        if #available(iOS 11.0, *) {
-            tableView.backgroundColor = UIColor(named: "Background")
-            refreshControl.tintColor = UIColor(named: "Accent")
-        } else {
-            tableView.backgroundColor = .background
-            refreshControl.tintColor = .accent
-        }
 
-        tableView.register(class: TableCellContainer<GameView>.self)
-        tableView.register(class: DefaultTableViewCell.self)
+        tableView.register(class: CollectionCellContainer<NewGameView>.self)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -67,14 +57,14 @@ class SessionsViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+
+    }
+
     private func setup() {
         title = "My sessions"
-        if #available(iOS 11.0, *) {
-            view.backgroundColor = UIColor(named: "Background")
-        } else {
-            view.backgroundColor = .background
-        }
-
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -100,52 +90,51 @@ class SessionsViewController: UIViewController {
     }
 }
 
-extension SessionsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-        return 50
-    }
+extension SessionsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = SectionHeaderView()
-        let title = viewModel.sectionViewModels[safe: section]?.sectionTitle ?? ""
-        view.configure(with: title)
-        return view
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModel.sectionViewModels.count
     }
-    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.sectionViewModels[safe: section]?.rowCount ?? 0
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.sectionViewModels[safe: section]?.rowCount ?? 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let sectionViewModel = viewModel.sectionViewModels[safe: indexPath.section] else {
-            let cell = UITableViewCell()
+            let cell = UICollectionViewCell()
             cell.backgroundColor = .clear
             return cell
         }
         
         switch sectionViewModel.type {
         case .inTwoWeeks, .older:
-            if let cell: TableCellContainer<GameView> = tableView.dequeue(indexPath: indexPath) {
+            if let cell: CollectionCellContainer<NewGameView> = collectionView.dequeue(indexPath: indexPath) {
                 let game = sectionViewModel.games[indexPath.row]
                 cell.containedView.configure(with: game)
                 return cell
             }
-        case .nothingInTwoWeeks:
-            if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.textLabel?.text = "It seems like you didn't play in 2 weeks"
-                return cell
-            }
-        case .nothingAtAll:
-            if let cell: DefaultTableViewCell = tableView.dequeue(indexPath: indexPath) {
-                cell.textLabel?.text = "No sessions to display"
-                return cell
-            }
+        case .nothingInTwoWeeks, .nothingAtAll:
+            break
         }
         
         assertionFailure("New cell")
-        return UITableViewCell()
+        return UICollectionViewCell()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.width - 16 * 3) / 2, height: 230)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
 }

@@ -23,20 +23,11 @@ class ProfileViewController: UIViewController {
     private var refreshControl = UIRefreshControl()
 
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.tableFooterView = UIView()
-        tableView.separatorColor = .clear
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delaysContentTouches = false
         tableView.alwaysBounceVertical = false
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
-        if #available(iOS 11.0, *) {
-            tableView.backgroundColor = UIColor(named: "Background")
-            refreshControl.tintColor = UIColor(named: "Accent")
-        } else {
-            tableView.backgroundColor = .background
-            refreshControl.tintColor = .accent
-        }
 
         tableView.register(class: AvatarTableViewCell.self)
         tableView.register(class: OwnedGamesTableViewCell.self)
@@ -116,11 +107,7 @@ class ProfileViewController: UIViewController {
 
     private func addConstraints() {
         title = viewModel.screenTitle
-        if #available(iOS 11.0, *) {
-            view.backgroundColor = UIColor(named: "Background")
-        } else {
-            view.backgroundColor = .background
-        }
+        self.navigationController?.navigationBar.prefersLargeTitles = true
 
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -147,7 +134,9 @@ class ProfileViewController: UIViewController {
         if viewModel.isUserAuthorized {
             view.addSubview(shimmeringView)
             shimmeringView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             }
         }
     }
@@ -253,15 +242,8 @@ extension ProfileViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 
 extension ProfileViewController: UITableViewDataSource {
-    func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-        return 50
-    }
-
-    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = SectionHeaderView()
-        let title = viewModel.sectionViewModels[safe: section]?.sectionTitle ?? ""
-        view.configure(with: title)
-        return view
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+           return viewModel.sectionViewModels[safe: section]?.sectionTitle ?? ""
     }
 
     func numberOfSections(in _: UITableView) -> Int {

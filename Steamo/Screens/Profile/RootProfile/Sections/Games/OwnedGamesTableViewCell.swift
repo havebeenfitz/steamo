@@ -18,29 +18,18 @@ class OwnedGamesTableViewCell: UITableViewCell {
     weak var delegate: OwnedGamesCollectionViewCellDelegate?
 
     private lazy var collectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
+        let flowLayout = LeftLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: 170)
-        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
-        flowLayout.minimumInteritemSpacing = 0
-        flowLayout.minimumLineSpacing = 0
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
 
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
 
-        collectionView.isPagingEnabled = true
-        collectionView.delaysContentTouches = false
         collectionView.showsHorizontalScrollIndicator = false
 
-        if #available(iOS 11.0, *) {
-            collectionView.backgroundColor = UIColor(named: "Background")
-        } else {
-            collectionView.backgroundColor = .background
-        }
-
-        collectionView.register(class: CollectionCellContainer<GameView>.self)
+        collectionView.register(class: CollectionCellContainer<NewGameView>.self)
 
         return collectionView
     }()
@@ -64,15 +53,9 @@ class OwnedGamesTableViewCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .clear
 
-        if #available(iOS 11.0, *) {
-            contentView.backgroundColor = UIColor(named: "Background")
-        } else {
-            contentView.backgroundColor = .background
-        }
-
         contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.height.equalTo(170).priority(.init(999))
+            make.height.equalTo(230).priority(.init(999))
             make.edges.equalToSuperview()
         }
     }
@@ -92,19 +75,35 @@ extension OwnedGamesTableViewCell: UICollectionViewDelegate {
     }
 }
 
-extension OwnedGamesTableViewCell: UICollectionViewDataSource {
+extension OwnedGamesTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         viewModel?.games.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let viewModel = viewModel,
-            let cell: CollectionCellContainer<GameView> = collectionView.dequeue(indexPath: indexPath) else {
+            let cell: CollectionCellContainer<NewGameView> = collectionView.dequeue(indexPath: indexPath) else {
             return UICollectionViewCell()
         }
 
         cell.containedView.configure(with: viewModel.games[safe: indexPath.item])
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.width - 16 * 4) / 2, height: 230)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
 }
