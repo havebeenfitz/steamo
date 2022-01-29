@@ -34,7 +34,7 @@ extension SteamAPINetworkAdapter: Dota2APINetworkAdapterProtocol {
             parameters["start_at_match_id"] = matchId
         }
         
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseData { [weak self] response in
                 self?.handleResponse(response: response, completion: completion)
@@ -46,7 +46,7 @@ extension SteamAPINetworkAdapter: Dota2APINetworkAdapterProtocol {
         var parameters = defaultParams
         parameters["match_id"] = matchId
         
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseData { [weak self] response in
                 self?.handleResponse(response: response, completion: completion)

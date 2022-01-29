@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SVProgressHUD
+import ProgressHUD
 
 class Dota2StatsViewController: UIViewController {
     
@@ -58,7 +58,7 @@ class Dota2StatsViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         viewModel.cancelRequest()
-        SVProgressHUD.dismiss()
+        ProgressHUD.dismiss()
     }
     
     //MARK:- Methods
@@ -81,12 +81,12 @@ class Dota2StatsViewController: UIViewController {
     }
     
     @objc private func loadData() {
-        SVProgressHUD.show(withStatus: "Fetching match history")
+        ProgressHUD.show("Fetching match history", icon: .message, interaction: false)
         viewModel.fetch(progress: { progress in
-            SVProgressHUD.showProgress(progress, status: "Fetching new matches\nThis might take a while")
+            ProgressHUD.showProgress("Fetching new matches\nThis might take a while", CGFloat(progress))
         }, completion: { [weak self] _ in
             self?.reloadTableViewOnMain()
-            SVProgressHUD.dismiss(withDelay: 0.5)
+            ProgressHUD.dismiss()
         })
     }
     

@@ -7,7 +7,7 @@
 //
 
 import SnapKit
-import SVProgressHUD
+import ProgressHUD
 import UIKit
 
 class ProfileViewController: UIViewController {

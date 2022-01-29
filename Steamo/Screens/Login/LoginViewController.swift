@@ -7,7 +7,7 @@
 //
 
 import Alamofire
-import SVProgressHUD
+import ProgressHUD
 import UIKit
 import WebKit
 
@@ -72,7 +72,7 @@ extension LoginViewController: WKNavigationDelegate {
     }
 
     func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
-        SVProgressHUD.showError(withStatus: "Failed to load URL")
+        ProgressHUD.showError("Failed to load URL")
     }
     
     func postLoginNotification() {

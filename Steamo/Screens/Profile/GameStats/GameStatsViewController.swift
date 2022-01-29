@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SVProgressHUD
+import ProgressHUD
 
 class GameStatsViewController: UIViewController {
     
@@ -80,9 +80,9 @@ class GameStatsViewController: UIViewController {
     //MARK:- Actions
     
     private func loadData() {
-        SVProgressHUD.show(withStatus: "Fetching stats")
+        ProgressHUD.show("Fetching stats", icon: .message, interaction: false)
         viewModel.load(force: false) { [weak self] _ in
-            SVProgressHUD.dismiss()
+            ProgressHUD.dismiss()
             self?.reloadTableViewOnMain()
         }
     }

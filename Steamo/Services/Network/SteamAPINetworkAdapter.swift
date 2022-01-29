@@ -6,6 +6,7 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
+import Foundation
 import Alamofire
 
 protocol SteamAPINetworkAdapterProtocol {
@@ -56,7 +57,7 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
         var parameters = defaultParams
         parameters["steamids"] = steamIds.joined(separator: ",")
 
-        Alamofire.request(url, method: .get, parameters: parameters)
+        AF.request(url, method: .get, parameters: parameters)
             .validate()
             .responseData { [weak self] response in
                 self?.handleResponse(response: response, completion: completion)
@@ -69,7 +70,7 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
         parameters["steamid"] = steamId
         parameters["include_appinfo"] = true
 
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString,
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString,
                                                                                            arrayEncoding: .brackets,
                                                                                            boolEncoding: .literal))
             .validate()
@@ -84,7 +85,7 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
         parameters["steamid"] = steamId
         parameters["relationship"] = "friend"
 
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseData { [weak self] response in
                 self?.handleResponse(response: response, completion: completion)
@@ -98,7 +99,7 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
         parameters["count"] = 100
         parameters["include_appinfo"] = true
 
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseData { [weak self] response in
                 self?.handleResponse(response: response, completion: completion)
@@ -110,7 +111,7 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
         var parameters: JSON = defaultParams
         parameters["appid"] = gameId
         
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseData { [weak self] response in
                 self?.handleResponse(response: response, completion: completion)
@@ -123,7 +124,7 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
         parameters["steamid"] = steamId
         parameters["appid"] = gameId
         
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseData { [weak self] response in
                 self?.handleResponse(response: response, completion: completion)
@@ -132,13 +133,14 @@ class SteamAPINetworkAdapter: SteamAPINetworkAdapterProtocol {
 }
 
 extension SteamAPINetworkAdapter {
-    func handleResponse<T: Codable>(response: DataResponse<Data>, completion: (Swift.Result<T, SteamoError>) -> Void) {
+    func handleResponse<T: Codable>(response: AFDataResponse<Data>, completion: (Swift.Result<T, SteamoError>) -> Void) {
         switch response.result {
         case let .success(value):
             do {
                 let object = try JSONDecoder().decode(T.self, from: value)
                 completion(.success(object))
             } catch {
+                print(error)
                 completion(.failure(SteamoError.cantParseJSON))
             }
         case .failure:

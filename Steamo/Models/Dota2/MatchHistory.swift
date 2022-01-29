@@ -61,7 +61,7 @@ struct Match: Codable, Hashable {
 
 // MARK: - Player
 struct Dota2Player: Codable {
-    let accountId: Int
+    let accountId: Int?
     let playerSlot: Int
     let heroId: Int
 

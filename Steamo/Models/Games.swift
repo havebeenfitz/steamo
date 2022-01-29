@@ -49,10 +49,6 @@ class Game: Object, Codable {
         return "uuid"
     }
     
-    required init() {
-        super.init()
-    }
-    
     convenience init(playtime2Weeks: Int?, game: Game) {
         self.init()
         self.uuid = game.uuid

@@ -56,10 +56,6 @@ class AchievementSchema: Object, Codable {
         return "uuid"
     }
     
-    required init() {
-        super.init()
-    }
-    
     convenience init(gameId: Int, achievementSchema: AchievementSchema) {
         self.init()
         self.gameId.value = gameId
@@ -114,10 +110,6 @@ class StatSchema: Object, Codable {
     
     override class func primaryKey() -> String? {
         return "uuid"
-    }
-       
-    required init() {
-        super.init()
     }
        
     convenience init(gameId: Int, stat: StatSchema) {

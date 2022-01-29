@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
 
-        // SVProgressHUD fix for iOS 13
+        // ProgressHUD fix for iOS 13
         (UIApplication.shared.delegate as? AppDelegate)?.window = window
     }
 }

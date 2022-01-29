@@ -118,7 +118,6 @@ extension SessionsViewController: UICollectionViewDataSource, UICollectionViewDe
             break
         }
         
-        assertionFailure("New cell")
         return UICollectionViewCell()
     }
 

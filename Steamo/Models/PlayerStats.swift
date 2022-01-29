@@ -51,10 +51,6 @@ class PlayerAchievement: Object, Codable {
         return "uuid"
     }
     
-    required init() {
-        super.init()
-    }
-    
     convenience init(gameId: Int, ownerSteamId: String, achievement: PlayerAchievement) {
         self.init()
         self.gameId.value = gameId
@@ -97,10 +93,6 @@ class PlayerStat: Object, Codable {
     
     override class func primaryKey() -> String? {
         return "uuid"
-    }
-    
-    required init() {
-        super.init()
     }
     
     convenience init(gameId: Int, createdAt: TimeInterval, ownerSteamId: String, displayName: String, stat: PlayerStat) {

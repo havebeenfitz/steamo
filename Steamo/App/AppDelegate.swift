@@ -6,7 +6,7 @@
 //  Copyright © 2019 Max Kraev. All rights reserved.
 //
 
-import SVProgressHUD
+import ProgressHUD
 import UIKit
 
 @UIApplicationMain
@@ -21,46 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Миграция для реалма, если нужна
         container.databaseManager.migrate(with: 0)
 
-        if #available(iOS 13.0, *) {} else {
-            window = UIWindow(frame: UIScreen.main.bounds)
-            window?.rootViewController = MainTabBarController(container: container)
-            window?.makeKeyAndVisible()
-        }
-
         return true
     }
 
     private func configureHUD() {
-        SVProgressHUD.setDefaultStyle(.custom)
-        SVProgressHUD.setCornerRadius(5)
-        SVProgressHUD.setRingRadius(10)
-        SVProgressHUD.setRingNoTextRadius(10)
-
-        let backgoundColor: UIColor
-
-        if #available(iOS 11.0, *) {
-            backgoundColor = UIColor(named: "Hud") ?? UIColor.background
-        } else {
-            backgoundColor = .background
-        }
-
-        SVProgressHUD.setBackgroundColor(backgoundColor)
-
-        let foregroundColor: UIColor
-
-        if #available(iOS 11.0, *) {
-            foregroundColor = UIColor(named: "Text") ?? UIColor.background
-        } else {
-            foregroundColor = .text
-        }
-
-        SVProgressHUD.setForegroundColor(foregroundColor)
+        ProgressHUD.animationType = .circleSpinFade
+        ProgressHUD.colorBackground = .background
+        ProgressHUD.colorHUD = .hud
     }
 
     // MARK: UISceneSession Lifecycle
 
-    @available(iOS 13.0, *)
     func application(_: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options _: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 }

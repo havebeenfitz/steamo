@@ -20,7 +20,7 @@ class Dota2MatchResult: Object, Codable {
     @objc dynamic var ownerSteamId: String? = nil
     dynamic var players: List<Dota2DetailPlayer> = List()
     @objc dynamic var radiantWin: Bool = false
-    dynamic var startTime: RealmOptional<Double> = RealmOptional()
+    dynamic var startTime: RealmProperty<Double?> = RealmProperty()
     @objc dynamic var matchId: Int = 0
 
     enum CodingKeys: String, CodingKey {
@@ -34,7 +34,7 @@ class Dota2MatchResult: Object, Codable {
          return "matchId"
     }
         
-    required init() {
+    required override init() {
         super.init()
     }
         
@@ -70,7 +70,7 @@ class Dota2MatchResult: Object, Codable {
 // MARK: - Player
 class Dota2DetailPlayer: Object, Codable {
     @objc dynamic var uuid: String? = UUID().uuidString
-    @objc dynamic var accountId: Int = 0
+    dynamic var accountId: RealmProperty<Int?> = RealmProperty()
     @objc dynamic var playerSlot: Int = 0
 
     enum CodingKeys: String, CodingKey {
@@ -82,10 +82,6 @@ class Dota2DetailPlayer: Object, Codable {
          return "uuid"
     }
         
-    required init() {
-        super.init()
-    }
-        
     convenience init(existing: Dota2DetailPlayer) {
         self.init()
         self.uuid = existing.uuid
@@ -93,15 +89,17 @@ class Dota2DetailPlayer: Object, Codable {
         self.playerSlot = existing.playerSlot
     }
     
-    convenience init(accountId: Int, playerSlot: Int) {
+    convenience init(accountId: Int?, playerSlot: Int) {
         self.init()
-        self.accountId = accountId
+        let accountIdRealm = RealmProperty<Int?>()
+        accountIdRealm.value = accountId
+        self.accountId = accountIdRealm
         self.playerSlot = playerSlot
     }
     
     convenience required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let accountId = try container.decode(Int.self, forKey: .accountId)
+        let accountId = try container.decodeIfPresent(Int.self, forKey: .accountId)
         let playerSlot = try container.decode(Int.self, forKey: .playerSlot)
         self.init(accountId: accountId, playerSlot: playerSlot)
     }

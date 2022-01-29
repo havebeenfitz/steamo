@@ -1,6 +1,0 @@
-framework module Pods_Steamo {
-  umbrella header "Pods-Steamo-umbrella.h"
-
-  export *
-  module * { export * }
-}

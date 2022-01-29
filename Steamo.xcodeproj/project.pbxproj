@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9F68FD0624EC3C8800DF927E /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F68FD0524EC3C8800DF927E /* NewGameView.swift */; };
 		9F68FD0824EC3C8E00DF927E /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F68FD0724EC3C8E00DF927E /* CollectionHeaderView.swift */; };
 		9F68FD0A24EC400E00DF927E /* LeftLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F68FD0924EC400E00DF927E /* LeftLayout.swift */; };
-		AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */; };
 		E4050371238D9D3700EC11A4 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050370238D9D3700EC11A4 /* FriendTableViewCell.swift */; };
 		E4050373238D9D4400EC11A4 /* FriendSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050372238D9D4400EC11A4 /* FriendSectionViewModel.swift */; };
 		E4050376238DB05F00EC11A4 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050375238DB05F00EC11A4 /* SessionsViewController.swift */; };
@@ -57,6 +56,11 @@
 		E46FF173239983FA00272B17 /* TwoWeekSessionsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF172239983FA00272B17 /* TwoWeekSessionsSectionViewModel.swift */; };
 		E46FF1752399842200272B17 /* OlderSessionsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF1742399842200272B17 /* OlderSessionsSectionViewModel.swift */; };
 		E46FF17723998A0B00272B17 /* NoSessionsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FF17623998A0B00272B17 /* NoSessionsSectionViewModel.swift */; };
+		E4A905C427A563F7002680AA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E4A905C327A563F7002680AA /* Realm */; };
+		E4A905C627A563F7002680AA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E4A905C527A563F7002680AA /* RealmSwift */; };
+		E4A905C927A564B9002680AA /* ChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E4A905C827A564B9002680AA /* ChartsDynamic */; };
+		E4A905CC27A564DF002680AA /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = E4A905CB27A564DF002680AA /* ProgressHUD */; };
+		E4A905CF27A565BE002680AA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E4A905CE27A565BE002680AA /* SnapKit */; };
 		E4A9E33E238D8F6700541359 /* Double+Pluralize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E33D238D8F6700541359 /* Double+Pluralize.swift */; };
 		E4A9E341238D9AD200541359 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9E340238D9AD200541359 /* Friends.swift */; };
 		E4AE2B57239AF80A00CDD260 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AE2B56239AF80A00CDD260 /* DefaultTableViewCell.swift */; };
@@ -85,6 +89,8 @@
 		E4C068E32396C50C00A3F5F0 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E22396C50C00A3F5F0 /* DependencyContainer.swift */; };
 		E4C068E52396C52500A3F5F0 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E42396C52500A3F5F0 /* ViewControllerFactory.swift */; };
 		E4C068E92396C72600A3F5F0 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C068E82396C72600A3F5F0 /* ViewModelFactory.swift */; };
+		E4D115A427A562470021AE61 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4D115A327A562470021AE61 /* Alamofire */; };
+		E4D115A727A562800021AE61 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E4D115A627A562800021AE61 /* Kingfisher */; };
 		E4D4AA982397044700867281 /* NoFriendsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4AA972397044700867281 /* NoFriendsSectionViewModel.swift */; };
 		E4D4AA9A2397048B00867281 /* NoOwnedGamesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4AA992397048B00867281 /* NoOwnedGamesSectionViewModel.swift */; };
 		E4D4AA9E23970E1800867281 /* Dota2ErrorSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4AA9D23970E1800867281 /* Dota2ErrorSectionViewModel.swift */; };
@@ -99,7 +105,6 @@
 		E4F61648238A84CE006D832B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F61647238A84CE006D832B /* API.swift */; };
 		E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6164B238A89E7006D832B /* ProfileViewController.swift */; };
 		E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6164E238A8ABF006D832B /* UIViewController+Navigation.swift */; };
-		EF632747C66FDBDCA8A13AEA /* Pods_SteamoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,15 +118,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		113433CCF58085967C216540 /* Pods-SteamoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.debug.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1300BB512DA93974D783425C /* Pods-Steamo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steamo.release.xcconfig"; path = "Target Support Files/Pods-Steamo/Pods-Steamo.release.xcconfig"; sourceTree = "<group>"; };
-		6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steamo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F68FD0524EC3C8800DF927E /* NewGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
 		9F68FD0724EC3C8E00DF927E /* CollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
 		9F68FD0924EC400E00DF927E /* LeftLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftLayout.swift; sourceTree = "<group>"; };
-		CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steamo.debug.xcconfig"; path = "Target Support Files/Pods-Steamo/Pods-Steamo.debug.xcconfig"; sourceTree = "<group>"; };
-		D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SteamoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.release.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.release.xcconfig"; sourceTree = "<group>"; };
 		E4050370238D9D3700EC11A4 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		E4050372238D9D4400EC11A4 /* FriendSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSectionViewModel.swift; sourceTree = "<group>"; };
 		E4050375238DB05F00EC11A4 /* SessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
@@ -221,7 +220,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */,
+				E4A905C627A563F7002680AA /* RealmSwift in Frameworks */,
+				E4A905C927A564B9002680AA /* ChartsDynamic in Frameworks */,
+				E4A905C427A563F7002680AA /* Realm in Frameworks */,
+				E4A905CF27A565BE002680AA /* SnapKit in Frameworks */,
+				E4A905CC27A564DF002680AA /* ProgressHUD in Frameworks */,
+				E4D115A727A562800021AE61 /* Kingfisher in Frameworks */,
+				E4D115A427A562470021AE61 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,33 +234,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF632747C66FDBDCA8A13AEA /* Pods_SteamoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4DE62FE3BAE71895DB031DC8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */,
-				D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B0DAE9430D6782F5BBB7EE6A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */,
-				1300BB512DA93974D783425C /* Pods-Steamo.release.xcconfig */,
-				113433CCF58085967C216540 /* Pods-SteamoTests.debug.xcconfig */,
-				D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		E4050374238DB04000EC11A4 /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,8 +311,6 @@
 				E434979323859F9A0047B750 /* Steamo */,
 				E43497AA23859F9C0047B750 /* SteamoTests */,
 				E434979223859F9A0047B750 /* Products */,
-				B0DAE9430D6782F5BBB7EE6A /* Pods */,
-				4DE62FE3BAE71895DB031DC8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -686,17 +668,24 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E43497B023859F9C0047B750 /* Build configuration list for PBXNativeTarget "Steamo" */;
 			buildPhases = (
-				5F98F67533B9739E8CF753F8 /* [CP] Check Pods Manifest.lock */,
 				E434978D23859F9A0047B750 /* Sources */,
 				E434978E23859F9A0047B750 /* Frameworks */,
 				E434978F23859F9A0047B750 /* Resources */,
-				BA3AE9F2EEED17C5D5FD524D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Steamo;
+			packageProductDependencies = (
+				E4D115A327A562470021AE61 /* Alamofire */,
+				E4D115A627A562800021AE61 /* Kingfisher */,
+				E4A905C327A563F7002680AA /* Realm */,
+				E4A905C527A563F7002680AA /* RealmSwift */,
+				E4A905C827A564B9002680AA /* ChartsDynamic */,
+				E4A905CB27A564DF002680AA /* ProgressHUD */,
+				E4A905CE27A565BE002680AA /* SnapKit */,
+			);
 			productName = Steamo;
 			productReference = E434979123859F9A0047B750 /* Steamo.app */;
 			productType = "com.apple.product-type.application";
@@ -705,7 +694,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E43497B323859F9C0047B750 /* Build configuration list for PBXNativeTarget "SteamoTests" */;
 			buildPhases = (
-				E39C5B25C0B5A2A040B27832 /* [CP] Check Pods Manifest.lock */,
 				E43497A323859F9C0047B750 /* Sources */,
 				E43497A423859F9C0047B750 /* Frameworks */,
 				E43497A523859F9C0047B750 /* Resources */,
@@ -727,7 +715,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = "Max Kraev";
 				TargetAttributes = {
 					E434979023859F9A0047B750 = {
@@ -748,6 +736,14 @@
 				Base,
 			);
 			mainGroup = E434978823859F9A0047B750;
+			packageReferences = (
+				E4D115A227A562470021AE61 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				E4D115A527A562800021AE61 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E4A905C227A563F7002680AA /* XCRemoteSwiftPackageReference "realm-swift" */,
+				E4A905C727A564B9002680AA /* XCRemoteSwiftPackageReference "Charts" */,
+				E4A905CA27A564DF002680AA /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				E4A905CD27A565BE002680AA /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = E434979223859F9A0047B750 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -777,70 +773,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5F98F67533B9739E8CF753F8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Steamo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BA3AE9F2EEED17C5D5FD524D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Steamo/Pods-Steamo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Steamo/Pods-Steamo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Steamo/Pods-Steamo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E39C5B25C0B5A2A040B27832 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SteamoTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E434978D23859F9A0047B750 /* Sources */ = {
@@ -993,6 +925,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1003,6 +936,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1053,6 +987,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1083,7 +1018,6 @@
 		};
 		E43497B123859F9C0047B750 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1105,7 +1039,6 @@
 		};
 		E43497B223859F9C0047B750 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1300BB512DA93974D783425C /* Pods-Steamo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1127,7 +1060,6 @@
 		};
 		E43497B423859F9C0047B750 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 113433CCF58085967C216540 /* Pods-SteamoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1150,7 +1082,6 @@
 		};
 		E43497B523859F9C0047B750 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1202,6 +1133,95 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E4A905C227A563F7002680AA /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.19.0;
+			};
+		};
+		E4A905C727A564B9002680AA /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		E4A905CA27A564DF002680AA /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
+		E4A905CD27A565BE002680AA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		E4D115A227A562470021AE61 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.5.0;
+			};
+		};
+		E4D115A527A562800021AE61 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E4A905C327A563F7002680AA /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4A905C227A563F7002680AA /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		E4A905C527A563F7002680AA /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4A905C227A563F7002680AA /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		E4A905C827A564B9002680AA /* ChartsDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4A905C727A564B9002680AA /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = ChartsDynamic;
+		};
+		E4A905CB27A564DF002680AA /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4A905CA27A564DF002680AA /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
+		E4A905CE27A565BE002680AA /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4A905CD27A565BE002680AA /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		E4D115A327A562470021AE61 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4D115A227A562470021AE61 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		E4D115A627A562800021AE61 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4D115A527A562800021AE61 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E434978923859F9A0047B750 /* Project object */;
 }
