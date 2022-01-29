@@ -11,19 +11,6 @@ import UIKit
 class SteamoNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAppearence()
-    }
-
-    private func setupAppearence() {
-        navigationBar.isTranslucent = false
-        if #available(iOS 13.0, *) {
-            navigationBar.barTintColor = UIColor(named: "Background")
-            navigationBar.tintColor = UIColor(named: "Accent")
-        } else {
-            navigationBar.barStyle = .black
-            navigationBar.barTintColor = .background
-            navigationBar.tintColor = .accent
-        }
     }
 
     @objc private func back() {

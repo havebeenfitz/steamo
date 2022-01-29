@@ -23,19 +23,7 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAppearence()
         addViewControllers()
-    }
-
-    private func setupAppearence() {
-        tabBar.isTranslucent = false
-        if #available(iOS 11.0, *) {
-            tabBar.tintColor = UIColor(named: "Accent")
-            tabBar.barTintColor = UIColor(named: "Background")
-        } else {
-            tabBar.tintColor = .accent
-            tabBar.barTintColor = .background
-        }
     }
 
     private func addViewControllers() {

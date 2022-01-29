@@ -87,12 +87,6 @@ class GameView: UIView, ReusableView {
     }
 
     private func setup() {
-        if #available(iOS 11.0, *) {
-            backgroundColor = UIColor(named: "Background")
-        } else {
-            backgroundColor = .background
-        }
-
         snp.makeConstraints { make in
             make.width.equalTo(UIScreen.main.bounds.width)
             make.height.equalTo(160).priority(.init(999))

@@ -88,13 +88,6 @@ class AvatarTableViewCell: UITableViewCell {
 
     private func setup() {
         selectionStyle = .none
-        backgroundColor = .clear
-
-        if #available(iOS 11.0, *) {
-            contentView.backgroundColor = UIColor(named: "Background")
-        } else {
-            contentView.backgroundColor = .background
-        }
         contentView.addSubview(avatarImageView)
         avatarImageView.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview().inset(20).priority(.required)

@@ -13,7 +13,9 @@ class CollectionCellContainer<View: ReusableView>: UICollectionViewCell {
     
     override var isHighlighted: Bool {
         didSet {
-            scale(isHighlighted)
+            if let selectableView = containedView as? SelectableView {
+                selectableView.setSelected(isSelected: isHighlighted, animated: true)
+            }
         }
     }
 
@@ -31,14 +33,6 @@ class CollectionCellContainer<View: ReusableView>: UICollectionViewCell {
         contentView.addSubview(containedView)
         containedView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-    }
-    
-    private func scale(_ isHighlited: Bool) {
-        if isHighlited {
-            transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
-        } else {
-            transform = .identity
         }
     }
     

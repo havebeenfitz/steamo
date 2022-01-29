@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F68FD0624EC3C8800DF927E /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F68FD0524EC3C8800DF927E /* NewGameView.swift */; };
+		9F68FD0824EC3C8E00DF927E /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F68FD0724EC3C8E00DF927E /* CollectionHeaderView.swift */; };
+		9F68FD0A24EC400E00DF927E /* LeftLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F68FD0924EC400E00DF927E /* LeftLayout.swift */; };
 		AE81A28DE8CC25A32BA71119 /* Pods_Steamo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */; };
 		E4050371238D9D3700EC11A4 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050370238D9D3700EC11A4 /* FriendTableViewCell.swift */; };
 		E4050373238D9D4400EC11A4 /* FriendSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4050372238D9D4400EC11A4 /* FriendSectionViewModel.swift */; };
@@ -113,6 +116,9 @@
 		113433CCF58085967C216540 /* Pods-SteamoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.debug.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1300BB512DA93974D783425C /* Pods-Steamo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steamo.release.xcconfig"; path = "Target Support Files/Pods-Steamo/Pods-Steamo.release.xcconfig"; sourceTree = "<group>"; };
 		6F82CCBFCAA542B61E1CC3F0 /* Pods_Steamo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steamo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F68FD0524EC3C8800DF927E /* NewGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
+		9F68FD0724EC3C8E00DF927E /* CollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
+		9F68FD0924EC400E00DF927E /* LeftLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftLayout.swift; sourceTree = "<group>"; };
 		CDF2DAB74C5B1A0D36B9788F /* Pods-Steamo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steamo.debug.xcconfig"; path = "Target Support Files/Pods-Steamo/Pods-Steamo.debug.xcconfig"; sourceTree = "<group>"; };
 		D22F744156106D0ED63F9A16 /* Pods_SteamoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SteamoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41B7061CAA3A703A677EF81 /* Pods-SteamoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamoTests.release.xcconfig"; path = "Target Support Files/Pods-SteamoTests/Pods-SteamoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +285,9 @@
 				E414E23B238B4BA500A7AB93 /* SteamoButton.swift */,
 				E4C068BB2395708800A3F5F0 /* SteamoLabel.swift */,
 				E414E257238BABD300A7AB93 /* GameView.swift */,
+				9F68FD0724EC3C8E00DF927E /* CollectionHeaderView.swift */,
+				9F68FD0924EC400E00DF927E /* LeftLayout.swift */,
+				9F68FD0524EC3C8800DF927E /* NewGameView.swift */,
 				E4424E15238EFA6100B5A7BD /* SectionHeaderView.swift */,
 				E4424E1C2390450400B5A7BD /* ProfileShimmeringView.swift */,
 			);
@@ -855,6 +864,7 @@
 				E4F6164C238A89E7006D832B /* ProfileViewController.swift in Sources */,
 				E4C068CE23965C6200A3F5F0 /* Dota2StatsViewModel.swift in Sources */,
 				E4C068E32396C50C00A3F5F0 /* DependencyContainer.swift in Sources */,
+				9F68FD0824EC3C8E00DF927E /* CollectionHeaderView.swift in Sources */,
 				E4C068E92396C72600A3F5F0 /* ViewModelFactory.swift in Sources */,
 				E4F6164F238A8ABF006D832B /* UIViewController+Navigation.swift in Sources */,
 				E4C068AD23955FDB00A3F5F0 /* GameSchema.swift in Sources */,
@@ -870,6 +880,7 @@
 				E4D4AAAA2397B77800867281 /* DayXAxisValueFormatter.swift in Sources */,
 				E4D4AAA123971BBD00867281 /* MatchesByDateTableViewCell.swift in Sources */,
 				E4424E07238DC14A00B5A7BD /* CollectionCellContainer.swift in Sources */,
+				9F68FD0624EC3C8800DF927E /* NewGameView.swift in Sources */,
 				E4C068B223956CD900A3F5F0 /* StatsSectionViewModelRepresentable.swift in Sources */,
 				E4424E1B238EFDAE00B5A7BD /* SettingsViewModel.swift in Sources */,
 				E4C068D32396600000A3F5F0 /* MatchHistory.swift in Sources */,
@@ -898,6 +909,7 @@
 				E4AE2B57239AF80A00CDD260 /* DefaultTableViewCell.swift in Sources */,
 				E414E252238B9E9600A7AB93 /* Games.swift in Sources */,
 				E4D4AAAC2398083F00867281 /* HoursXAxisValueFormatter.swift in Sources */,
+				9F68FD0A24EC400E00DF927E /* LeftLayout.swift in Sources */,
 				E4687508238AF1ED00D7083E /* AuthRequestBuilder.swift in Sources */,
 				E4C068AF239561D500A3F5F0 /* PlayerStats.swift in Sources */,
 				E4424E0C238EE41C00B5A7BD /* ProfileRouter.swift in Sources */,
@@ -1078,13 +1090,13 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = UA7EV3Y4QH;
 				INFOPLIST_FILE = Steamo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.steamo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Steamo;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1100,13 +1112,13 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = UA7EV3Y4QH;
 				INFOPLIST_FILE = Steamo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.setmysails.steamo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Steamo;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";

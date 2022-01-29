@@ -81,11 +81,11 @@ class SessionsViewModel: NSObject {
         let newSessionsSet = Set(newSessions)
         let oldSessionsToConvert = Array(potentiallyOldSessionsSet.subtracting(newSessionsSet))
         
-        if !newSessions.isEmpty {
-            sectionViewModels.append(TwoWeekSessionsSectionViewModel(games: newSessions))
-        } else {
-            sectionViewModels.append(NoRecentSessionsSectionViewModel())
-        }
+//        if !newSessions.isEmpty {
+//            sectionViewModels.append(TwoWeekSessionsSectionViewModel(games: newSessions))
+//        } else {
+//            sectionViewModels.append(NoRecentSessionsSectionViewModel())
+//        }
         
         if !oldSessionsToConvert.isEmpty {
             convertToOld(oldSessionsToConvert)

@@ -9,21 +9,52 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    enum Section {
+        case profile(rows: [Row])
+        case data(rows: [Row])
+
+        var title: String {
+            switch self {
+            case .profile:
+                return "Profile"
+            case .data:
+                return "Date"
+            }
+        }
+
+        var rows: [Row] {
+            switch self {
+            case let .profile(rows):
+                return rows
+            case let .data(rows):
+                return rows
+            }
+        }
+    }
+
+    enum Row {
+        case logout
+        case eraseData
+        case erasePartData
+    }
+
+    var sections: [Section] = [
+        .profile(rows: [
+            .logout
+        ]),
+        .data(rows: [
+            .eraseData
+        ]),
+    ]
+
     fileprivate let viewModel: SettingsViewModel
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.delaysContentTouches = false
         tableView.alwaysBounceVertical = false
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableView.automaticDimension
-        if #available(iOS 11.0, *) {
-            tableView.backgroundColor = UIColor(named: "Background")
-        } else {
-            tableView.backgroundColor = .background
-        }
         tableView.register(class: DefaultTableViewCell.self)
 
         tableView.delegate = self
@@ -55,12 +86,7 @@ class SettingsViewController: UIViewController {
     }
 
     private func setup() {
-        if #available(iOS 11.0, *) {
-            view.backgroundColor = UIColor(named: "Background")
-        } else {
-            view.backgroundColor = .background
-        }
-
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         title = "Settings"
         
         view.addSubview(tableView)
@@ -89,23 +115,31 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-        return 50
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sections[section].title
     }
 
-    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = SectionHeaderView()
-        let title = section == 0 ? "Profile" : "Data"
-        view.configure(with: title)
-        return view
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let item = sections[indexPath.section].rows[indexPath.row]
+        switch item {
+        case .erasePartData:
+            self.eraseAllData()
+        case .logout:
+            self.logout()
+        case .eraseData:
+            self.eraseAllData()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sections.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let section = sections[section]
+        return section.rows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,28 +147,22 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        switch indexPath.section {
-        case 0:
-            let button = SteamoButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            button.setImage(UIImage(named: "logout"), for: .normal)
-            button.addTarget(self, action: #selector(logout), for: .touchUpInside)
-            button.tintColor = .systemBlue
-            cell.accessoryView = button
+        let item = sections[indexPath.section].rows[indexPath.row]
+        switch item {
+        case .erasePartData:
+            cell.imageView?.tintColor = UIColor.red
+            cell.imageView?.image = UIImage(systemName: "clear")
+            cell.textLabel?.text = "Erase PART stored data"
+            return cell
+        case .logout:
+            cell.imageView?.image = UIImage(systemName: "escape")
             cell.textLabel?.text = "Logout"
             return cell
-        case 1:
-            let button = SteamoButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            button.tintColor = .systemRed
-            button.setImage(UIImage(named: "wipe"), for: .normal)
-            button.addTarget(self, action: #selector(eraseAllData), for: .touchUpInside)
-            cell.accessoryView = button
+        case .eraseData:
+            cell.imageView?.tintColor = UIColor.red
+            cell.imageView?.image = UIImage(systemName: "clear")
             cell.textLabel?.text = "Erase all stored data"
             return cell
-        default:
-            break
         }
-        
-        assertionFailure("New cell")
-        return UITableViewCell()
     }
 }
