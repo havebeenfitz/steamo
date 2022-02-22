@@ -30,4 +30,6 @@ MVVM + Routers
 iOS >= 13.
 Xcode 13
 
-![profile](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/01_profile.png)![game_stats](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/02_game_stats.png)![sessions](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/03_my_sessions.png)
+| Profile | Game stats | Recent Sessions |
+| -- | -- | -- |
+| ![profile](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/01_profile.png) | ![game_stats](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/02_game_stats.png) | ![sessions](https://github.com/havebeenfitz/steamo/blob/develop/screenshots/03_my_sessions.png) |
